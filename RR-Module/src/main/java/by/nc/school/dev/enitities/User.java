@@ -1,6 +1,6 @@
 package by.nc.school.dev.enitities;
 
-public abstract class User extends BaseEnitity {
+public abstract class User extends BaseEntity {
 
     protected String username;
     protected String password;

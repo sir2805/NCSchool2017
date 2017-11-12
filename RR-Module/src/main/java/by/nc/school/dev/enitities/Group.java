@@ -5,7 +5,7 @@ import by.nc.school.dev.enitities.Tutor;
 
 import java.util.List;
 
-public class Group extends BaseEnitity {
+public class Group extends BaseEntity {
 
     private int groupNumber;
     private List<Student> students;

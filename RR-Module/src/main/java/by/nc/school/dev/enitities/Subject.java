@@ -1,6 +1,6 @@
 package by.nc.school.dev.enitities;
 
-public class Subject extends BaseEnitity {
+public class Subject extends BaseEntity {
 
     private String name;
     private Tutor tutor;

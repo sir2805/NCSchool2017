@@ -2,7 +2,7 @@ package by.nc.school.dev.enitities;
 
 import java.util.Map;
 
-public class GroupJournal extends BaseEnitity {
+public class GroupJournal extends BaseEntity {
 
     private Map<Semester, GroupSemesterJournal>groupJournal;
     private Group group;

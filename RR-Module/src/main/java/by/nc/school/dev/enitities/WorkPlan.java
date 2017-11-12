@@ -3,7 +3,7 @@ package by.nc.school.dev.enitities;
 import java.util.List;
 import java.util.Map;
 
-public class WorkPlan extends BaseEnitity {
+public class WorkPlan extends BaseEntity {
 
     private Map<Integer, List<Subject>> plan;
     private Semester semester;

@@ -1,9 +1,9 @@
 package by.nc.school.dev.enitities;
 
-public abstract class BaseEnitity {
+public abstract class BaseEntity {
     protected int id;
 
-    public BaseEnitity(int id) {
+    public BaseEntity(int id) {
         this.id = id;
     }
 
