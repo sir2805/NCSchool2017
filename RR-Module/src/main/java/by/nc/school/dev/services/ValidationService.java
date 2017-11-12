@@ -13,7 +13,7 @@ public class ValidationService {
         UserDaoEntity entity = userDao.getUserByUserName(username);
         User currentUser = null;
         if (entity == null) {
-            System.out.println("username doesn't exist");
+            System.out.println("login doesn't exist");
         } else if (!entity.getPassword().equals(password)) {
             System.out.println("incorrect password");
         } else {

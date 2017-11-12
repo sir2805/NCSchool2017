@@ -9,7 +9,7 @@ public class Dean extends User {
     @Override
     public String toString() {
         return "Dean{" +
-                "username='" + username + '\'' +
+                "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", id=" + id +

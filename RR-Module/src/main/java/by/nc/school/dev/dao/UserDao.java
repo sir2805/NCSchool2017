@@ -1,7 +1,6 @@
 package by.nc.school.dev.dao;
 
 import by.nc.school.dev.Role;
-import by.nc.school.dev.dao.entities.UserDaoEntity;
 import by.nc.school.dev.data.FakeUserGenerator;
 import by.nc.school.dev.enitities.User;
 
@@ -15,8 +14,8 @@ public class UserDao extends BaseDao<User> {
     }
 
     public User getUserByUserName(String userName) {
-        for (UserDaoEntity entity : entities) {
-            if (userName.equals(entity.getUsername())) {
+        for (User entity : entities) {
+            if (userName.equals(entity.getLogin())) {
                 return entity;
             }
         }
@@ -24,7 +23,7 @@ public class UserDao extends BaseDao<User> {
     }
 
     public User getUserByFullName(String fullName) {
-        for (UserDaoEntity entity : entities) {
+        for (User entity : entities) {
             if (fullName.equals(entity.getFullName())) {
                 return entity;
             }
@@ -33,9 +32,9 @@ public class UserDao extends BaseDao<User> {
     }
 
     public List<User> getTutors() {
-        List<UserDaoEntity> result = new ArrayList<>();
-        for (UserDaoEntity entity : entities) {
-            if (entity.getStatus() == Role.TUTOR || entity.getStatus() == Role.CURATOR) {
+        List<User> result = new ArrayList<>();
+        for (User entity : entities) {
+            if (entity.getUserRole() == Role.TUTOR || entity.getUserRole() == Role.CURATOR) {
                 result.add(entity);
             }
         }
@@ -47,7 +46,7 @@ public class UserDao extends BaseDao<User> {
     }
 
     public void update(User entity) {
-        UserDaoEntity oldEntity = get(entity.getId());
+        User oldEntity = get(entity.getId());
         entities.remove(oldEntity);
         entities.add(entity);
     }

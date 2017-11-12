@@ -18,7 +18,7 @@ public class Student extends User {
     public String toString() {
         return "Student{" +
                 "groupNumber=" + groupNumber +
-                ", username='" + username + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", id=" + id +

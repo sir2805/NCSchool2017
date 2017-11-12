@@ -1,16 +1,16 @@
 package by.nc.school.dev.enitities;
 
-public abstract class User extends BaseEntity {
+public class User extends BaseEntity {
 
-    protected String username;
+    protected String login;
     protected String password;
     protected String fullName;
     protected int userRole;
 
-    public User(int id, int userRole, String username, String password, String fullName) {
+    public User(int id, int userRole, String login, String password, String fullName) {
         super(id);
         this.userRole = userRole;
-        this.username = username;
+        this.login = login;
         this.password = password;
         this.fullName = fullName;
     }
@@ -18,7 +18,7 @@ public abstract class User extends BaseEntity {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", id=" + id +
@@ -33,14 +33,14 @@ public abstract class User extends BaseEntity {
         User user = (User) o;
 
         if (id != user.id) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         return fullName != null ? fullName.equals(user.fullName) : user.fullName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = login != null ? login.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
         result = 31 * result + id;
@@ -51,8 +51,8 @@ public abstract class User extends BaseEntity {
         return userRole;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public void setPassword(String password) {
@@ -63,8 +63,8 @@ public abstract class User extends BaseEntity {
         this.fullName = fullName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
     public String getPassword() {

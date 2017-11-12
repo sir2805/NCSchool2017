@@ -1,14 +1,15 @@
 package by.nc.school.dev.data;
 
 import by.nc.school.dev.Role;
-import by.nc.school.dev.dao.entities.UserDaoEntity;
+import by.nc.school.dev.enitities.Student;
+import by.nc.school.dev.enitities.User;
 
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class FakeUserGenerator extends AbstractFakeGenerator<UserDaoEntity> {
+public class FakeUserGenerator extends AbstractFakeGenerator<User> {
 
     private String[]logins = {
             "Patrice" ,
@@ -77,35 +78,35 @@ public class FakeUserGenerator extends AbstractFakeGenerator<UserDaoEntity> {
             for (String login : logins) {
                 String password = login + "1";
                 String username = login + " Name";
-                int status = 1;
+                int role = 1;
                 int groupNumber;
                 groupNumber = random.nextInt(4) + 1;
                 switch (login) {
                     case "admin":
                     case "roskach":
-                        status = Role.DEAN;
+                        role = Role.DEAN;
                         groupNumber = 0;
                         break;
                     case "aaa":
-                        status = Role.CURATOR;
+                        role = Role.CURATOR;
                         groupNumber = 1;
                         break;
                     case "bbb":
-                        status = Role.CURATOR;
+                        role = Role.CURATOR;
                         groupNumber = 2;
 
                         break;
                     case "ccc":
-                        status = Role.CURATOR;
+                        role = Role.CURATOR;
                         groupNumber = 3;
 
                         break;
                     case "ddd":
-                        status = Role.CURATOR;
+                        role = Role.CURATOR;
                         groupNumber = 4;
                         break;
                 }
-                oos.writeObject(new UserDaoEntity(id, login, password, username, status, groupNumber));
+                oos.writeObject(new User(id, role, login, password, username));
                 id++;
             }
             oos.writeObject(null);

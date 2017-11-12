@@ -58,7 +58,7 @@ public class App {
 
     private static void testUsernameChange() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Input new username ");
+        System.out.println("Input new login ");
         String newUsername = sc.nextLine();
         UserService userService = new ServiceFactory().getUserService();
         userService.changeUsername(currentUser, newUsername);
@@ -69,7 +69,7 @@ public class App {
     private static void testValidation() {
         while (true) {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Input username ");
+            System.out.println("Input login ");
             String username = sc.nextLine();
             System.out.println("Input password ");
             String password = sc.nextLine();
