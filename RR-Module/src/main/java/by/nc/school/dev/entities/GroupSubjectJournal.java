@@ -1,4 +1,4 @@
-package by.nc.school.dev.enitities;
+package by.nc.school.dev.entities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -5,8 +5,8 @@ import by.nc.school.dev.dao.JournalDao;
 import by.nc.school.dev.dao.SubjectDao;
 import by.nc.school.dev.dao.UserDao;
 import by.nc.school.dev.dao.entities.JournalDaoEntity;
-import by.nc.school.dev.enitities.*;
-import by.nc.school.dev.enitities.factories.UserFactory;
+import by.nc.school.dev.entities.*;
+import by.nc.school.dev.entities.factories.UserFactory;
 import by.nc.school.dev.services.GroupJournalService;
 import by.nc.school.dev.services.ServiceFactory;
 

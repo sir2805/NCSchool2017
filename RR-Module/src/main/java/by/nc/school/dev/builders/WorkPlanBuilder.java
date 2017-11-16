@@ -4,8 +4,8 @@ import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.SubjectDao;
 import by.nc.school.dev.dao.WorkPlanDao;
 import by.nc.school.dev.dao.entities.WorkPlanDaoEntity;
-import by.nc.school.dev.enitities.Subject;
-import by.nc.school.dev.enitities.WorkPlan;
+import by.nc.school.dev.entities.Subject;
+import by.nc.school.dev.entities.WorkPlan;
 
 import java.util.ArrayList;
 import java.util.HashMap;

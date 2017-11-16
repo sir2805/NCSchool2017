@@ -2,7 +2,7 @@ package by.nc.school.dev.dao;
 
 import by.nc.school.dev.dao.entities.SubjectDaoEntity;
 import by.nc.school.dev.data.FakeSubjectGenerator;
-import by.nc.school.dev.enitities.Subject;
+import by.nc.school.dev.entities.Subject;
 
 import java.util.ArrayList;
 import java.util.List;

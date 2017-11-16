@@ -1,11 +1,11 @@
 package by.nc.school.dev.services;
 
 import by.nc.school.dev.builders.SubjectBuilder;
-import by.nc.school.dev.enitities.factories.TutorFactory;
+import by.nc.school.dev.entities.factories.TutorFactory;
 import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.entities.SubjectDaoEntity;
-import by.nc.school.dev.enitities.Subject;
-import by.nc.school.dev.enitities.Tutor;
+import by.nc.school.dev.entities.Subject;
+import by.nc.school.dev.entities.Tutor;
 
 import java.util.ArrayList;
 import java.util.List;

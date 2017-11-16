@@ -3,7 +3,7 @@ package by.nc.school.dev.services;
 import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.UserDao;
 import by.nc.school.dev.dao.entities.UserDaoEntity;
-import by.nc.school.dev.enitities.User;
+import by.nc.school.dev.entities.User;
 
 public class ValidationService {
 

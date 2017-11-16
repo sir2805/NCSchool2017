@@ -2,10 +2,8 @@ package by.nc.school.dev.dao;
 
 import by.nc.school.dev.dao.entities.JournalDaoEntity;
 import by.nc.school.dev.data.TestJournalDb;
-import by.nc.school.dev.enitities.GroupJournal;
+import by.nc.school.dev.entities.GroupJournal;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class JournalDao extends BaseDao<GroupJournal> {

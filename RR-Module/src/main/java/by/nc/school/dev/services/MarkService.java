@@ -4,7 +4,7 @@ import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.JournalDao;
 import by.nc.school.dev.dao.builders.JournalDaoEntityBuilder;
 import by.nc.school.dev.dao.entities.JournalDaoEntity;
-import by.nc.school.dev.enitities.*;
+import by.nc.school.dev.entities.*;
 
 import java.util.HashMap;
 import java.util.List;

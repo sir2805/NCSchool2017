@@ -4,7 +4,7 @@ import by.nc.school.dev.builders.GroupJournalBuilder;
 import by.nc.school.dev.builders.WorkPlanBuilder;
 import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.data.*;
-import by.nc.school.dev.enitities.*;
+import by.nc.school.dev.entities.*;
 import by.nc.school.dev.services.*;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package by.nc.school.dev.services;
 
-import by.nc.school.dev.enitities.Group;
+import by.nc.school.dev.entities.Group;
 import by.nc.school.dev.builders.GroupBuilder;
 
 

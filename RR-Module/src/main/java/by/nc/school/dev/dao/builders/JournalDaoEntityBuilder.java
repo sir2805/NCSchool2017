@@ -1,9 +1,9 @@
 package by.nc.school.dev.dao.builders;
 
 import by.nc.school.dev.dao.entities.JournalDaoEntity;
-import by.nc.school.dev.enitities.Mark;
-import by.nc.school.dev.enitities.Student;
-import by.nc.school.dev.enitities.Subject;
+import by.nc.school.dev.entities.Mark;
+import by.nc.school.dev.entities.Student;
+import by.nc.school.dev.entities.Subject;
 
 public class JournalDaoEntityBuilder {
 

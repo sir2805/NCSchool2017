@@ -1,6 +1,6 @@
 package by.nc.school.dev;
 
-import by.nc.school.dev.enitities.User;
+import by.nc.school.dev.entities.User;
 import by.nc.school.dev.services.ServiceFactory;
 
 public class LoginController {

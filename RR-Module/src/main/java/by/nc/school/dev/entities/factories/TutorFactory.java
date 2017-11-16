@@ -1,7 +1,7 @@
-package by.nc.school.dev.enitities.factories;
+package by.nc.school.dev.entities.factories;
 
-import by.nc.school.dev.enitities.User;
-import by.nc.school.dev.enitities.Tutor;
+import by.nc.school.dev.entities.User;
+import by.nc.school.dev.entities.Tutor;
 
 public class TutorFactory extends AbstractUserFactory {
 

@@ -2,7 +2,7 @@ package by.nc.school.dev.dao;
 
 import by.nc.school.dev.dao.entities.WorkPlanDaoEntity;
 import by.nc.school.dev.data.FakeWorkPlanGenerator;
-import by.nc.school.dev.enitities.WorkPlan;
+import by.nc.school.dev.entities.WorkPlan;
 
 import java.util.List;
 import java.util.stream.Collectors;

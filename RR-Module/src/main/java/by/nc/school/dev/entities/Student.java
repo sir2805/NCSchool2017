@@ -1,4 +1,4 @@
-package by.nc.school.dev.enitities;
+package by.nc.school.dev.entities;
 
 
 public class Student extends User {

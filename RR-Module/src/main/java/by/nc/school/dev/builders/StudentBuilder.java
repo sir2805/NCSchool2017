@@ -1,8 +1,8 @@
 package by.nc.school.dev.builders;
 
 import by.nc.school.dev.dao.entities.UserDaoEntity;
-import by.nc.school.dev.enitities.Student;
-import by.nc.school.dev.enitities.User;
+import by.nc.school.dev.entities.Student;
+import by.nc.school.dev.entities.User;
 
 public class StudentBuilder extends AbstractUserBuilder {
 

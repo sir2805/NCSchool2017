@@ -3,7 +3,7 @@ package by.nc.school.dev.dao;
 import by.nc.school.dev.Role;
 import by.nc.school.dev.dao.entities.UserDaoEntity;
 import by.nc.school.dev.data.FakeUserGenerator;
-import by.nc.school.dev.enitities.User;
+import by.nc.school.dev.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;

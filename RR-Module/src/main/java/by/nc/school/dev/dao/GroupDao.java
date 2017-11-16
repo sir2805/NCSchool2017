@@ -2,10 +2,7 @@ package by.nc.school.dev.dao;
 
 import by.nc.school.dev.dao.entities.GroupDaoEntity;
 import by.nc.school.dev.data.FakeGroupGenerator;
-import by.nc.school.dev.enitities.Group;
-
-import java.util.ArrayList;
-import java.util.List;
+import by.nc.school.dev.entities.Group;
 
 public class GroupDao extends BaseDao<Group> {
 

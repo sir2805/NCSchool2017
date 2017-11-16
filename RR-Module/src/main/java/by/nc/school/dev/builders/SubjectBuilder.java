@@ -3,9 +3,9 @@ package by.nc.school.dev.builders;
 import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.entities.SubjectDaoEntity;
 import by.nc.school.dev.dao.entities.UserDaoEntity;
-import by.nc.school.dev.enitities.Subject;
-import by.nc.school.dev.enitities.Tutor;
-import by.nc.school.dev.enitities.factories.TutorFactory;
+import by.nc.school.dev.entities.Subject;
+import by.nc.school.dev.entities.Tutor;
+import by.nc.school.dev.entities.factories.TutorFactory;
 
 public class SubjectBuilder {
     public Subject build(SubjectDaoEntity subjectDaoEntity) {

@@ -1,6 +1,6 @@
-package by.nc.school.dev.enitities.factories;
+package by.nc.school.dev.entities.factories;
 
-import by.nc.school.dev.enitities.User;
+import by.nc.school.dev.entities.User;
 
 public abstract class AbstractUserFactory {
 

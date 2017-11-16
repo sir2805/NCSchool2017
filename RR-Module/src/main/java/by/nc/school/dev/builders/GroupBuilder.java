@@ -2,12 +2,12 @@ package by.nc.school.dev.builders;
 
 import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.GroupDao;
-import by.nc.school.dev.enitities.Curator;
-import by.nc.school.dev.enitities.Group;
+import by.nc.school.dev.entities.Curator;
+import by.nc.school.dev.entities.Group;
 import by.nc.school.dev.dao.entities.GroupDaoEntity;
 import by.nc.school.dev.dao.UserDao;
-import by.nc.school.dev.enitities.Student;
-import by.nc.school.dev.enitities.factories.StudentFactory;
+import by.nc.school.dev.entities.Student;
+import by.nc.school.dev.entities.factories.StudentFactory;
 import by.nc.school.dev.services.ServiceFactory;
 import by.nc.school.dev.services.UserService;
 

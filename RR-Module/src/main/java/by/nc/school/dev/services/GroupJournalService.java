@@ -5,7 +5,7 @@ import by.nc.school.dev.dao.DaoFactory;
 import by.nc.school.dev.dao.SubjectDao;
 import by.nc.school.dev.dao.WorkPlanDao;
 import by.nc.school.dev.dao.entities.WorkPlanDaoEntity;
-import by.nc.school.dev.enitities.*;
+import by.nc.school.dev.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;

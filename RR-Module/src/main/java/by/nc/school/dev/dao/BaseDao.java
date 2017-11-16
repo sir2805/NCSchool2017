@@ -1,6 +1,6 @@
 package by.nc.school.dev.dao;
 
-import by.nc.school.dev.enitities.BaseEntity;
+import by.nc.school.dev.entities.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
