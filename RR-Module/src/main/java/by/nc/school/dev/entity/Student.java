@@ -1,17 +1,14 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Student extends Person {
     @ManyToOne
+    @JoinColumn(name = "group_id")
     private Group group;
-
-    public Student(Long id, String fullName, int role, Group group) {
-        super(id, fullName, role);
-        this.group = group;
-    }
 
     public Group getGroup() {
         return group;

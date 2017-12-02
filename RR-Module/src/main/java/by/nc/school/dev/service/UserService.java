@@ -1,7 +1,7 @@
 package by.nc.school.dev.service;
 
 import by.nc.school.dev.dao.UserRepository;
-import by.nc.school.dev.dao.entity.UserDaoEntity;
+import by.nc.school.dev.entity.User;
 import org.springframework.beans.factory.annotation.Required;
 
 
@@ -18,32 +18,32 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDaoEntity getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 
-    public UserDaoEntity login(String username, String password) {
-        UserDaoEntity userDaoEntity = userRepository.findUserByUsername(username);
-        if (userDaoEntity.getPassword().equals(password)) {
-            return userDaoEntity;
+    public User login(String username, String password) {
+        User user = userRepository.findUserByUsername(username);
+        if (user.getPassword().equals(password)) {
+            return user;
         } else {
             return null;
         }
     }
 
     public void changeUsername(Long userId, String newUsername) {
-        UserDaoEntity oldUserDaoEntity = userRepository.findById(userId).get();
-        oldUserDaoEntity.setUsername(newUsername);
-        userRepository.save(oldUserDaoEntity);
+        User oldUser = userRepository.findById(userId).get();
+        oldUser.setUsername(newUsername);
+        userRepository.save(oldUser);
     }
 
     public void changePassword(Long userId, String newPassword) {
-        UserDaoEntity oldUserDaoEntity = userRepository.findById(userId).get();
-        oldUserDaoEntity.setPassword(newPassword);
-        userRepository.save(oldUserDaoEntity);
+        User oldUser = userRepository.findById(userId).get();
+        oldUser.setPassword(newPassword);
+        userRepository.save(oldUser);
     }
 
-    public void addUser(UserDaoEntity userDaoEntity) {
-        userRepository.save(userDaoEntity);
+    public void addUser(User user) {
+        userRepository.save(user);
     }
 }

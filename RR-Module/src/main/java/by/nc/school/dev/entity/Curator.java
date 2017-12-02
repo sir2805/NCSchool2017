@@ -1,17 +1,12 @@
 package by.nc.school.dev.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Curator extends Tutor {
     @OneToOne
+    @JoinColumn(name = "group_id")
     private Group group;
-
-    public Curator(Long id, String fullName, int role, Group group) {
-        super(id, fullName, role);
-        this.group = group;
-    }
 
     public Group getGroup() {
         return group;

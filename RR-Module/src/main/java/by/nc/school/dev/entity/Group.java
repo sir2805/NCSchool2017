@@ -4,28 +4,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "group")
+@Table(name = "group_table")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "group_id")
     private Long id;
     @Column(name = "group_number")
     private int groupNumber;
-    @OneToMany(cascade = CascadeType.ALL)
-    //TODO configure JoinTable
+    @OneToMany(mappedBy = "group")
     private List<Student> students;
-    @OneToOne
+    @OneToOne(mappedBy = "group")
     private Curator curator;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "semester_id")
     private Semester currentSemester;
-
-    public Group(int groupNumber, List<Student> students, Curator curator, Semester currentSemester) {
-        this.groupNumber = groupNumber;
-        this.students = students;
-        this.curator = curator;
-        this.currentSemester = currentSemester;
-    }
 
     @Override
     public String toString() {
@@ -35,6 +28,11 @@ public class Group {
                 ", curator=" + curator +
                 ", currentSemester=" + currentSemester +
                 '}';
+    }
+
+
+    public Long getId() {
+        return id;
     }
 
     public int getGroupNumber() {

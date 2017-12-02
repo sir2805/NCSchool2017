@@ -4,21 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "person")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "person_id")
     protected Long id;
     @Column(name = "fullname")
     protected String fullname;
     @Column(name = "role")
     protected int role;
-
-    public Person(Long id, String fullname, int role) {
-        this.id = id;
-        this.fullname = fullname;
-        this.role = role;
-    }
 
     public Long getId() {
         return id;

@@ -7,14 +7,10 @@ import javax.persistence.*;
 public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "semester_id")
     private Long id;
     @Column(name = "semester_number")
     private int semesterNumber;
-
-    public Semester(int semesterNumber) {
-        this.semesterNumber = semesterNumber;
-    }
 
     public Long getId() {
         return id;

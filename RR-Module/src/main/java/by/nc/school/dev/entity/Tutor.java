@@ -1,13 +1,12 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Tutor extends Person {
-
-    public Tutor(Long id, String fullName, int role) {
-        super(id, fullName, role);
-    }
 
     @Override
     public String toString() {

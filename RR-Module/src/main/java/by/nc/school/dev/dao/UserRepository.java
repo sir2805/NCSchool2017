@@ -1,10 +1,10 @@
 package by.nc.school.dev.dao;
 
-import by.nc.school.dev.dao.entity.UserDaoEntity;
+import by.nc.school.dev.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface UserRepository extends CrudRepository<UserDaoEntity, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
-    UserDaoEntity findUserByUsername(String username);
+    User findUserByUsername(String username);
 }
