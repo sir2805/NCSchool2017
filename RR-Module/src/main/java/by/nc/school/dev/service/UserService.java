@@ -1,49 +1,16 @@
 package by.nc.school.dev.service;
 
-import by.nc.school.dev.dao.UserRepository;
 import by.nc.school.dev.entity.User;
-import org.springframework.beans.factory.annotation.Required;
 
+public interface UserService {
 
-public class UserService {
+    User getUserByUsername(String username);
 
-    private UserRepository userRepository;
+    User login(String login, String password);
 
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
+    void changeUsername(Long userId, String newUsername);
 
-    @Required
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    void changePassword(Long userId, String newPassword);
 
-    public User getUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
-    }
-
-    public User login(String username, String password) {
-        User user = userRepository.findUserByUsername(username);
-        if (user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
-        }
-    }
-
-    public void changeUsername(Long userId, String newUsername) {
-        User oldUser = userRepository.findById(userId).get();
-        oldUser.setUsername(newUsername);
-        userRepository.save(oldUser);
-    }
-
-    public void changePassword(Long userId, String newPassword) {
-        User oldUser = userRepository.findById(userId).get();
-        oldUser.setPassword(newPassword);
-        userRepository.save(oldUser);
-    }
-
-    public void addUser(User user) {
-        userRepository.save(user);
-    }
+    void addUser(User user);
 }

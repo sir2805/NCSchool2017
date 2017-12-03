@@ -17,6 +17,14 @@ public class User {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    private User() {}
+
+    public User(String username, String password, Person person) {
+        this.username = username;
+        this.password = password;
+        this.person = person;
+    }
+
     public Long getId() {
         return id;
     }

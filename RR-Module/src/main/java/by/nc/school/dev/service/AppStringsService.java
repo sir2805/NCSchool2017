@@ -2,13 +2,6 @@ package by.nc.school.dev.service;
 
 public interface AppStringsService {
 
-    interface EXCEPTION {
-        String KEY = "exception";
-        interface SAVE_STORAGE {
-            String KEY = EXCEPTION.KEY + ".save_storage";
-        }
-    }
-
     interface WEB {
         String KEY = "web";
         interface LOGIN {
@@ -37,10 +30,25 @@ public interface AppStringsService {
             interface TITLE {
                 String KEY = HOME.KEY + ".title";
             }
+            interface TABLE {
+                String KEY = HOME.KEY + ".table";
+                interface USER {
+                    String KEY = TABLE.KEY + ".user";
+                }
+                interface PASSWORD {
+                    String KEY = TABLE.KEY + ".password";
+                }
+                interface COUNTRIES {
+                    String KEY = TABLE.KEY + ".countries";
+                }
+            }
             interface NEW_USER {
                 String KEY = HOME.KEY + ".newuser";
                 interface TITLE {
                     String KEY = NEW_USER.KEY + ".title";
+                }
+                interface COUNTRIES {
+                    String KEY = NEW_USER.KEY + ".countries";
                 }
                 interface SUBMIT {
                     String KEY = NEW_USER.KEY + ".submit";

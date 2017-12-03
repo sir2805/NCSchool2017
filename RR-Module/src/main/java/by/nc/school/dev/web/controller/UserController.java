@@ -1,9 +1,14 @@
 package by.nc.school.dev.web.controller;
 
+import by.nc.school.dev.Role;
+import by.nc.school.dev.entity.Person;
+import by.nc.school.dev.entity.User;
 import by.nc.school.dev.service.UserService;
+
 import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +21,7 @@ public class UserController {
 
     protected UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/login"/*path = Pages.USER.LOGIN.PATH*/)
+    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.LOGIN.PATH)
     public String login(HttpSession session
             ,@RequestParam("username") String userName
             ,@RequestParam("password") String password) {
@@ -29,6 +34,16 @@ public class UserController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:" + Pages.VIEWS.LOGIN.PATH_ABSOLUTE;
+    }
+
+    @Transactional
+    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.NEW_USER.PATH)
+    public String addUser(@RequestParam("username") String userName
+            ,@RequestParam("password") String password
+            ,@RequestParam("countries") String fullname) {
+        Person person = new Person(fullname, Role.STUDENT);
+        userService.addUser(new User(userName, password, person));
+        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }
 
     @Required

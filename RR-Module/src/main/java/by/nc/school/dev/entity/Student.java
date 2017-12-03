@@ -10,6 +10,11 @@ public class Student extends Person {
     @JoinColumn(name = "group_id")
     private Group group;
 
+    public Student(String fullname, int role, Group group) {
+        super(fullname, role);
+        this.group = group;
+    }
+
     public Group getGroup() {
         return group;
     }

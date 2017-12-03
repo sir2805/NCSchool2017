@@ -14,6 +14,11 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "home";
         }
+        interface ADD_USER {
+            String PATH = "/add-user";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "add-user";
+        }
     }
 
     interface USER {

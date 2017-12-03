@@ -15,6 +15,13 @@ public class Person {
     @Column(name = "role")
     protected int role;
 
+    private Person() {}
+
+    public Person(String fullname, int role) {
+        this.fullname = fullname;
+        this.role = role;
+    }
+
     public Long getId() {
         return id;
     }

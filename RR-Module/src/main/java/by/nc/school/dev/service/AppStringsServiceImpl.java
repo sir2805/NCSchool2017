@@ -1,16 +1,16 @@
 package by.nc.school.dev.service;
 
-import by.nc.school.dev.utils.Constants;
-
 import java.util.ResourceBundle;
 
 class AppStringsServiceImpl implements AppStringsService {
+
+    final static private String STRINGS_BUNDLE = "app-strings";
 
     protected ResourceBundle bundle;
 
     private AppStringsServiceImpl() {
         // TODO add multilingual support based on user profile
-        bundle = ResourceBundle.getBundle(Constants.STRINGS_BUNDLE);
+        bundle = ResourceBundle.getBundle(STRINGS_BUNDLE);
     }
 
     @Override

@@ -7,6 +7,11 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Tutor extends Person {
+
+    public Tutor(String fullname, int role) {
+        super(fullname, role);
+    }
+
     @Override
     public String toString() {
         return "Tutor{" +
