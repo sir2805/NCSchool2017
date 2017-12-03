@@ -1,42 +1,36 @@
 package by.nc.school.dev.entity;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-
+@Entity
+@Table(name = "group_subject_journal")
 public class GroupSubjectJournal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "group_subject_journal_id")
+    private Long id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "student_list_of_marks",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "list_of_marks_id"))
+    private Map<Student, ListOfMarks> marksList;
 
-    private Map<Student, List<Mark>> marksList;
-    private Tutor tutor;
-
-    public GroupSubjectJournal(Map<Student, List<Mark>> marksList, Tutor tutor) {
-        this.marksList = marksList;
-        this.tutor = tutor;
+    public Long getId() {
+        return id;
     }
 
-    public GroupSubjectJournal(List<Student> students, Tutor tutor) {
-        this.marksList = new HashMap<>();
-        for (Student student : students) {
-            marksList.put(student, new ArrayList<>());
-        }
-        this.tutor = tutor;
+    public GroupSubjectJournal() {
+        marksList = new HashMap<>();
     }
 
-    public void setMarksList(Map<Student, List<Mark>> marksList) {
-        this.marksList = marksList;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
-    }
-
-    public Map<Student, List<Mark>> getMarksList() {
+    public Map<Student, ListOfMarks> getMarksList() {
         return marksList;
     }
 
-    public List<Mark> getStudentMarks(Student student) {
-        return marksList.get(student);
+    public void setMarksList(Map<Student, ListOfMarks> marksList) {
+        this.marksList = marksList;
     }
 }

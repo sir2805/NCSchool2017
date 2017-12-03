@@ -16,7 +16,7 @@ public class UserController {
 
     protected UserService userService;
 
-    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.LOGIN.PATH)
+    @RequestMapping(method = RequestMethod.POST, value = "/login"/*path = Pages.USER.LOGIN.PATH*/)
     public String login(HttpSession session
             ,@RequestParam("username") String userName
             ,@RequestParam("password") String password) {

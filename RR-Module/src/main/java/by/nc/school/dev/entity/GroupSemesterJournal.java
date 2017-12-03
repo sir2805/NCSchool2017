@@ -1,19 +1,40 @@
 package by.nc.school.dev.entity;
 
+import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Table(name = "group_semester_journal")
 public class GroupSemesterJournal {
-    private Map<Subject, GroupSubjectJournal> journal;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "group_semester_journal_id")
+    private Long id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "subject_group_subject_journal",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_subject_journal_id"))
+    private Map<Subject, GroupSubjectJournal> semesterJournal;
 
-    public GroupSemesterJournal(Map<Subject, GroupSubjectJournal> journal) {
-        this.journal = journal;
+    public GroupSemesterJournal() {
+        semesterJournal = new HashMap<>();
     }
 
-    public Map<Subject, GroupSubjectJournal> getJournal() {
-        return journal;
+    public Long getId() {
+        return id;
     }
 
-    public void setJournal(Map<Subject, GroupSubjectJournal> journal) {
-        this.journal = journal;
+    public GroupSemesterJournal(Map<Subject, GroupSubjectJournal> semesterJournal) {
+        this.semesterJournal = semesterJournal;
+    }
+
+    public Map<Subject, GroupSubjectJournal> getSemesterJournal() {
+        return semesterJournal;
+    }
+
+    public void setSemesterJournal(Map<Subject, GroupSubjectJournal> semesterJournal) {
+        this.semesterJournal = semesterJournal;
     }
 }

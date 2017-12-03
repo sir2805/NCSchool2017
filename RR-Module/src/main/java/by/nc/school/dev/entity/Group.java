@@ -12,9 +12,9 @@ public class Group {
     private Long id;
     @Column(name = "group_number")
     private int groupNumber;
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<Student> students;
-    @OneToOne(mappedBy = "group")
+    @OneToOne(mappedBy = "group", cascade = CascadeType.ALL)
     private Curator curator;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "semester_id")

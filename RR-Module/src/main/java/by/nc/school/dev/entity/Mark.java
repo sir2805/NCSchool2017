@@ -1,12 +1,35 @@
 package by.nc.school.dev.entity;
 
-public class Mark {
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@Embeddable
+public class Mark {
+    @Column(name = "mark")
     private int mark;
+    @Column(name = "is_exam")
     private boolean isExam;
+
+    private Mark() {}
 
     public Mark(int mark, boolean isExam) {
         this.mark = mark;
+        this.isExam = isExam;
+    }
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public boolean getIsExam() {
+        return isExam;
+    }
+
+    public void setIsExam(boolean isExam) {
         this.isExam = isExam;
     }
 
@@ -34,21 +57,5 @@ public class Mark {
         int result = mark;
         if (isExam) return mark * 31;
         return result;
-    }
-
-    public int getMark() {
-        return mark;
-    }
-
-    public void setMark(int mark) {
-        this.mark = mark;
-    }
-
-    public boolean getIsExam() {
-        return isExam;
-    }
-
-    public void setIsExam(boolean isExam) {
-        this.isExam = isExam;
     }
 }
