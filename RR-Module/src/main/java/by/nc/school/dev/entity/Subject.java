@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "subject_id")
+    @Column(name = "id")
     private Long id;
     @Column(name = "subject_name")
     private String name;

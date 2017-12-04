@@ -25,6 +25,18 @@ public interface AppStringsService {
                 String KEY = LOGOUT.KEY + ".submit";
             }
         }
+        interface GROUP {
+            String KEY = WEB.KEY + ".group";
+            interface TITLE {
+                String KEY = GROUP.KEY + ".title";
+            }
+            interface TABLE {
+                String KEY = GROUP.KEY + ".table";
+                interface STUDENT {
+                    String KEY = GROUP.TABLE.KEY + ".fullname";
+                }
+            }
+        }
         interface HOME {
             String KEY = WEB.KEY + ".home";
             interface TITLE {
@@ -47,8 +59,8 @@ public interface AppStringsService {
                 interface TITLE {
                     String KEY = NEW_USER.KEY + ".title";
                 }
-                interface COUNTRIES {
-                    String KEY = NEW_USER.KEY + ".countries";
+                interface PERSON {
+                    String KEY = NEW_USER.KEY + ".person";
                 }
                 interface SUBMIT {
                     String KEY = NEW_USER.KEY + ".submit";

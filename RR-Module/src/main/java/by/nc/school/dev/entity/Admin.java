@@ -6,25 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dean")
-public class Dean extends Person {
+@Table(name = "admin")
+public class Admin extends Person {
 
-    public Dean(String fullname, int role) {
+    public Admin(String fullname, int role) {
         super(fullname, role);
     }
 
-    public Dean(String fullname) {
+    public Admin(String fullname) {
         this.fullname = fullname;
-        this.role = Role.DEAN;
+        this.role = Role.ADMIN;
     }
 
-    Dean() {
+    Admin() {
         super();
     }
 
     @Override
     public String toString() {
-        return "Dean{" +
+        return "Admin{" +
                 "fullname='" + fullname + '\'' +
                 ", role=" + role +
                 '}';

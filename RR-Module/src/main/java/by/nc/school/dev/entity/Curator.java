@@ -1,8 +1,11 @@
 package by.nc.school.dev.entity;
 
+import by.nc.school.dev.Role;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "curator")
 public class Curator extends Tutor {
     @OneToOne
     @JoinColumn(name = "group_id")
@@ -11,6 +14,16 @@ public class Curator extends Tutor {
     public Curator(String fullname, int role, Group group) {
         super(fullname, role);
         this.group = group;
+    }
+
+    public Curator(String fullname, Group group) {
+        this.fullname = fullname;
+        this.role = Role.CURATOR;
+        this.group = group;
+    }
+
+    Curator() {
+        super();
     }
 
     public Group getGroup() {

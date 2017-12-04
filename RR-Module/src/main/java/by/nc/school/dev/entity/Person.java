@@ -4,18 +4,18 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "person")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "person_id")
+    @Column(name = "id")
     protected Long id;
     @Column(name = "fullname")
     protected String fullname;
     @Column(name = "role")
     protected int role;
 
-    private Person() {}
+    Person() {}
 
     public Person(String fullname, int role) {
         this.fullname = fullname;

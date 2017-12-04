@@ -19,6 +19,11 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "add-user";
         }
+        interface GROUP {
+            String PATH = "/group";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "group";
+        }
     }
 
     interface USER {

@@ -8,7 +8,8 @@
     </bean>
 
     <bean id="webController" class="by.nc.school.dev.web.controller.ViewController">
-        <property name="modelProviders" ref="modelProviders"/>
+        <property name="modelProviders" ref="modelProviders" />
     </bean>
+
 
 </beans>

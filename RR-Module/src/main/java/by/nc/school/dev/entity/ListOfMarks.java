@@ -9,7 +9,7 @@ import java.util.List;
 public class ListOfMarks {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "list_of_marks_id")
+    @Column(name = "id")
     private Long id;
     @ElementCollection
     @JoinTable(name = "mark",

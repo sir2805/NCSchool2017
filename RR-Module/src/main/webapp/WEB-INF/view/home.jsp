@@ -38,18 +38,6 @@
             </tbody>
         </c:forEach>
     </table>
-    <form action="<%=Pages.USER.NEW_USER.PATH_ABSOLUTE%>" method="post" class="form-signin">
-        <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.HOME.NEW_USER.TITLE.KEY%>"/></h2>
-        <label for="username" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/></label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="<app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/>" required autofocus>
-        <label for="countries" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.HOME.NEW_USER.COUNTRIES.KEY%>"/></label>
-        <input type="text" id="countries" name="countries" class="form-control" placeholder="<app:app-string key="<%=AppStringsService.WEB.HOME.NEW_USER.COUNTRIES.KEY%>"/>">
-        <label for="password" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.LOGIN.PASSWORD.KEY%>"/></label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="<app:app-string key="<%=AppStringsService.WEB.LOGIN.PASSWORD.KEY%>"/>" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-            <app:app-string key="<%=AppStringsService.WEB.HOME.NEW_USER.SUBMIT.KEY%>"/>
-        </button>
-    </form>
     <form action="<%=Pages.USER.LOGOUT.PATH_ABSOLUTE%>" method="post" class="form-signin">
         <button class="btn btn-lg btn-primary btn-block" type="submit">
             <app:app-string key="<%=AppStringsService.WEB.LOGOUT.SUBMIT.KEY%>"/>

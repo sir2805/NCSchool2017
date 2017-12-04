@@ -1,7 +1,9 @@
 package by.nc.school.dev.web.controller;
 
 import by.nc.school.dev.Role;
+import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.Person;
+import by.nc.school.dev.entity.Student;
 import by.nc.school.dev.entity.User;
 import by.nc.school.dev.service.UserService;
 
@@ -41,7 +43,7 @@ public class UserController {
     public String addUser(@RequestParam("username") String userName
             ,@RequestParam("password") String password
             ,@RequestParam("countries") String fullname) {
-        Person person = new Person(fullname, Role.STUDENT);
+        Person person = new Student(fullname, new Group());
         userService.addUser(new User(userName, password, person));
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }

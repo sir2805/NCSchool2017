@@ -9,7 +9,7 @@ import java.util.Map;
 public class GroupSubjectJournal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "group_subject_journal_id")
+    @Column(name = "id")
     private Long id;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "semester_id")
+    @Column(name = "id")
     private Long id;
     @Column(name = "semester_number")
     private int semesterNumber;

@@ -1,6 +1,7 @@
 package by.nc.school.dev.service;
 
 import by.nc.school.dev.dao.UserRepository;
+import by.nc.school.dev.entity.Admin;
 import by.nc.school.dev.entity.User;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -24,7 +25,8 @@ public class UserServiceImpl implements UserService {
     public User login(String login, String password) {
         User user = userRepository.findUserByUsername(login);
         if (user == null && "admin".equals(login)) {
-            user = new User("admin", "admin", null);
+            Admin admin = new Admin("admin");
+            user = new User("admin", "admin", admin);
             addUser(user);
         }
         if (user.getPassword().equals(password)) {

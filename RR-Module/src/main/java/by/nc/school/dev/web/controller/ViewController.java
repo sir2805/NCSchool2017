@@ -27,6 +27,12 @@ public class ViewController {
         return Pages.VIEWS.HOME.VIEW;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.GROUP.PATH)
+    public String getGroupPage(Model model) {
+        processRequest(model, Pages.VIEWS.HOME.VIEW);
+        return Pages.VIEWS.HOME.VIEW;
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.LOGIN.PATH)
     public String getLoginPage(Model model) {
         processRequest(model, Pages.VIEWS.LOGIN.VIEW);
