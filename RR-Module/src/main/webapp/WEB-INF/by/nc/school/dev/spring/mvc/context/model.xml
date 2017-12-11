@@ -8,10 +8,24 @@
         <entry value-ref="homeModelProvider">
             <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$HOME.VIEW" /></key>
         </entry>
+        <entry value-ref="addUserModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$ADD_USER.VIEW" /></key>
+        </entry>
+        <entry value-ref="addGroupModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$ADD_GROUP.VIEW" /></key>
+        </entry>
     </util:map>
 
     <bean id="homeModelProvider" class="by.nc.school.dev.web.provider.HomeModelProvider">
         <property name="userRepository" ref="userRepository"/>
+    </bean>
+
+    <bean id="addUserModelProvider" class="by.nc.school.dev.web.provider.AddUserModelProvider">
+        <property name="groupRepository" ref="groupRepository"/>
+    </bean>
+
+    <bean id="addGroupModelProvider" class="by.nc.school.dev.web.provider.AddGroupModelProvider">
+
     </bean>
 
 </beans>

@@ -22,18 +22,18 @@
             <th scope="col">#</th>
             <th scope="col"><app:app-string key="<%=AppStringsService.WEB.HOME.TABLE.USER.KEY%>"/></th>
             <th scope="col"><app:app-string key="<%=AppStringsService.WEB.HOME.TABLE.PASSWORD.KEY%>"/></th>
-            <th scope="col"><app:app-string key="<%=AppStringsService.WEB.HOME.TABLE.COUNTRIES.KEY%>"/></th>
+            <th scope="col"><app:app-string key="<%=AppStringsService.WEB.HOME.TABLE.FULLNAME.KEY%>"/></th>
+            <th scope="col"><app:app-string key="<%=AppStringsService.WEB.HOME.TABLE.ROLE.KEY%>"/></th>
         </tr>
         </thead>
         <c:forEach var="user" varStatus="loop" items="${users}">
             <tbody>
             <tr>
                 <th scope="row">${loop.index+1}</th>
-                <td>${user.login}</td>
+                <td>${user.username}</td>
                 <td>${user.password}</td>
-                <td>
-
-                </td>
+                <td>${user.person.fullname}</td>
+                <td>${user.person.role}</td>
             </tr>
             </tbody>
         </c:forEach>

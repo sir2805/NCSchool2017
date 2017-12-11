@@ -21,4 +21,7 @@
 
     <mvc:resources mapping="/static/**" location="/static/" />
 
+    <mvc:interceptors>
+        <bean id="loggerInterceptor" class="by.nc.school.dev.web.interceptor.AuthCheckInterceptor" />
+    </mvc:interceptors>
 </beans>

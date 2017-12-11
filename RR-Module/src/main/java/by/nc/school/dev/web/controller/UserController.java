@@ -1,10 +1,8 @@
 package by.nc.school.dev.web.controller;
 
 import by.nc.school.dev.Role;
-import by.nc.school.dev.entity.Group;
-import by.nc.school.dev.entity.Person;
-import by.nc.school.dev.entity.Student;
-import by.nc.school.dev.entity.User;
+import by.nc.school.dev.entity.*;
+import by.nc.school.dev.service.GroupService;
 import by.nc.school.dev.service.UserService;
 
 import by.nc.school.dev.web.Pages;
@@ -23,13 +21,26 @@ public class UserController {
 
     protected UserService userService;
 
+    protected GroupService groupService;
+
     @RequestMapping(method = RequestMethod.POST, path = Pages.USER.LOGIN.PATH)
     public String login(HttpSession session
-            ,@RequestParam("username") String userName
+            ,@RequestParam("username") String username
             ,@RequestParam("password") String password) {
-        boolean isLoggedIn = userService.login(userName, password) != null;
+        User currentUser = userService.login(username, password);
+        boolean isLoggedIn = currentUser != null;
         session.setAttribute(SessionAttributes.IS_LOGGED_IN, isLoggedIn);
-        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        if (isLoggedIn) {
+            Person currentPerson = currentUser.getPerson();
+            session.setAttribute(SessionAttributes.CURRENT_PERSON, currentPerson);
+            if (currentPerson.getRole() == Role.STUDENT) {
+                return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+            } else {
+                return "redirect:" + Pages.VIEWS.ADD_USER.PATH_ABSOLUTE;
+            }
+        } else {
+            return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST, path = Pages.USER.LOGOUT.PATH)
@@ -40,16 +51,34 @@ public class UserController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = Pages.USER.NEW_USER.PATH)
-    public String addUser(@RequestParam("username") String userName
+    public String addUser(@RequestParam("username") String username
             ,@RequestParam("password") String password
-            ,@RequestParam("countries") String fullname) {
-        Person person = new Student(fullname, new Group());
-        userService.addUser(new User(userName, password, person));
+            ,@RequestParam("fullname") String fullname
+            ,@RequestParam("role") String role
+            ,@RequestParam("group") String groupInfo) {
+        Group group = groupService.getGroup(groupInfo);
+        userService.addUser(username, password, fullname, role, group);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }
+
+//    @Transactional
+//    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.NEW_USER.PATH)
+//    public String addGroupMember(@RequestParam("username") String username
+//            ,@RequestParam("password") String password
+//            ,@RequestParam("fullname") String fullname
+//            ,@RequestParam("role") String role
+//            ,@RequestParam("group") Group group) {
+//        userService.addUser(username, password, fullname, role, group);
+//        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+//    }
 
     @Required
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Required
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
     }
 }

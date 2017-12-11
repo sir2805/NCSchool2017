@@ -12,6 +12,14 @@ public class Semester {
     @Column(name = "semester_number")
     private int semesterNumber;
 
+    public Semester() {
+        this.semesterNumber = 1;
+    }
+
+    public Semester(int semesterNumber) {
+        this.semesterNumber = semesterNumber;
+    }
+
     public Long getId() {
         return id;
     }

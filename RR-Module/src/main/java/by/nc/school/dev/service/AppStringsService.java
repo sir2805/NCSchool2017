@@ -37,6 +37,105 @@ public interface AppStringsService {
                 }
             }
         }
+        interface ADD_USER {
+            String KEY = WEB.KEY + ".adduser";
+            interface TITLE {
+                String KEY = ADD_USER.KEY + ".title";
+            }
+            interface PERSON {
+                String KEY = ADD_USER.KEY + ".person";
+                interface FULLNAME {
+                    String KEY = PERSON.KEY + ".fullname";
+                }
+                interface ROLE {
+                    String KEY = PERSON.KEY + ".role";
+                    interface STUDENT {
+                        String KEY = ROLE.KEY + ".student";
+                    }
+                    interface TUTOR {
+                        String KEY = ROLE.KEY + ".tutor";
+                    }
+                    interface CURATOR {
+                        String KEY = ROLE.KEY + ".curator";
+                    }
+                    interface DEAN {
+                        String KEY = ROLE.KEY + ".dean";
+                    }
+                    interface ADMIN {
+                        String KEY = ROLE.KEY + ".admin";
+                    }
+                }
+                interface GROUP {
+                    String KEY = PERSON.KEY + ".group";
+                }
+            }
+            interface SUBMIT {
+                String KEY = ADD_USER.KEY + ".submit";
+            }
+        }
+        interface ADD_GROUP {
+            String KEY = WEB.KEY + ".addgroup";
+            interface TITLE {
+                String KEY = ADD_GROUP.KEY + ".title";
+            }
+            interface INIT {
+                String KEY = ADD_GROUP.KEY + ".init";
+                interface TITLE {
+                    String KEY = INIT.KEY + ".title";
+                }
+                interface GROUPNUMBER {
+                    String KEY = INIT.KEY + ".groupnumber";
+                }
+                interface SUBMIT {
+                    String KEY = INIT.KEY + ".submit";
+                }
+            }
+            interface CURATOR {
+                String KEY = ADD_GROUP.KEY + ".curator";
+//                interface USERNAME {
+//                    String KEY = TABLE.KEY + ".username";
+//                }
+//                interface PASSWORD {
+//                    String KEY = TABLE.KEY + ".password";
+//                }
+//                interface FULLNAME {
+//                    String KEY = CURATOR.KEY + ".fullname";
+//                }
+            }
+            interface TABLE {
+                String KEY = ADD_GROUP.KEY + ".table";
+                interface USERNAME {
+                    String KEY = TABLE.KEY + ".username";
+                }
+                interface PASSWORD {
+                    String KEY = TABLE.KEY + ".password";
+                }
+                interface FULLNAME {
+                    String KEY = TABLE.KEY + ".fullname";
+                }
+            }
+            interface NEW_USER {
+                String KEY = ADD_GROUP.KEY + ".newuser";
+                interface TITLE {
+                    String KEY = NEW_USER.KEY + ".title";
+                }
+//                interface USERNAME {
+//                    String KEY = NEW_USER.KEY + ".username";
+//                }
+//                interface PASSWORD {
+//                    String KEY = NEW_USER.KEY + ".password";
+//                }
+//                interface FULLNAME {
+//                    String KEY = NEW_USER.KEY + ".fullname";
+//                }
+                interface SUBMIT {
+                    String KEY = NEW_USER.KEY + ".submit";
+                }
+            }
+            interface CREATE {
+                String KEY = ADD_GROUP.KEY + ".create";
+            }
+        }
         interface HOME {
             String KEY = WEB.KEY + ".home";
             interface TITLE {
@@ -50,20 +149,11 @@ public interface AppStringsService {
                 interface PASSWORD {
                     String KEY = TABLE.KEY + ".password";
                 }
-                interface COUNTRIES {
-                    String KEY = TABLE.KEY + ".countries";
+                interface FULLNAME {
+                    String KEY = TABLE.KEY + ".fullname";
                 }
-            }
-            interface NEW_USER {
-                String KEY = HOME.KEY + ".newuser";
-                interface TITLE {
-                    String KEY = NEW_USER.KEY + ".title";
-                }
-                interface PERSON {
-                    String KEY = NEW_USER.KEY + ".person";
-                }
-                interface SUBMIT {
-                    String KEY = NEW_USER.KEY + ".submit";
+                interface ROLE {
+                    String KEY = TABLE.KEY + ".role";
                 }
             }
         }

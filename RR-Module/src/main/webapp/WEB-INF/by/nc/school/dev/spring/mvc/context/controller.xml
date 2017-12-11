@@ -5,6 +5,13 @@
 
     <bean id="userController" class="by.nc.school.dev.web.controller.UserController">
         <property name="userService" ref="userService" />
+        <property name="groupService" ref="groupService"/>
+    </bean>
+
+    <bean id="groupController" class="by.nc.school.dev.web.controller.GroupController">
+        <property name="groupService" ref="groupService"/>
+        <property name="userService" ref="userService"/>
+        <property name="appStringsService" ref="appStringsService"/>
     </bean>
 
     <bean id="webController" class="by.nc.school.dev.web.controller.ViewController">

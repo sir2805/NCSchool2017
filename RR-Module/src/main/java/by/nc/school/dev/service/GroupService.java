@@ -1,0 +1,17 @@
+package by.nc.school.dev.service;
+
+import by.nc.school.dev.entity.Group;
+import by.nc.school.dev.entity.Student;
+
+public interface GroupService {
+
+    void addGroup(Group group);
+
+    Group getGroup(int groupNumber);
+
+    Group getGroup(String groupInfo);
+
+    Group createGroup(int groupNumber);
+
+    void addStudent(Group group, Student student);
+}

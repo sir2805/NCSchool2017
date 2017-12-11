@@ -1,6 +1,7 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,16 @@ public class Group {
                 '}';
     }
 
+    private Group() {
+        this.students = new ArrayList<>();
+    }
+
+    public Group(int groupNumber) {
+        this.groupNumber = groupNumber;
+        this.currentSemester = new Semester();
+        this.curator = null;
+        this.students = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;

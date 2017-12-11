@@ -7,5 +7,14 @@
 
     <bean id="userService" class="by.nc.school.dev.service.UserServiceImpl">
         <property name="userRepository" ref="userRepository"/>
+        <property name="personService" ref="personService"/>
+    </bean>
+
+    <bean id="personService" class="by.nc.school.dev.service.PersonServiceImpl">
+        <property name="appStringsService" ref="appStringsService"/>
+    </bean>
+
+    <bean id="groupService" class="by.nc.school.dev.service.GroupServiceImpl">
+        <property name="groupRepository" ref="groupRepository"/>
     </bean>
 </beans>

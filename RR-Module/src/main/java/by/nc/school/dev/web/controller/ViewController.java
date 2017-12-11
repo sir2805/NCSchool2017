@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Controller
@@ -29,9 +30,23 @@ public class ViewController {
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.GROUP.PATH)
     public String getGroupPage(Model model) {
-        processRequest(model, Pages.VIEWS.HOME.VIEW);
-        return Pages.VIEWS.HOME.VIEW;
+        processRequest(model, Pages.VIEWS.GROUP.VIEW);
+        return Pages.VIEWS.GROUP.VIEW;
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_GROUP.PATH)
+    public String getAddGroupPage(Model model, HttpSession session) {
+        model.addAttribute("students", session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS));
+//        processRequest(model, Pages.VIEWS.GROUP.VIEW);
+        return Pages.VIEWS.ADD_GROUP.VIEW;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_USER.PATH)
+    public String getAddUserPage(Model model) {
+        processRequest(model, Pages.VIEWS.ADD_USER.VIEW);
+        return Pages.VIEWS.ADD_USER.VIEW;
+    }
+
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.LOGIN.PATH)
     public String getLoginPage(Model model) {

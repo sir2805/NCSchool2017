@@ -19,10 +19,31 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "add-user";
         }
+        interface ADD_GROUP {
+            String PATH = "/add-group";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "add-group";
+        }
         interface GROUP {
             String PATH = "/group";
             String PATH_ABSOLUTE = PATH;
             String VIEW = "group";
+        }
+    }
+
+    interface GROUP {
+        String PATH_ABSOLUTE = "/group";
+        interface INIT_GROUP {
+            String PATH = "/init-group";
+            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
+        }
+        interface ADD_GROUP_MEMBER {
+            String PATH = "/add-group-member";
+            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
+        }
+        interface ADD_GROUP {
+            String PATH = "/add-group";
+            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
         }
     }
 
@@ -37,7 +58,7 @@ public interface Pages {
             String PATH_ABSOLUTE = USER.PATH_ABSOLUTE + PATH;
         }
         interface NEW_USER {
-            String PATH = "/newUser";
+            String PATH = "/new-user";
             String PATH_ABSOLUTE = USER.PATH_ABSOLUTE + PATH;
         }
     }

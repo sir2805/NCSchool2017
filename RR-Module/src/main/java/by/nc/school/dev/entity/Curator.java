@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "curator")
 public class Curator extends Tutor {
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private Group group;
 

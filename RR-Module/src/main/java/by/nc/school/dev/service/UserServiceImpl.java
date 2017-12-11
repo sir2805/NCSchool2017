@@ -1,13 +1,14 @@
 package by.nc.school.dev.service;
 
 import by.nc.school.dev.dao.UserRepository;
-import by.nc.school.dev.entity.Admin;
-import by.nc.school.dev.entity.User;
+import by.nc.school.dev.entity.*;
 import org.springframework.beans.factory.annotation.Required;
 
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+
+    protected PersonService personService;
 
     public UserRepository getUserRepository() {
         return userRepository;
@@ -16,6 +17,11 @@ public class UserServiceImpl implements UserService {
     @Required
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Required
+    public void setPersonService(PersonService personService) {
+        this.personService = personService;
     }
 
     public User getUserByUsername(String username) {
@@ -29,7 +35,7 @@ public class UserServiceImpl implements UserService {
             user = new User("admin", "admin", admin);
             addUser(user);
         }
-        if (user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password)) {
             return user;
         } else {
             return null;
@@ -48,7 +54,25 @@ public class UserServiceImpl implements UserService {
         userRepository.save(oldUser);
     }
 
+    public void addUser(String username, String password, Person person) {
+        addUser(new User(username, password, person));
+    }
+
+    @Override
+    public void addUser(String username, String password, String fullname, String role, Group group) {
+        Person person = personService.createPerson(fullname, role, group);
+        addUser(new User(username, password, person));
+    }
+
+    @Override
+    public User createUser(String username, String password, String fullname, String role, Group group) {
+        Person person = personService.createPerson(fullname, role, group);
+        return new User(username, password, person);
+    }
+
     public void addUser(User user) {
         userRepository.save(user);
     }
+
+
 }
