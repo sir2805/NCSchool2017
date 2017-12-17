@@ -37,6 +37,24 @@ public interface AppStringsService {
                 }
             }
         }
+        interface ADD_SUBJECT {
+            String KEY = WEB.KEY + ".addsubject";
+            interface TITLE {
+                String KEY = ADD_SUBJECT.KEY + ".title";
+            }
+            interface SUBJECT {
+                String KEY = ADD_SUBJECT.KEY + ".subject";
+                interface NAME {
+                    String KEY = SUBJECT.KEY + ".name";
+                }
+                interface SUBMIT {
+                    String KEY = ADD_SUBJECT.KEY + ".submit";
+                }
+            }
+            interface FINISH {
+                String KEY = ADD_SUBJECT.KEY + ".finish";
+            }
+        }
         interface ADD_USER {
             String KEY = WEB.KEY + ".adduser";
             interface TITLE {

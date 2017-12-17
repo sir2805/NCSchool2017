@@ -1,8 +1,10 @@
 package by.nc.school.dev.web.provider;
 
-import by.nc.school.dev.dao.UserRepository;
+import by.nc.school.dev.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpSession;
 
 
 public class HomeModelProvider implements ModelProvider {
@@ -12,7 +14,7 @@ public class HomeModelProvider implements ModelProvider {
     private HomeModelProvider() {}
 
     @Override
-    public void fillModel(Model model) {
+    public void fillModel(Model model, HttpSession session) {
         model.addAttribute("users", userRepository.findAll());
     }
 

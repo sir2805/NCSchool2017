@@ -12,7 +12,7 @@ public class ListOfMarks {
     @Column(name = "id")
     private Long id;
     @ElementCollection
-    @JoinTable(name = "mark",
+    @JoinTable(name = "marks",
         joinColumns = @JoinColumn(name = "list_of_marks_id")
     )
     private List<Mark> marksList;

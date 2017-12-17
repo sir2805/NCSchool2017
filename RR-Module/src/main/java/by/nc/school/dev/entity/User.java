@@ -17,7 +17,7 @@ public class User {
     @JoinColumn(name = "person_id")
     private Person person;
 
-    private User() {}
+    public User() {}
 
     public User(String username, String password, Person person) {
         this.username = username;
@@ -55,7 +55,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserDaoEntity{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

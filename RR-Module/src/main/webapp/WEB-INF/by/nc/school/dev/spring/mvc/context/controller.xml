@@ -14,9 +14,11 @@
         <property name="appStringsService" ref="appStringsService"/>
     </bean>
 
+    <bean id="subjectController" class="by.nc.school.dev.web.controller.SubjectController">
+        <property name="subjectService" ref="subjectService"/>
+    </bean>
+
     <bean id="webController" class="by.nc.school.dev.web.controller.ViewController">
         <property name="modelProviders" ref="modelProviders" />
     </bean>
-
-
 </beans>

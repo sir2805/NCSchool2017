@@ -1,6 +1,6 @@
 package by.nc.school.dev.service;
 
-import by.nc.school.dev.dao.UserRepository;
+import by.nc.school.dev.repository.UserRepository;
 import by.nc.school.dev.entity.*;
 import org.springframework.beans.factory.annotation.Required;
 

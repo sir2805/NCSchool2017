@@ -14,8 +14,7 @@ public class Subject {
 
     private Subject() {};
 
-    public Subject(Long id, String name) {
-        this.id = id;
+    public Subject(String name) {
         this.name = name;
     }
 

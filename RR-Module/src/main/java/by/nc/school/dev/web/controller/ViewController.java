@@ -23,41 +23,45 @@ public class ViewController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.HOME.PATH)
-    public String getHomePage(Model model) {
-        processRequest(model, Pages.VIEWS.HOME.VIEW);
+    public String getHomePage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.HOME.VIEW);
         return Pages.VIEWS.HOME.VIEW;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.GROUP.PATH)
-    public String getGroupPage(Model model) {
-        processRequest(model, Pages.VIEWS.GROUP.VIEW);
+    public String getGroupPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.GROUP.VIEW);
         return Pages.VIEWS.GROUP.VIEW;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_GROUP.PATH)
     public String getAddGroupPage(Model model, HttpSession session) {
-        model.addAttribute("students", session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS));
-//        processRequest(model, Pages.VIEWS.GROUP.VIEW);
+        processRequest(model, session, Pages.VIEWS.GROUP.VIEW);
         return Pages.VIEWS.ADD_GROUP.VIEW;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_USER.PATH)
-    public String getAddUserPage(Model model) {
-        processRequest(model, Pages.VIEWS.ADD_USER.VIEW);
+    public String getAddUserPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.ADD_USER.VIEW);
         return Pages.VIEWS.ADD_USER.VIEW;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_SUBJECT.PATH)
+    public String getAddSubjectPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.HOME.VIEW);
+        return Pages.VIEWS.ADD_SUBJECT.VIEW;
+    }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.LOGIN.PATH)
-    public String getLoginPage(Model model) {
-        processRequest(model, Pages.VIEWS.LOGIN.VIEW);
+    public String getLoginPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.LOGIN.VIEW);
         return Pages.VIEWS.LOGIN.VIEW;
     }
 
-    protected void processRequest(Model model, String view) {
+    protected void processRequest(Model model, HttpSession session, String view) {
         ModelProvider modelProvider = modelProviders.get(view);
         if (modelProvider != null) {
-            modelProvider.fillModel(model);
+            modelProvider.fillModel(model, session);
         }
     }
 

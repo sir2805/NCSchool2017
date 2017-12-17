@@ -9,9 +9,12 @@ import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,7 +39,8 @@ public class UserController {
             if (currentPerson.getRole() == Role.STUDENT) {
                 return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
             } else {
-                return "redirect:" + Pages.VIEWS.ADD_USER.PATH_ABSOLUTE;
+                //TODO refactor using Spring convertor and UserViewModel
+                return "redirect:" + Pages.VIEWS.ADD_SUBJECT.PATH_ABSOLUTE;
             }
         } else {
             return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
@@ -55,8 +59,11 @@ public class UserController {
             ,@RequestParam("password") String password
             ,@RequestParam("fullname") String fullname
             ,@RequestParam("role") String role
-            ,@RequestParam("group") String groupInfo) {
-        Group group = groupService.getGroup(groupInfo);
+            ,@RequestParam(value = "group", required = false) String groupInfo) {
+        Group group = null;
+        if (groupInfo != null) {
+            group = groupService.getGroup(groupInfo);
+        }
         userService.addUser(username, password, fullname, role, group);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }

@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "curator")
 public class Curator extends Tutor {
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private Group group;
@@ -22,7 +23,7 @@ public class Curator extends Tutor {
         this.group = group;
     }
 
-    Curator() {
+    private Curator() {
         super();
     }
 

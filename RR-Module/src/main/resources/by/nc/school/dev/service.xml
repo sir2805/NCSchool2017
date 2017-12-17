@@ -17,4 +17,8 @@
     <bean id="groupService" class="by.nc.school.dev.service.GroupServiceImpl">
         <property name="groupRepository" ref="groupRepository"/>
     </bean>
+
+    <bean id="subjectService" class="by.nc.school.dev.service.SubjectServiceImpl">
+        <property name="subjectRepository" ref="subjectRepository"/>
+    </bean>
 </beans>

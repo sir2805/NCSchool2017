@@ -1,8 +1,10 @@
 package by.nc.school.dev.web.provider;
 
-import by.nc.school.dev.dao.GroupRepository;
+import by.nc.school.dev.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.ui.Model;
+
+import javax.servlet.http.HttpSession;
 
 public class AddUserModelProvider implements ModelProvider {
 
@@ -11,7 +13,7 @@ public class AddUserModelProvider implements ModelProvider {
     private AddUserModelProvider() {}
 
     @Override
-    public void fillModel(Model model) {
+    public void fillModel(Model model, HttpSession session) {
         model.addAttribute("groups", groupRepository.findAll());
     }
 

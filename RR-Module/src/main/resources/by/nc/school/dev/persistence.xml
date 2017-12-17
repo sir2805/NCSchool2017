@@ -35,5 +35,5 @@
 
     <tx:annotation-driven/>
 
-    <jpa:repositories base-package="by.nc.school.dev.dao" />
+    <jpa:repositories base-package="by.nc.school.dev.repository" />
 </beans>

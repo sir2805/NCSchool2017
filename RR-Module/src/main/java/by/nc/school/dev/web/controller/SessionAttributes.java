@@ -8,4 +8,5 @@ public interface SessionAttributes {
     String IS_CURATOR_ADDED = "isCuratorAdded";
     String CURRENTLY_ADDING_CURATOR = "currentlyAddingCurator";
     String CURRENTLY_ADDING_STUDENTS = "currentlyAddingStudents";
+    String NEW_USER = "newUser";
 }

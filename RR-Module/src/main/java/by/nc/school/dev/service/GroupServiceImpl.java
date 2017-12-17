@@ -1,6 +1,6 @@
 package by.nc.school.dev.service;
 
-import by.nc.school.dev.dao.GroupRepository;
+import by.nc.school.dev.repository.GroupRepository;
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.Student;
 import org.springframework.beans.factory.annotation.Required;
