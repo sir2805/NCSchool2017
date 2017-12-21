@@ -17,7 +17,7 @@ public class Group {
     private List<Student> students;
     @OneToOne(mappedBy = "group", cascade = CascadeType.ALL)
     private Curator curator;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "semester_id")
     private Semester currentSemester;
 
@@ -35,9 +35,9 @@ public class Group {
         this.students = new ArrayList<>();
     }
 
-    public Group(int groupNumber) {
+    public Group(int groupNumber, Semester semester) {
         this.groupNumber = groupNumber;
-        this.currentSemester = new Semester();
+        this.currentSemester = semester;
         this.curator = null;
         this.students = new ArrayList<>();
     }

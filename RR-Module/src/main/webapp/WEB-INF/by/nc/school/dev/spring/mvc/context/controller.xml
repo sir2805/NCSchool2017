@@ -19,6 +19,15 @@
         <property name="subjectService" ref="subjectService"/>
     </bean>
 
+    <bean id="workPlanController" class="by.nc.school.dev.web.controller.WorkPlanController">
+        <property name="groupService" ref="groupService"/>
+        <property name="personService" ref="personService"/>
+        <property name="subjectService" ref="subjectService"/>
+        <property name="workPlanService" ref="workPlanService"/>
+        <property name="tutorAndSubjectService" ref="tutorAndSubjectService"/>
+
+    </bean>
+
     <bean id="webController" class="by.nc.school.dev.web.controller.ViewController">
         <property name="modelProviders" ref="modelProviders" />
     </bean>

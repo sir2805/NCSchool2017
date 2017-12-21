@@ -52,6 +52,12 @@ public class ViewController {
         return Pages.VIEWS.ADD_SUBJECT.VIEW;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_WORKPLAN.PATH)
+    public String getAddWorkPlanPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.ADD_WORKPLAN.VIEW);
+        return Pages.VIEWS.ADD_WORKPLAN.VIEW;
+    }
+
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.LOGIN.PATH)
     public String getLoginPage(Model model, HttpSession session) {
         processRequest(model, session, Pages.VIEWS.LOGIN.VIEW);

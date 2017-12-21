@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "student")
 public class Student extends Person {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
 

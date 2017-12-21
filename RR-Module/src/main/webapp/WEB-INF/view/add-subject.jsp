@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+<jsp:include page="navbar.jsp"/>
 <div class="container">
     <form action="<%=Pages.SUBJECT.ADD_SUBJECT.ADD.PATH_ABSOLUTE%>" method="post" class="form-group">
         <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.ADD_SUBJECT.TITLE.KEY%>"/></h2>

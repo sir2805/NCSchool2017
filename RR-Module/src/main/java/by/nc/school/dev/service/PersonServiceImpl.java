@@ -3,8 +3,11 @@ package by.nc.school.dev.service;
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.transaction.annotation.Transactional;
 
 public class PersonServiceImpl implements PersonService {
+
+    protected PersonRepository<Person> personRepository;
 
     protected AppStringsService appStringsService;
 
@@ -23,6 +26,22 @@ public class PersonServiceImpl implements PersonService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Person getPersonByfullname(String fullname) {
+        return personRepository.findByFullname(fullname);
+    }
+
+    @Transactional
+    @Override
+    public void removePerson(Person person) {
+        personRepository.delete(person);
+    }
+
+    @Required
+    public void setPersonRepository(PersonRepository<Person> personRepository) {
+        this.personRepository = personRepository;
     }
 
     @Required

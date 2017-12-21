@@ -5,7 +5,7 @@ import by.nc.school.dev.entity.Student;
 
 public interface GroupService {
 
-    void addGroup(Group group);
+    void saveGroup(Group group);
 
     Group getGroup(int groupNumber);
 

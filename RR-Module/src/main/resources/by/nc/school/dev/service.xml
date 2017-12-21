@@ -12,13 +12,28 @@
 
     <bean id="personService" class="by.nc.school.dev.service.PersonServiceImpl">
         <property name="appStringsService" ref="appStringsService"/>
+        <property name="personRepository" ref="personRepository"/>
     </bean>
 
     <bean id="groupService" class="by.nc.school.dev.service.GroupServiceImpl">
         <property name="groupRepository" ref="groupRepository"/>
+        <property name="semesterService" ref="semesterService"/>
     </bean>
 
     <bean id="subjectService" class="by.nc.school.dev.service.SubjectServiceImpl">
         <property name="subjectRepository" ref="subjectRepository"/>
+    </bean>
+
+    <bean id="tutorAndSubjectService" class="by.nc.school.dev.service.TutorAndSubjectServiceImpl">
+        <property name="tutorAndSubjectRepository" ref="tutorAndSubjectRepository"/>
+    </bean>
+
+    <bean id="workPlanService" class="by.nc.school.dev.service.WorkPlanServiceImpl">
+        <property name="semesterWorkPlanForGroupRepository" ref="semesterWorkPlanForGroupRepository"/>
+    </bean>
+
+    <bean id="semesterService" class="by.nc.school.dev.service.SemesterServiceImpl">
+
+        <property name="semesterRepository" ref="semesterRepository"/>
     </bean>
 </beans>

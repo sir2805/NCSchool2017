@@ -55,6 +55,31 @@ public interface AppStringsService {
                 String KEY = ADD_SUBJECT.KEY + ".finish";
             }
         }
+        interface ADD_WORKPLAN {
+            String KEY = WEB.KEY + ".addworkplan";
+            interface TITLE {
+                String KEY = ADD_WORKPLAN.KEY + ".title";
+            }
+            interface SELECT_GROUP {
+                String KEY = ADD_WORKPLAN.KEY + ".selectgroup";
+
+                interface SELECT {
+                    String KEY = SELECT_GROUP.KEY + ".select";
+                }
+            }
+            interface ITEM {
+                String KEY = ADD_WORKPLAN.KEY + ".item";
+                interface SUBJECT {
+                    String KEY = ITEM.KEY + ".subject";
+                }
+                interface TUTOR {
+                    String KEY = ITEM.KEY + ".tutor";
+                }
+                interface ADDITEM {
+                    String KEY = ADD_WORKPLAN.KEY + ".add";
+                }
+            }
+        }
         interface ADD_USER {
             String KEY = WEB.KEY + ".adduser";
             interface TITLE {

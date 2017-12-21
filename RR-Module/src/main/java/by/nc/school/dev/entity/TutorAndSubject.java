@@ -10,12 +10,20 @@ public class TutorAndSubject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "subject_id")
     private Subject subject;
+
+    public TutorAndSubject() {
+    }
+
+    public TutorAndSubject(Tutor tutor, Subject subject) {
+        this.tutor = tutor;
+        this.subject = subject;
+    }
 
     public Long getId() {
         return id;

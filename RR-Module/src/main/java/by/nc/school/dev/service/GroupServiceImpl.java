@@ -3,14 +3,17 @@ package by.nc.school.dev.service;
 import by.nc.school.dev.repository.GroupRepository;
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.Student;
+import by.nc.school.dev.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Required;
 
 public class GroupServiceImpl implements GroupService {
 
     protected GroupRepository groupRepository;
 
+    protected SemesterService semesterService;
+
     @Override
-    public void addGroup(Group group) {
+    public void saveGroup(Group group) {
         groupRepository.save(group);
     }
 
@@ -29,12 +32,17 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group createGroup(int groupNumber) {
-        return new Group(groupNumber);
+        return new Group(groupNumber, semesterService.getFirstSemester());
     }
 
     @Override
     public void addStudent(Group group, Student student) {
         group.getStudents().add(student);
+    }
+
+    @Required
+    public void setSemesterService(SemesterService semesterService) {
+        this.semesterService = semesterService;
     }
 
     @Required

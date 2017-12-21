@@ -13,6 +13,11 @@ public class SubjectServiceImpl implements SubjectService {
         subjectRepository.save(subject);
     }
 
+    @Override
+    public Subject getSubjectByName(String subjectName) {
+        return subjectRepository.findByName(subjectName);
+    }
+
     @Required
     public void setSubjectRepository(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;

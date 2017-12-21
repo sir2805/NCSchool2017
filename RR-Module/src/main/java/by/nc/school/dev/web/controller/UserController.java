@@ -9,12 +9,9 @@ import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 
@@ -64,7 +61,7 @@ public class UserController {
         if (groupInfo != null) {
             group = groupService.getGroup(groupInfo);
         }
-        userService.addUser(username, password, fullname, role, group);
+        userService.saveUser(username, password, fullname, role, group);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }
 
@@ -75,7 +72,7 @@ public class UserController {
 //            ,@RequestParam("fullname") String fullname
 //            ,@RequestParam("role") String role
 //            ,@RequestParam("group") Group group) {
-//        userService.addUser(username, password, fullname, role, group);
+//        userService.saveUser(username, password, fullname, role, group);
 //        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
 //    }
 

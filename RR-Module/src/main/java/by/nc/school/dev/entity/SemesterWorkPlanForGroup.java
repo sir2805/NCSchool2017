@@ -19,9 +19,17 @@ public class SemesterWorkPlanForGroup {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "tutor_and_subject_list",
-            joinColumns = @JoinColumn(name = "tutor_and_subject_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "work_plan_for_group_id"))
+            joinColumns = @JoinColumn(name = "work_plan_for_group_id"),
+            inverseJoinColumns = @JoinColumn(name = "tutor_and_subject_id"))
     private List<TutorAndSubject> tutorAndSubjectList;
+
+    public SemesterWorkPlanForGroup() {
+    }
+
+    public SemesterWorkPlanForGroup(Group group, List<TutorAndSubject> tutorAndSubjectList) {
+        this.group = group;
+        this.tutorAndSubjectList = tutorAndSubjectList;
+    }
 
     public Long getId() {
         return id;

@@ -16,11 +16,13 @@ public interface UserService {
 
     void changePassword(Long userId, String newPassword);
 
-    void addUser(User user);
+    void saveUser(User user);
 
-    void addUser(String username, String password, Person person);
+    void changePerson(User user, Person person);
 
-    void addUser(String username, String password, String fullname, String role, Group group);
+    void saveUser(String username, String password, Person person);
+
+    void saveUser(String username, String password, String fullname, String role, Group group);
 
     User createUser(String username, String password, String fullname, String role, Group group);
 }

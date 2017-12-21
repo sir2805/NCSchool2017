@@ -34,6 +34,11 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "group";
         }
+        interface ADD_WORKPLAN {
+            String PATH = "/add-work-plan";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "add-work-plan";
+        }
     }
 
     interface GROUP {
@@ -74,7 +79,7 @@ public interface Pages {
         String PATH_ABSOLUTE = "/work-plan";
         interface ADD_WORKPLAN {
             String PATH = "/add-plan";
-            String PATH_ABSOLUTE = USER.PATH_ABSOLUTE + PATH;
+            String PATH_ABSOLUTE = WORKPLAN.PATH_ABSOLUTE + PATH;
         }
     }
 

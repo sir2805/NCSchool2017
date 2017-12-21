@@ -1,6 +1,5 @@
 package by.nc.school.dev.web.controller;
 
-import by.nc.school.dev.Role;
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.service.AppStringsService;
 import by.nc.school.dev.service.GroupService;
@@ -35,7 +34,7 @@ public class GroupController {
                             ,@RequestParam("groupnumber") Integer groupNumber
                             ,@RequestParam("curator") String fullname) {
         //TODO resolve conflicts with same group number
-        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP, groupService.createGroup(groupNumber));
+        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP, groupNumber);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<User>());
         User selectedTutor = userService.getUserByFullname(fullname);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
@@ -47,7 +46,7 @@ public class GroupController {
 //            ,@RequestParam("curator") String fullname) {
 //        User selectedTutor = userService.getUserByFullname(fullname);
 //        selectedTutor.getPerson().setRole(Role.CURATOR);
-//        userService.addUser(selectedTutor);
+//        userService.saveUser(selectedTutor);
 //        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
 //        session.setAttribute(SessionAttributes.IS_CURATOR_ADDED, true);
 //        return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
@@ -72,23 +71,27 @@ public class GroupController {
     public String addGroup(HttpSession session) {
 //        User curatorUser = userService.getUserByFullname(fullname);
 //        curatorUser.getPerson().setRole(Role.CURATOR);
-//        userService.addUser(curatorUser);
-        Group currentGroup = (Group) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
+//        userService.saveUser(curatorUser);
+        Group currentGroup =  groupService.createGroup((Integer) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP));
         List<User> studentUsers = (List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         User curatorUser = (User) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
         Curator curator = (Curator) personService.createPerson(curatorUser.getPerson().getFullname(),
                 appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.CURATOR.KEY),
                 currentGroup);
         currentGroup.setCurator(curator);
-        curatorUser.setPerson(curator);
-        userService.addUser(curatorUser);
+
         for (User studentUser : studentUsers) {
             Student currentStudent =  (Student) studentUser.getPerson();
             currentStudent.setGroup(currentGroup);
-            groupService.addStudent(currentGroup, currentStudent);
-            userService.addUser(studentUser);
+            currentGroup.getStudents().add(currentStudent);
         }
-        groupService.addGroup(currentGroup);
+
+        groupService.saveGroup(currentGroup);
+        userService.changePerson(curatorUser, curator);
+        for (User studentUser : studentUsers) {
+            userService.saveUser(studentUser);
+        }
+
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);

@@ -3,6 +3,7 @@ package by.nc.school.dev.service;
 import by.nc.school.dev.repository.UserRepository;
 import by.nc.school.dev.entity.*;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.transaction.annotation.Transactional;
 
 public class UserServiceImpl implements UserService {
 
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
         if (user == null && "admin".equals(login)) {
             Admin admin = new Admin("admin");
             user = new User("admin", "admin", admin);
-            addUser(user);
+            saveUser(user);
         }
         if (user != null && user.getPassword().equals(password)) {
             return user;
@@ -62,14 +63,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(String username, String password, Person person) {
-        addUser(new User(username, password, person));
+    public void saveUser(String username, String password, Person person) {
+        saveUser(new User(username, password, person));
     }
 
     @Override
-    public void addUser(String username, String password, String fullname, String role, Group group) {
+    public void saveUser(String username, String password, String fullname, String role, Group group) {
         Person person = personService.createPerson(fullname, role, group);
-        addUser(new User(username, password, person));
+        saveUser(new User(username, password, person));
     }
 
     @Override
@@ -79,7 +80,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(User user) {
+    public void saveUser(User user) {
+//        if (user.getId() != null) {
+//            userRepository.deleteById(user.getId());
+//        }
+        userRepository.save(user);
+    }
+
+    @Transactional
+    @Override
+    public void changePerson(User user, Person person) {
+        personService.removePerson(user.getPerson());
+        user.setPerson(person);
         userRepository.save(user);
     }
 }
