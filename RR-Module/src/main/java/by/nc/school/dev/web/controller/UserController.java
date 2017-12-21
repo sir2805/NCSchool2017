@@ -40,7 +40,7 @@ public class UserController {
                 return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
             } else {
                 //TODO refactor using Spring convertor and UserViewModel
-                return "redirect:" + Pages.VIEWS.ADD_SUBJECT.PATH_ABSOLUTE;
+                return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
             }
         } else {
             return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
@@ -69,7 +69,7 @@ public class UserController {
     }
 
 //    @Transactional
-//    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.NEW_USER.PATH)
+//    @RequestMapping(method = RequestMethod.POST, path = Pages.USER.ADD_STUDENT.PATH)
 //    public String addGroupMember(@RequestParam("username") String username
 //            ,@RequestParam("password") String password
 //            ,@RequestParam("fullname") String fullname

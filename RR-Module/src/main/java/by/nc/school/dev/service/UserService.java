@@ -8,6 +8,8 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
+    User getUserByFullname(String fullname);
+
     User login(String login, String password);
 
     void changeUsername(Long userId, String newUsername);

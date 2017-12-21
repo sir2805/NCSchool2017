@@ -42,18 +42,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User getUserByFullname(String fullname) {
+        return userRepository.findUserByPersonFullname(fullname);
+    }
+
+    @Override
     public void changeUsername(Long userId, String newUsername) {
         User oldUser = userRepository.findById(userId).get();
         oldUser.setUsername(newUsername);
         userRepository.save(oldUser);
     }
 
+    @Override
     public void changePassword(Long userId, String newPassword) {
         User oldUser = userRepository.findById(userId).get();
         oldUser.setPassword(newPassword);
         userRepository.save(oldUser);
     }
 
+    @Override
     public void addUser(String username, String password, Person person) {
         addUser(new User(username, password, person));
     }
@@ -70,9 +78,8 @@ public class UserServiceImpl implements UserService {
         return new User(username, password, person);
     }
 
+    @Override
     public void addUser(User user) {
         userRepository.save(user);
     }
-
-
 }

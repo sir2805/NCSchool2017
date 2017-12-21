@@ -132,22 +132,22 @@ public interface AppStringsService {
                     String KEY = TABLE.KEY + ".fullname";
                 }
             }
-            interface NEW_USER {
-                String KEY = ADD_GROUP.KEY + ".newuser";
+            interface ADD_STUDENT {
+                String KEY = ADD_GROUP.KEY + ".addstudent";
                 interface TITLE {
-                    String KEY = NEW_USER.KEY + ".title";
+                    String KEY = ADD_STUDENT.KEY + ".title";
                 }
 //                interface USERNAME {
-//                    String KEY = NEW_USER.KEY + ".username";
+//                    String KEY = ADD_STUDENT.KEY + ".username";
 //                }
 //                interface PASSWORD {
-//                    String KEY = NEW_USER.KEY + ".password";
+//                    String KEY = ADD_STUDENT.KEY + ".password";
 //                }
 //                interface FULLNAME {
-//                    String KEY = NEW_USER.KEY + ".fullname";
+//                    String KEY = ADD_STUDENT.KEY + ".fullname";
 //                }
                 interface SUBMIT {
-                    String KEY = NEW_USER.KEY + ".submit";
+                    String KEY = ADD_STUDENT.KEY + ".submit";
                 }
             }
             interface CREATE {

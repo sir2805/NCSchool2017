@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+<jsp:include page="navbar.jsp"/>
 <div class="container">
     <h2><app:app-string key="<%=AppStringsService.WEB.HOME.TITLE.KEY%>"/></h2>
     <table class="table">

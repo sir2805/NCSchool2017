@@ -38,14 +38,18 @@ public interface Pages {
 
     interface GROUP {
         String PATH_ABSOLUTE = "/group";
-        interface INIT_GROUP {
-            String PATH = "/init-group";
+//        interface INIT_GROUP {
+//            String PATH = "/init-group";
+//            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
+//        }
+        interface ADD_STUDENT {
+            String PATH = "/add-student";
             String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
         }
-        interface ADD_GROUP_MEMBER {
-            String PATH = "/add-group-member";
-            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
-        }
+//        interface ADD_CURATOR {
+//            String PATH = "/add-curator";
+//            String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
+//        }
         interface ADD_GROUP {
             String PATH = "/add-group";
             String PATH_ABSOLUTE = GROUP.PATH_ABSOLUTE + PATH;
@@ -63,6 +67,14 @@ public interface Pages {
                 String PATH = "/finish";
                 String PATH_ABSOLUTE = SUBJECT.PATH_ABSOLUTE + PATH;
             }
+        }
+    }
+
+    interface WORKPLAN {
+        String PATH_ABSOLUTE = "/work-plan";
+        interface ADD_WORKPLAN {
+            String PATH = "/add-plan";
+            String PATH_ABSOLUTE = USER.PATH_ABSOLUTE + PATH;
         }
     }
 

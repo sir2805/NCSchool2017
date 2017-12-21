@@ -1,11 +1,10 @@
 package by.nc.school.dev.web.controller;
 
-import by.nc.school.dev.entity.Curator;
-import by.nc.school.dev.entity.Group;
-import by.nc.school.dev.entity.Student;
-import by.nc.school.dev.entity.User;
+import by.nc.school.dev.Role;
+import by.nc.school.dev.entity.*;
 import by.nc.school.dev.service.AppStringsService;
 import by.nc.school.dev.service.GroupService;
+import by.nc.school.dev.service.PersonService;
 import by.nc.school.dev.service.UserService;
 import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
@@ -29,40 +28,59 @@ public class GroupController {
 
     protected AppStringsService appStringsService;
 
-    @RequestMapping(method = RequestMethod.POST, path = Pages.GROUP.INIT_GROUP.PATH)
-    public String initGroup(@RequestParam("groupnumber") Integer groupNumber, HttpSession session) {
+    protected PersonService personService;
+
+    @RequestMapping(method = RequestMethod.POST, params="init-group", path = Pages.GROUP.ADD_GROUP.PATH)
+    public String initGroup(HttpSession session
+                            ,@RequestParam("groupnumber") Integer groupNumber
+                            ,@RequestParam("curator") String fullname) {
         //TODO resolve conflicts with same group number
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP, groupService.createGroup(groupNumber));
+        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<User>());
+        User selectedTutor = userService.getUserByFullname(fullname);
+        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
         return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
     }
+//
+//    @RequestMapping(method = RequestMethod.POST, path = Pages.GROUP.ADD_CURATOR.PATH)
+//    public String addCurator(HttpSession session
+//            ,@RequestParam("curator") String fullname) {
+//        User selectedTutor = userService.getUserByFullname(fullname);
+//        selectedTutor.getPerson().setRole(Role.CURATOR);
+//        userService.addUser(selectedTutor);
+//        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
+//        session.setAttribute(SessionAttributes.IS_CURATOR_ADDED, true);
+//        return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
+//    }
 
-    @RequestMapping(method = RequestMethod.POST, path = Pages.GROUP.ADD_GROUP_MEMBER.PATH)
-    public String addGroupMember(HttpSession session
+
+    @RequestMapping(method = RequestMethod.POST, params="add-student", path = Pages.GROUP.ADD_GROUP.PATH)
+    public String addStudent(HttpSession session
                                  ,@RequestParam("username") String username
                                  ,@RequestParam("password") String password
                                  ,@RequestParam("fullname") String fullname) {
-        if (Boolean.TRUE.equals(session.getAttribute(SessionAttributes.IS_CURATOR_ADDED))) {
-            User newStudent = userService.createUser(username, password, fullname, appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.STUDENT.KEY), null);
-            ((List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS)).add(newStudent);
-        } else {
-            User curator = userService.createUser(username, password, fullname, appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.CURATOR.KEY), null);
-            session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, curator);
-            session.setAttribute(SessionAttributes.IS_CURATOR_ADDED, true);
-            session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<User>());
+        User newStudent = userService.createUser(username, password, fullname, appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.STUDENT.KEY), null);
+        if (session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS) == null) {
+            session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<>());
         }
-
+        ((List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS)).add(newStudent);
         return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.POST, path = Pages.GROUP.ADD_GROUP.PATH)
+    @RequestMapping(method = RequestMethod.POST, params="create-group",path = Pages.GROUP.ADD_GROUP.PATH)
     public String addGroup(HttpSession session) {
+//        User curatorUser = userService.getUserByFullname(fullname);
+//        curatorUser.getPerson().setRole(Role.CURATOR);
+//        userService.addUser(curatorUser);
         Group currentGroup = (Group) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
         List<User> studentUsers = (List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         User curatorUser = (User) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
-        Curator curator = (Curator) curatorUser.getPerson();
-        curator.setGroup(currentGroup);
+        Curator curator = (Curator) personService.createPerson(curatorUser.getPerson().getFullname(),
+                appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.CURATOR.KEY),
+                currentGroup);
         currentGroup.setCurator(curator);
+        curatorUser.setPerson(curator);
         userService.addUser(curatorUser);
         for (User studentUser : studentUsers) {
             Student currentStudent =  (Student) studentUser.getPerson();
@@ -72,7 +90,6 @@ public class GroupController {
         }
         groupService.addGroup(currentGroup);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
-        session.removeAttribute(SessionAttributes.IS_CURATOR_ADDED);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
@@ -93,5 +110,10 @@ public class GroupController {
     @Required
     public void setAppStringsService(AppStringsService appStringsService) {
         this.appStringsService = appStringsService;
+    }
+
+    @Required
+    public void setPersonService(PersonService personService) {
+        this.personService = personService;
     }
 }

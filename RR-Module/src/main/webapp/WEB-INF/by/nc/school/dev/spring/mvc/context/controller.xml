@@ -12,6 +12,7 @@
         <property name="groupService" ref="groupService"/>
         <property name="userService" ref="userService"/>
         <property name="appStringsService" ref="appStringsService"/>
+        <property name="personService" ref="personService"/>
     </bean>
 
     <bean id="subjectController" class="by.nc.school.dev.web.controller.SubjectController">

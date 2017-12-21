@@ -25,7 +25,7 @@
     </bean>
 
     <bean id="addGroupModelProvider" class="by.nc.school.dev.web.provider.AddGroupModelProvider">
-
+        <property name="userRepository" ref="userRepository"/>
     </bean>
 
 </beans>

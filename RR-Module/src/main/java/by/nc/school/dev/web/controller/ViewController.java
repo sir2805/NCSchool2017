@@ -36,7 +36,7 @@ public class ViewController {
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_GROUP.PATH)
     public String getAddGroupPage(Model model, HttpSession session) {
-        processRequest(model, session, Pages.VIEWS.GROUP.VIEW);
+        processRequest(model, session, Pages.VIEWS.ADD_GROUP.VIEW);
         return Pages.VIEWS.ADD_GROUP.VIEW;
     }
 

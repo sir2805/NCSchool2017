@@ -1,6 +1,7 @@
 package by.nc.school.dev.service;
 
 import by.nc.school.dev.entity.*;
+import by.nc.school.dev.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Required;
 
 public class PersonServiceImpl implements PersonService {
