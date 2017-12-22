@@ -3,6 +3,7 @@ package by.nc.school.dev.entity;
 import by.nc.school.dev.Role;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "student")
@@ -17,6 +18,7 @@ public class Student extends Person {
     }
 
     public Student(String fullname, Group group) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.STUDENT;
         this.group = group;
@@ -25,6 +27,7 @@ public class Student extends Person {
     Student() {
         super();
     }
+
     public Group getGroup() {
         return group;
     }

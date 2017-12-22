@@ -36,7 +36,7 @@ public class GroupController {
         //TODO resolve conflicts with same group number
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP, groupNumber);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<User>());
-        User selectedTutor = userService.getUserByFullname(fullname);
+        Person selectedTutor = personService.getPersonByfullname(fullname);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
         return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
     }
@@ -74,10 +74,9 @@ public class GroupController {
 //        userService.saveUser(curatorUser);
         Group currentGroup =  groupService.createGroup((Integer) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP));
         List<User> studentUsers = (List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
-        User curatorUser = (User) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
-        Curator curator = (Curator) personService.createPerson(curatorUser.getPerson().getFullname(),
-                appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.CURATOR.KEY),
-                currentGroup);
+        Curator curator = (Curator) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
+
+        curator.setGroup(currentGroup);
         currentGroup.setCurator(curator);
 
         for (User studentUser : studentUsers) {
@@ -86,11 +85,19 @@ public class GroupController {
             currentGroup.getStudents().add(currentStudent);
         }
 
+//        Curator curator = personService.changeTutorToCurator(selectedTutor, currentGroup);
+
+
+//        personService.savePerson(curator);
+//        personService.saveNewlyAddedCurator(curator);
+
         groupService.saveGroup(currentGroup);
-        userService.changePerson(curatorUser, curator);
+
         for (User studentUser : studentUsers) {
             userService.saveUser(studentUser);
         }
+
+        personService.savePerson(curator);
 
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);

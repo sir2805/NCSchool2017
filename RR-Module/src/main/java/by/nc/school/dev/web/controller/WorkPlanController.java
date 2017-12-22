@@ -55,6 +55,8 @@ public class WorkPlanController {
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         tutorAndSubjectService.saveAll(tutorAndSubjectList);
         workPlanService.saveSemesterWorkPlanForGroup(new SemesterWorkPlanForGroup(group, tutorAndSubjectList));
+        session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
+        session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
     }
 

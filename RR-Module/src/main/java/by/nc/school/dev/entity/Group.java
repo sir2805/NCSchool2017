@@ -3,6 +3,7 @@ package by.nc.school.dev.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "group_table")
@@ -13,9 +14,9 @@ public class Group {
     private Long id;
     @Column(name = "group_number")
     private int groupNumber;
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group")
     private List<Student> students;
-    @OneToOne(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "group")
     private Curator curator;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "semester_id")
@@ -32,10 +33,12 @@ public class Group {
     }
 
     private Group() {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.students = new ArrayList<>();
     }
 
     public Group(int groupNumber, Semester semester) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.groupNumber = groupNumber;
         this.currentSemester = semester;
         this.curator = null;

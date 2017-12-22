@@ -4,6 +4,7 @@ import by.nc.school.dev.Role;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "dean")
@@ -14,6 +15,7 @@ public class Dean extends Person {
     }
 
     public Dean(String fullname) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.DEAN;
     }

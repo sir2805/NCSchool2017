@@ -28,7 +28,7 @@
         <label for="curator"><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.CURATOR.KEY%>"/></label>
         <select class="form-control" id="curator" name="curator" aria-hidden="true">
             <c:forEach var="tutor" varStatus="loop" items="${tutors}">
-                <option>${tutor.person.fullname}</option>
+                <option>${tutor.fullname}</option>
             </c:forEach>
         </select>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name = "init-group" value="initGroup">

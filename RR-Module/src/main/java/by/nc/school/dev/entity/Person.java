@@ -1,6 +1,7 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "person")
@@ -15,9 +16,10 @@ public abstract class Person {
     @Column(name = "role")
     protected int role;
 
-    Person() {}
+    protected Person() {}
 
     public Person(String fullname, int role) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = role;
     }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tutor")
@@ -17,6 +18,7 @@ public class Tutor extends Person {
     }
 
     public Tutor(String fullname) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.TUTOR;
     }

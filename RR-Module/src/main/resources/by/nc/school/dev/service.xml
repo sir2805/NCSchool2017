@@ -13,6 +13,7 @@
     <bean id="personService" class="by.nc.school.dev.service.PersonServiceImpl">
         <property name="appStringsService" ref="appStringsService"/>
         <property name="personRepository" ref="personRepository"/>
+        <property name="curatorPersonRepository" ref="personRepository"/>
     </bean>
 
     <bean id="groupService" class="by.nc.school.dev.service.GroupServiceImpl">

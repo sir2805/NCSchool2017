@@ -3,6 +3,7 @@ package by.nc.school.dev.entity;
 import by.nc.school.dev.Role;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "curator")
@@ -18,6 +19,7 @@ public class Curator extends Tutor {
     }
 
     public Curator(String fullname, Group group) {
+//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.CURATOR;
         this.group = group;
@@ -25,6 +27,10 @@ public class Curator extends Tutor {
 
     private Curator() {
         super();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Group getGroup() {
