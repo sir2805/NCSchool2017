@@ -24,7 +24,7 @@ public class WorkPlanController {
 
     protected PersonService personService;
 
-    protected WorkPlanService workPlanService;
+    protected GroupWorkPlanService groupWorkPlanService;
 
     protected TutorAndSubjectService tutorAndSubjectService;
 
@@ -54,7 +54,8 @@ public class WorkPlanController {
         Group group = groupService.getGroup((String) session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO));
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         tutorAndSubjectService.saveAll(tutorAndSubjectList);
-        workPlanService.saveSemesterWorkPlanForGroup(new SemesterWorkPlanForGroup(group, tutorAndSubjectList));
+
+        groupWorkPlanService.addSemesterWorkPlanForGroup(group, group.getCurrentSemester(), new SemesterWorkPlanForGroup(tutorAndSubjectList));
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
@@ -75,9 +76,10 @@ public class WorkPlanController {
         this.personService = personService;
     }
 
+
     @Required
-    public void setWorkPlanService(WorkPlanService workPlanService) {
-        this.workPlanService = workPlanService;
+    public void setGroupWorkPlanService(GroupWorkPlanService groupWorkPlanService) {
+        this.groupWorkPlanService = groupWorkPlanService;
     }
 
     @Required

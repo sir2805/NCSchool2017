@@ -12,10 +12,6 @@ public class SemesterWorkPlanForGroup {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id")
-    private Group group;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "tutor_and_subject_list",
@@ -26,21 +22,12 @@ public class SemesterWorkPlanForGroup {
     public SemesterWorkPlanForGroup() {
     }
 
-    public SemesterWorkPlanForGroup(Group group, List<TutorAndSubject> tutorAndSubjectList) {
-        this.group = group;
+    public SemesterWorkPlanForGroup(List<TutorAndSubject> tutorAndSubjectList) {
         this.tutorAndSubjectList = tutorAndSubjectList;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
     }
 
     public List<TutorAndSubject> getTutorAndSubjectList() {

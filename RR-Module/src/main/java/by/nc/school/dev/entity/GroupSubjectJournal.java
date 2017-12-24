@@ -1,7 +1,9 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -17,6 +19,20 @@ public class GroupSubjectJournal {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "list_of_marks_id"))
     private Map<Student, ListOfMarks> marksList;
+
+    @ElementCollection
+    @JoinTable(name = "lesson_names",
+            joinColumns = @JoinColumn(name = "lesson_names_id")
+    )
+    private List<String> lessonNames = new ArrayList<>();
+
+    public List<String> getLessonNames() {
+        return lessonNames;
+    }
+
+    public void setLessonNames(List<String> lessonNames) {
+        this.lessonNames = lessonNames;
+    }
 
     public Long getId() {
         return id;

@@ -17,6 +17,12 @@ public class GroupJournal {
             joinColumns = @JoinColumn(name = "semester_id"),
             inverseJoinColumns = @JoinColumn(name = "group_semester_journal_id"))
     private Map<Semester, GroupSemesterJournal>groupJournal;
+
+    @OneToOne
+    @JoinColumn(name = "group_work_plan_id")
+    private GroupWorkPlan groupWorkPlan;
+
+
     @OneToOne
     @JoinColumn(name = "group_id")
     private Group group;
@@ -36,6 +42,14 @@ public class GroupJournal {
 
     public Map<Semester, GroupSemesterJournal> getGroupJournal() {
         return groupJournal;
+    }
+
+    public GroupWorkPlan getGroupWorkPlan() {
+        return groupWorkPlan;
+    }
+
+    public void setGroupWorkPlan(GroupWorkPlan groupWorkPlan) {
+        this.groupWorkPlan = groupWorkPlan;
     }
 
     public void setGroupJournal(Map<Semester, GroupSemesterJournal> groupJournal) {

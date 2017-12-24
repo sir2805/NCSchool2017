@@ -2,7 +2,9 @@ package by.nc.school.dev.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "list_of_marks")
@@ -12,24 +14,24 @@ public class ListOfMarks {
     @Column(name = "id")
     private Long id;
     @ElementCollection
-    @JoinTable(name = "marks",
-        joinColumns = @JoinColumn(name = "list_of_marks_id")
-    )
-    private List<Mark> marksList;
+    @CollectionTable(name = "marks", joinColumns = @JoinColumn(name = "list_of_marks_id"))
+    @MapKeyColumn(name = "lesson_name")
+    @Column(name = "mark")
+    private Map<String, Mark> marks;
 
     public Long getId() {
         return id;
     }
 
     public ListOfMarks() {
-        this.marksList = new ArrayList<>();
+        this.marks = new HashMap<>();
     }
 
-    public List<Mark> getMarksList() {
-        return marksList;
+    public Map<String, Mark> getMarks() {
+        return marks;
     }
 
-    public void setMarksList(List<Mark> marksList) {
-        this.marksList = marksList;
+    public void setMarks(Map<String, Mark> marks) {
+        this.marks = marks;
     }
 }

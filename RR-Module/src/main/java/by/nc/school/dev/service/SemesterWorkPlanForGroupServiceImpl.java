@@ -5,7 +5,7 @@ import by.nc.school.dev.repository.SemesterWorkPlanForGroupRepository;
 import org.springframework.beans.factory.annotation.Required;
 
 
-public class WorkPlanServiceImpl implements WorkPlanService {
+public class SemesterWorkPlanForGroupServiceImpl implements SemesterWorkPlanForGroupService {
 
     protected SemesterWorkPlanForGroupRepository semesterWorkPlanForGroupRepository;
 

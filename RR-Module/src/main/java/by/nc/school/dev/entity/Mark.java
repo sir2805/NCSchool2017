@@ -5,8 +5,10 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Mark {
+
     @Column(name = "mark")
     private int mark;
+
     @Column(name = "is_exam")
     private boolean isExam;
 
@@ -34,14 +36,6 @@ public class Mark {
     }
 
     @Override
-    public String toString() {
-        return "Mark{" +
-                "mark=" + mark +
-                ", isExam=" + isExam +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Mark)) return false;
@@ -55,7 +49,7 @@ public class Mark {
     @Override
     public int hashCode() {
         int result = mark;
-        if (isExam) return mark * 31;
+        result = 31 * result + (isExam ? 1 : 0);
         return result;
     }
 }

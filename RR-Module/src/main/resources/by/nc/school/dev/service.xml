@@ -29,12 +29,28 @@
         <property name="tutorAndSubjectRepository" ref="tutorAndSubjectRepository"/>
     </bean>
 
-    <bean id="workPlanService" class="by.nc.school.dev.service.WorkPlanServiceImpl">
+    <bean id="semesterWorkPlanForGroupService" class="by.nc.school.dev.service.SemesterWorkPlanForGroupServiceImpl">
         <property name="semesterWorkPlanForGroupRepository" ref="semesterWorkPlanForGroupRepository"/>
     </bean>
 
     <bean id="semesterService" class="by.nc.school.dev.service.SemesterServiceImpl">
-
         <property name="semesterRepository" ref="semesterRepository"/>
+    </bean>
+
+    <bean id="groupSemesterJournalService" class="by.nc.school.dev.service.GroupSemesterJournalServiceImpl">
+        <property name="groupJournalRepository" ref="groupJournalRepository"/>
+        <property name="groupSemesterJournalRepository" ref="groupSemesterJournalRepository"/>
+        <property name="groupSubjectJournalRepository" ref="groupSubjectJournalRepository"/>
+    </bean>
+
+    <bean id="groupJournalService" class="by.nc.school.dev.service.GroupJournalServiceimpl">
+
+        <property name="groupJournalRepository" ref="groupJournalRepository"/>
+    </bean>
+
+    <bean id="groupWorkPlanService" class="by.nc.school.dev.service.GroupWorkPlanServiceImpl">
+
+        <property name="groupWorkPlanRepository" ref="groupWorkPlanRepository"/>
+        <property name="semesterWorkPlanForGroupService" ref="semesterWorkPlanForGroupService"/>
     </bean>
 </beans>

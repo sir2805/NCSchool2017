@@ -23,8 +23,8 @@
         <property name="groupService" ref="groupService"/>
         <property name="personService" ref="personService"/>
         <property name="subjectService" ref="subjectService"/>
-        <property name="workPlanService" ref="workPlanService"/>
         <property name="tutorAndSubjectService" ref="tutorAndSubjectService"/>
+        <property name="groupWorkPlanService" ref="groupWorkPlanService"/>
 
     </bean>
 

@@ -18,24 +18,12 @@ public class GroupSemesterJournal {
             inverseJoinColumns = @JoinColumn(name = "group_subject_journal_id"))
     private Map<Subject, GroupSubjectJournal> semesterJournal;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "semester_work_plan_for_group_id")
-    private SemesterWorkPlanForGroup semesterWorkPlanForGroup;
-
     public GroupSemesterJournal() {
         semesterJournal = new HashMap<>();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public SemesterWorkPlanForGroup getSemesterWorkPlanForGroup() {
-        return semesterWorkPlanForGroup;
-    }
-
-    public void setSemesterWorkPlanForGroup(SemesterWorkPlanForGroup semesterWorkPlanForGroup) {
-        this.semesterWorkPlanForGroup = semesterWorkPlanForGroup;
     }
 
     public GroupSemesterJournal(Map<Subject, GroupSubjectJournal> semesterJournal) {
