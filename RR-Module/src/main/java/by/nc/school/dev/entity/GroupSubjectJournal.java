@@ -16,8 +16,9 @@ public class GroupSubjectJournal {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "student_list_of_marks",
-            joinColumns = @JoinColumn(name = "student_id"),
+            joinColumns = @JoinColumn(name = "group_subject_journal_id"),
             inverseJoinColumns = @JoinColumn(name = "list_of_marks_id"))
+    @MapKeyColumn(name = "student_id")
     private Map<Student, ListOfMarks> marksList;
 
     @ElementCollection
@@ -40,6 +41,7 @@ public class GroupSubjectJournal {
 
     public GroupSubjectJournal() {
         marksList = new HashMap<>();
+        lessonNames = new ArrayList<>();
     }
 
     public Map<Student, ListOfMarks> getMarksList() {

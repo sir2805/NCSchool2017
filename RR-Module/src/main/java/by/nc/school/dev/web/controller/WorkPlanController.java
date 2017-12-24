@@ -3,6 +3,7 @@ package by.nc.school.dev.web.controller;
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.service.*;
 import by.nc.school.dev.service.group.GroupService;
+import by.nc.school.dev.service.group.journal.GroupJournalService;
 import by.nc.school.dev.service.group.workplan.GroupWorkPlanService;
 import by.nc.school.dev.service.group.workplan.TutorAndSubjectService;
 import by.nc.school.dev.web.Pages;
@@ -31,6 +32,8 @@ public class WorkPlanController {
 
     protected TutorAndSubjectService tutorAndSubjectService;
 
+    protected GroupJournalService groupJournalService;
+
     @RequestMapping(method = RequestMethod.POST, path = Pages.WORKPLAN.ADD_WORKPLAN.PATH, params="select-group")
     public String chooseGroup(HttpSession session,
                      @RequestParam(value = "group", required = false) String groupInfo) {
@@ -57,8 +60,9 @@ public class WorkPlanController {
         Group group = groupService.getGroup((String) session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO));
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         tutorAndSubjectService.saveAll(tutorAndSubjectList);
-
-        groupWorkPlanService.addSemesterWorkPlanForGroup(group, group.getCurrentSemester(), new GroupSemesterWorkPlan(tutorAndSubjectList));
+        GroupWorkPlan groupWorkPlan = groupWorkPlanService
+                .initGroupWorkPlanFromGroupSemesterWorkPlan(group, new GroupSemesterWorkPlan(tutorAndSubjectList));
+        groupJournalService.initGroupJournal(group, groupWorkPlan);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
@@ -88,5 +92,10 @@ public class WorkPlanController {
     @Required
     public void setTutorAndSubjectService(TutorAndSubjectService tutorAndSubjectService) {
         this.tutorAndSubjectService = tutorAndSubjectService;
+    }
+
+    @Required
+    public void setGroupJournalService(GroupJournalService groupJournalService) {
+        this.groupJournalService = groupJournalService;
     }
 }

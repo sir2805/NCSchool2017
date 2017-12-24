@@ -14,8 +14,12 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
     protected GroupSemesterWorkPlanService groupSemesterWorkPlanService;
 
     @Override
-    public void initGroupWorkPlan() {
-
+    public GroupWorkPlan initGroupWorkPlanFromGroupSemesterWorkPlan(Group group, GroupSemesterWorkPlan groupSemesterWorkPlan) {
+        GroupWorkPlan groupWorkPlan = new GroupWorkPlan(group);
+        groupWorkPlan.getPlan().put(group.getCurrentSemester(), groupSemesterWorkPlan);
+        groupSemesterWorkPlanService.saveSemesterWorkPlanForGroup(groupSemesterWorkPlan);
+        groupWorkPlanRepository.save(groupWorkPlan);
+        return groupWorkPlan;
     }
 
     @Override

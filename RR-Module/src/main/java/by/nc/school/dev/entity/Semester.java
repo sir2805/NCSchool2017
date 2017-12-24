@@ -31,4 +31,22 @@ public class Semester {
     public void setSemesterNumber(int semesterNumber) {
         this.semesterNumber = semesterNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Semester)) return false;
+
+        Semester semester = (Semester) o;
+
+        if (semesterNumber != semester.semesterNumber) return false;
+        return id != null ? id.equals(semester.id) : semester.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + semesterNumber;
+        return result;
+    }
 }

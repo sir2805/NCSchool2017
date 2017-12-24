@@ -14,9 +14,10 @@ public class GroupJournal {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "semester_group_semester_journal",
-            joinColumns = @JoinColumn(name = "semester_id"),
+            joinColumns = @JoinColumn(name = "group_journal_id"),
             inverseJoinColumns = @JoinColumn(name = "group_semester_journal_id"))
-    private Map<Semester, GroupSemesterJournal>groupJournal;
+    @MapKeyColumn(name = "semester_id")
+    private Map<Semester, GroupSemesterJournal> groupJournalMap;
 
     @OneToOne
     @JoinColumn(name = "group_work_plan_id")
@@ -27,12 +28,13 @@ public class GroupJournal {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    private GroupJournal() {
-        groupJournal = new HashMap<>();
+    public GroupJournal() {
+        groupJournalMap = new HashMap<>();
     }
 
-    public GroupJournal(Map<Semester, GroupSemesterJournal> groupJournal, Group group) {
-        this.groupJournal = groupJournal;
+    public GroupJournal(Group group, GroupWorkPlan groupWorkPlan) {
+        this.groupJournalMap = new HashMap<>();
+        this.groupWorkPlan = groupWorkPlan;
         this.group = group;
     }
 
@@ -40,8 +42,8 @@ public class GroupJournal {
         return id;
     }
 
-    public Map<Semester, GroupSemesterJournal> getGroupJournal() {
-        return groupJournal;
+    public Map<Semester, GroupSemesterJournal> getGroupJournalMap() {
+        return groupJournalMap;
     }
 
     public GroupWorkPlan getGroupWorkPlan() {
@@ -52,8 +54,8 @@ public class GroupJournal {
         this.groupWorkPlan = groupWorkPlan;
     }
 
-    public void setGroupJournal(Map<Semester, GroupSemesterJournal> groupJournal) {
-        this.groupJournal = groupJournal;
+    public void setGroupJournalMap(Map<Semester, GroupSemesterJournal> groupJournalMap) {
+        this.groupJournalMap = groupJournalMap;
     }
 
     public Group getGroup() {
@@ -67,7 +69,7 @@ public class GroupJournal {
     @Override
     public String toString() {
         return "GroupJournal{" +
-                "groupJournal=" + groupJournal +
+                "groupJournalMap=" + groupJournalMap +
                 ", group=" + group +
                 '}';
     }

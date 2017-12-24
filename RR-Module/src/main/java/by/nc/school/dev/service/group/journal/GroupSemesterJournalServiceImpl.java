@@ -4,22 +4,40 @@ import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.GroupJournalRepository;
 import by.nc.school.dev.repository.GroupSemesterJournalRepository;
 import by.nc.school.dev.repository.GroupSubjectJournalRepository;
+import by.nc.school.dev.service.group.workplan.GroupSemesterWorkPlanService;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GroupSemesterJournalServiceImpl implements GroupSemesterJournalService {
 
-    protected GroupJournalRepository groupJournalRepository;
-
     protected GroupSemesterJournalRepository groupSemesterJournalRepository;
 
-    protected GroupSubjectJournalRepository groupSubjectJournalRepository;
+    protected GroupSubjectJournalService groupSubjectJournalService;
+
+    protected GroupSemesterWorkPlanService groupSemesterWorkPlanService;
+
+    @Override
+    @Transactional
+    public GroupSemesterJournal initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(Group group, GroupSemesterWorkPlan groupSemesterWorkPlan) {
+        GroupSemesterJournal groupSemesterJournal = new GroupSemesterJournal();
+        Set<Subject> subjects = groupSemesterWorkPlanService.getAllSubjects(groupSemesterWorkPlan);
+        Map<Subject, GroupSubjectJournal> semesterJournalMap = new HashMap<>();
+        for (Subject subject : subjects) {
+            semesterJournalMap.put(subject, groupSubjectJournalService.initGroupSubjectJournalFromGroup(group));
+        }
+        groupSemesterJournal.setSemesterJournal(semesterJournalMap);
+        groupSemesterJournalRepository.save(groupSemesterJournal);
+        return groupSemesterJournal;
+    }
 
     @Override
     public GroupSemesterJournal getSemesterJournalForGroup(Group group) {
-        return groupJournalRepository.findGroupJournalByGroup(group).getGroupJournal().get(group.getCurrentSemester());
+        return null;
     }
 
     @Transactional
@@ -31,12 +49,7 @@ public class GroupSemesterJournalServiceImpl implements GroupSemesterJournalServ
             lessonNames.add(lessonName);
         }
         groupSubjectJournal.getMarksList().get(student).getMarks().put(lessonName, mark);
-        groupSubjectJournalRepository.save(groupSubjectJournal);
-    }
-
-    @Required
-    public void setGroupJournalRepository(GroupJournalRepository groupJournalRepository) {
-        this.groupJournalRepository = groupJournalRepository;
+        groupSubjectJournalService.saveGroupSubjectJournal(groupSubjectJournal);
     }
 
     @Required
@@ -45,7 +58,12 @@ public class GroupSemesterJournalServiceImpl implements GroupSemesterJournalServ
     }
 
     @Required
-    public void setGroupSubjectJournalRepository(GroupSubjectJournalRepository groupSubjectJournalRepository) {
-        this.groupSubjectJournalRepository = groupSubjectJournalRepository;
+    public void setGroupSubjectJournalService(GroupSubjectJournalService groupSubjectJournalService) {
+        this.groupSubjectJournalService = groupSubjectJournalService;
+    }
+
+    @Required
+    public void setGroupSemesterWorkPlanService(GroupSemesterWorkPlanService groupSemesterWorkPlanService) {
+        this.groupSemesterWorkPlanService = groupSemesterWorkPlanService;
     }
 }

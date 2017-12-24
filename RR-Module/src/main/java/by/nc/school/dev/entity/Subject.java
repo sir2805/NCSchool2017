@@ -12,7 +12,7 @@ public class Subject {
     @Column(name = "subject_name")
     private String name;
 
-    private Subject() {};
+    private Subject() {}
 
     public Subject(String name) {
         this.name = name;
@@ -23,6 +23,24 @@ public class Subject {
         return "Subject{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject)) return false;
+
+        Subject subject = (Subject) o;
+
+        if (id != null ? !id.equals(subject.id) : subject.id != null) return false;
+        return name != null ? name.equals(subject.name) : subject.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
     public void setName(String name) {

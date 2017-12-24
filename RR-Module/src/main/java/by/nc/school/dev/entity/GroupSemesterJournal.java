@@ -14,8 +14,9 @@ public class GroupSemesterJournal {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "subject_group_subject_journal",
-            joinColumns = @JoinColumn(name = "subject_id"),
+            joinColumns = @JoinColumn(name = "group_semester_journal_id"),
             inverseJoinColumns = @JoinColumn(name = "group_subject_journal_id"))
+    @MapKeyColumn(name = "subject_id")
     private Map<Subject, GroupSubjectJournal> semesterJournal;
 
     public GroupSemesterJournal() {

@@ -25,22 +25,22 @@
         <property name="subjectRepository" ref="subjectRepository"/>
     </bean>
 
-    <bean id="tutorAndSubjectService" class="by.nc.school.dev.service.group.workplan.TutorAndSubjectServiceImpl">
-        <property name="tutorAndSubjectRepository" ref="tutorAndSubjectRepository"/>
+    <bean id="groupWorkPlanService" class="by.nc.school.dev.service.group.workplan.GroupWorkPlanServiceImpl">
+
+        <property name="groupWorkPlanRepository" ref="groupWorkPlanRepository"/>
+        <property name="groupSemesterWorkPlanService" ref="groupSemesterWorkPlanService"/>
     </bean>
 
     <bean id="groupSemesterWorkPlanService" class="by.nc.school.dev.service.group.workplan.GroupSemesterWorkPlanServiceImpl">
         <property name="groupSemesterWorkPlanRepository" ref="groupSemesterWorkPlanRepository"/>
     </bean>
 
-    <bean id="semesterService" class="by.nc.school.dev.service.SemesterServiceImpl">
-        <property name="semesterRepository" ref="semesterRepository"/>
+    <bean id="tutorAndSubjectService" class="by.nc.school.dev.service.group.workplan.TutorAndSubjectServiceImpl">
+        <property name="tutorAndSubjectRepository" ref="tutorAndSubjectRepository"/>
     </bean>
 
-    <bean id="groupSemesterJournalService" class="by.nc.school.dev.service.group.journal.GroupSemesterJournalServiceImpl">
-        <property name="groupJournalRepository" ref="groupJournalRepository"/>
-        <property name="groupSemesterJournalRepository" ref="groupSemesterJournalRepository"/>
-        <property name="groupSubjectJournalRepository" ref="groupSubjectJournalRepository"/>
+    <bean id="semesterService" class="by.nc.school.dev.service.SemesterServiceImpl">
+        <property name="semesterRepository" ref="semesterRepository"/>
     </bean>
 
     <bean id="groupJournalService" class="by.nc.school.dev.service.group.journal.GroupJournalServiceimpl">
@@ -49,9 +49,20 @@
         <property name="groupSemesterJournalService" ref="groupSemesterJournalService"/>
     </bean>
 
-    <bean id="groupWorkPlanService" class="by.nc.school.dev.service.group.workplan.GroupWorkPlanServiceImpl">
-
-        <property name="groupWorkPlanRepository" ref="groupWorkPlanRepository"/>
+    <bean id="groupSemesterJournalService" class="by.nc.school.dev.service.group.journal.GroupSemesterJournalServiceImpl">
+        <property name="groupSemesterJournalRepository" ref="groupSemesterJournalRepository"/>
+        <property name="groupSubjectJournalService" ref="groupSubjectJournalService"/>
         <property name="groupSemesterWorkPlanService" ref="groupSemesterWorkPlanService"/>
+    </bean>
+
+    <bean id="groupSubjectJournalService" class="by.nc.school.dev.service.group.journal.GroupSubjectJournalServiceImpl">
+
+        <property name="groupSubjectJournalRepository" ref="groupSubjectJournalRepository"/>
+        <property name="listOfMarksService" ref="listOfMarksService"/>
+    </bean>
+
+    <bean id="listOfMarksService" class="by.nc.school.dev.service.group.journal.ListOfMarksServiceImpl">
+
+        <property name="listOfMarksRepository" ref="listOfMarksRepository"/>
     </bean>
 </beans>

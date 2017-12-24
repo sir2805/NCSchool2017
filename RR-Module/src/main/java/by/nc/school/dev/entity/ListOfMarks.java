@@ -13,10 +13,11 @@ public class ListOfMarks {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @ElementCollection
     @CollectionTable(name = "marks", joinColumns = @JoinColumn(name = "list_of_marks_id"))
     @MapKeyColumn(name = "lesson_name")
-    @Column(name = "mark")
+    @Column(name = "markaaaaaaa")
     private Map<String, Mark> marks;
 
     public Long getId() {

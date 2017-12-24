@@ -13,11 +13,12 @@ public class GroupWorkPlan {
     @Column(name = "id")
     private Long id;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "semester_group_semester_work_plan",
             joinColumns = @JoinColumn(name = "group_work_plan_id"),
             inverseJoinColumns = @JoinColumn(name = "group_semester_work_plan_id"))
+    @MapKeyColumn(name = "semester_id")
     private Map<Semester, GroupSemesterWorkPlan> plan;
 
     @OneToOne(cascade = CascadeType.ALL)

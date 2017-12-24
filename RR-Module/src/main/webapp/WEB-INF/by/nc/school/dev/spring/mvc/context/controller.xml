@@ -25,6 +25,7 @@
         <property name="subjectService" ref="subjectService"/>
         <property name="tutorAndSubjectService" ref="tutorAndSubjectService"/>
         <property name="groupWorkPlanService" ref="groupWorkPlanService"/>
+        <property name="groupJournalService" ref="groupJournalService"/>
 
     </bean>
 

@@ -10,9 +10,11 @@ public class TutorAndSubject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "subject_id")
     private Subject subject;
