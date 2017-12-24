@@ -1,4 +1,4 @@
-package by.nc.school.dev.service;
+package by.nc.school.dev.service.group.journal;
 
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.GroupJournal;
@@ -9,6 +9,8 @@ public class GroupJournalServiceimpl implements GroupJournalService {
 
     protected GroupJournalRepository groupJournalRepository;
 
+    protected GroupSemesterJournalService groupSemesterJournalService;
+
     @Override
     public void initGroupJournal(Group group) {
 
@@ -18,5 +20,10 @@ public class GroupJournalServiceimpl implements GroupJournalService {
     @Required
     public void setGroupJournalRepository(GroupJournalRepository groupJournalRepository) {
         this.groupJournalRepository = groupJournalRepository;
+    }
+
+    @Required
+    public void setGroupSemesterJournalService(GroupSemesterJournalService groupSemesterJournalService) {
+        this.groupSemesterJournalService = groupSemesterJournalService;
     }
 }

@@ -1,9 +1,9 @@
-package by.nc.school.dev.service;
+package by.nc.school.dev.service.group;
 
 import by.nc.school.dev.repository.GroupRepository;
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.Student;
-import by.nc.school.dev.repository.SemesterRepository;
+import by.nc.school.dev.service.SemesterService;
 import org.springframework.beans.factory.annotation.Required;
 
 public class GroupServiceImpl implements GroupService {

@@ -1,4 +1,4 @@
-package by.nc.school.dev.service;
+package by.nc.school.dev.service.group;
 
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.Student;

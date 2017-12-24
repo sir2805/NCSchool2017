@@ -2,7 +2,7 @@ package by.nc.school.dev.web.controller;
 
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.service.AppStringsService;
-import by.nc.school.dev.service.GroupService;
+import by.nc.school.dev.service.group.GroupService;
 import by.nc.school.dev.service.PersonService;
 import by.nc.school.dev.service.UserService;
 import by.nc.school.dev.web.Pages;

@@ -1,9 +1,9 @@
-package by.nc.school.dev.service;
+package by.nc.school.dev.service.group.workplan;
 
 import by.nc.school.dev.entity.Group;
 import by.nc.school.dev.entity.GroupWorkPlan;
 import by.nc.school.dev.entity.Semester;
-import by.nc.school.dev.entity.SemesterWorkPlanForGroup;
+import by.nc.school.dev.entity.GroupSemesterWorkPlan;
 import by.nc.school.dev.repository.GroupWorkPlanRepository;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -11,7 +11,7 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
 
     protected GroupWorkPlanRepository groupWorkPlanRepository;
 
-    protected SemesterWorkPlanForGroupService semesterWorkPlanForGroupService;
+    protected GroupSemesterWorkPlanService groupSemesterWorkPlanService;
 
     @Override
     public void initGroupWorkPlan() {
@@ -19,13 +19,13 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
     }
 
     @Override
-    public void addSemesterWorkPlanForGroup(Group group, Semester semester, SemesterWorkPlanForGroup semesterWorkPlanForGroup) {
+    public void addSemesterWorkPlanForGroup(Group group, Semester semester, GroupSemesterWorkPlan groupSemesterWorkPlan) {
         GroupWorkPlan groupWorkPlan = groupWorkPlanRepository.findByGroup(group);
         if (groupWorkPlan == null) {
             groupWorkPlan = new GroupWorkPlan(group);
         }
-        groupWorkPlan.getPlan().put(semester, semesterWorkPlanForGroup);
-        semesterWorkPlanForGroupService.saveSemesterWorkPlanForGroup(semesterWorkPlanForGroup);
+        groupWorkPlan.getPlan().put(semester, groupSemesterWorkPlan);
+        groupSemesterWorkPlanService.saveSemesterWorkPlanForGroup(groupSemesterWorkPlan);
         groupWorkPlanRepository.save(groupWorkPlan);
     }
 
@@ -35,7 +35,7 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
     }
 
     @Required
-    public void setSemesterWorkPlanForGroupService(SemesterWorkPlanForGroupService semesterWorkPlanForGroupService) {
-        this.semesterWorkPlanForGroupService = semesterWorkPlanForGroupService;
+    public void setGroupSemesterWorkPlanService(GroupSemesterWorkPlanService groupSemesterWorkPlanService) {
+        this.groupSemesterWorkPlanService = groupSemesterWorkPlanService;
     }
 }

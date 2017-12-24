@@ -1,4 +1,4 @@
-package by.nc.school.dev.service;
+package by.nc.school.dev.service.group.workplan;
 
 import by.nc.school.dev.entity.TutorAndSubject;
 import by.nc.school.dev.repository.TutorAndSubjectRepository;

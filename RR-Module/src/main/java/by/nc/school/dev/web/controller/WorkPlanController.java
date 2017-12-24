@@ -2,6 +2,9 @@ package by.nc.school.dev.web.controller;
 
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.service.*;
+import by.nc.school.dev.service.group.GroupService;
+import by.nc.school.dev.service.group.workplan.GroupWorkPlanService;
+import by.nc.school.dev.service.group.workplan.TutorAndSubjectService;
 import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -55,7 +58,7 @@ public class WorkPlanController {
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         tutorAndSubjectService.saveAll(tutorAndSubjectList);
 
-        groupWorkPlanService.addSemesterWorkPlanForGroup(group, group.getCurrentSemester(), new SemesterWorkPlanForGroup(tutorAndSubjectList));
+        groupWorkPlanService.addSemesterWorkPlanForGroup(group, group.getCurrentSemester(), new GroupSemesterWorkPlan(tutorAndSubjectList));
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;

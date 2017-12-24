@@ -1,9 +1,7 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -17,10 +15,10 @@ public class GroupWorkPlan {
 
     @ElementCollection(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "semester_semester_work_plan_for_group",
+            name = "semester_group_semester_work_plan",
             joinColumns = @JoinColumn(name = "group_work_plan_id"),
-            inverseJoinColumns = @JoinColumn(name = "semester_work_plan_for_group_id"))
-    private Map<Semester, SemesterWorkPlanForGroup> plan;
+            inverseJoinColumns = @JoinColumn(name = "group_semester_work_plan_id"))
+    private Map<Semester, GroupSemesterWorkPlan> plan;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
@@ -39,11 +37,11 @@ public class GroupWorkPlan {
         return id;
     }
 
-    public Map<Semester, SemesterWorkPlanForGroup> getPlan() {
+    public Map<Semester, GroupSemesterWorkPlan> getPlan() {
         return plan;
     }
 
-    public void setPlan(Map<Semester, SemesterWorkPlanForGroup> plan) {
+    public void setPlan(Map<Semester, GroupSemesterWorkPlan> plan) {
         this.plan = plan;
     }
 

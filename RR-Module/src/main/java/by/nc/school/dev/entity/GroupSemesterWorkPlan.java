@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "semester_work_plan_for_group")
-public class SemesterWorkPlanForGroup {
+public class GroupSemesterWorkPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +19,10 @@ public class SemesterWorkPlanForGroup {
             inverseJoinColumns = @JoinColumn(name = "tutor_and_subject_id"))
     private List<TutorAndSubject> tutorAndSubjectList;
 
-    public SemesterWorkPlanForGroup() {
+    public GroupSemesterWorkPlan() {
     }
 
-    public SemesterWorkPlanForGroup(List<TutorAndSubject> tutorAndSubjectList) {
+    public GroupSemesterWorkPlan(List<TutorAndSubject> tutorAndSubjectList) {
         this.tutorAndSubjectList = tutorAndSubjectList;
     }
 
