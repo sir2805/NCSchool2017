@@ -17,6 +17,9 @@
         <entry value-ref="addWorkPlanModelProvider">
             <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$ADD_WORKPLAN.VIEW" /></key>
         </entry>
+        <entry value-ref="journalModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$JOURNAL.VIEW" /></key>
+        </entry>
     </util:map>
 
     <bean id="homeModelProvider" class="by.nc.school.dev.web.provider.HomeModelProvider">
@@ -29,6 +32,13 @@
 
     <bean id="addGroupModelProvider" class="by.nc.school.dev.web.provider.AddGroupModelProvider">
         <property name="personRepository" ref="personRepository"/>
+    </bean>
+
+    <bean id="journalModelProvider" class="by.nc.school.dev.web.provider.JournalModelProvider">
+
+        <property name="groupRepository" ref="groupRepository"/>
+        <property name="groupJournalRepository" ref="groupJournalRepository"/>
+        <property name="groupSemesterWorkPlanService" ref="groupSemesterWorkPlanService"/>
     </bean>
 
     <bean id="addWorkPlanModelProvider" class="by.nc.school.dev.web.provider.AddWorkPlanModelProvider">

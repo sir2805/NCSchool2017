@@ -22,7 +22,6 @@ public class GroupSemesterJournalServiceImpl implements GroupSemesterJournalServ
     protected GroupSemesterWorkPlanService groupSemesterWorkPlanService;
 
     @Override
-    @Transactional
     public GroupSemesterJournal initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(Group group, GroupSemesterWorkPlan groupSemesterWorkPlan) {
         GroupSemesterJournal groupSemesterJournal = new GroupSemesterJournal();
         Set<Subject> subjects = groupSemesterWorkPlanService.getAllSubjects(groupSemesterWorkPlan);
@@ -40,16 +39,14 @@ public class GroupSemesterJournalServiceImpl implements GroupSemesterJournalServ
         return null;
     }
 
-    @Transactional
     @Override
     public void putMark(GroupSemesterJournal semesterJournal, Student student, Subject subject, String lessonName, Mark mark) {
-        GroupSubjectJournal groupSubjectJournal = semesterJournal.getSemesterJournal().get(subject);
-        List<String> lessonNames = groupSubjectJournal.getLessonNames();
-        if (!lessonNames.contains(lessonName)) {
-            lessonNames.add(lessonName);
-        }
-        groupSubjectJournal.getMarksList().get(student).getMarks().put(lessonName, mark);
-        groupSubjectJournalService.saveGroupSubjectJournal(groupSubjectJournal);
+        groupSubjectJournalService.putMark(semesterJournal.getSemesterJournal().get(subject), student, lessonName, mark);
+    }
+
+    @Override
+    public void addLesson(GroupSemesterJournal semesterJournal, Subject subject, String lessonName) {
+        groupSubjectJournalService.addLesson(semesterJournal.getSemesterJournal().get(subject), lessonName);
     }
 
     @Required

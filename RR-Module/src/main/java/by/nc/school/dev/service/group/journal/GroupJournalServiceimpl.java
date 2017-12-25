@@ -15,7 +15,6 @@ public class GroupJournalServiceimpl implements GroupJournalService {
     protected GroupSemesterJournalService groupSemesterJournalService;
 
     @Override
-    @Transactional
     public void initGroupJournal(Group group, GroupWorkPlan groupWorkPlan) {
         GroupJournal groupJournal = new GroupJournal(group, groupWorkPlan);
 
@@ -29,6 +28,16 @@ public class GroupJournalServiceimpl implements GroupJournalService {
         groupJournalRepository.save(groupJournal);
     }
 
+    @Override
+    public void putMark(GroupJournal groupJournal, Semester semester, Student student, Subject subject, String lessonName, Mark mark) {
+        groupSemesterJournalService.putMark(groupJournal.getGroupJournalMap().get(semester), student, subject, lessonName, mark);
+    }
+
+    @Override
+    public void addLesson(GroupJournal groupJournal, Semester semester, Subject subject, String lessonName) {
+        groupSemesterJournalService.addLesson(groupJournal.getGroupJournalMap().get(semester), subject, lessonName);
+    }
+
     @Required
     public void setGroupJournalRepository(GroupJournalRepository groupJournalRepository) {
         this.groupJournalRepository = groupJournalRepository;
@@ -38,6 +47,4 @@ public class GroupJournalServiceimpl implements GroupJournalService {
     public void setGroupSemesterJournalService(GroupSemesterJournalService groupSemesterJournalService) {
         this.groupSemesterJournalService = groupSemesterJournalService;
     }
-
-
 }

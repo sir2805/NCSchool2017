@@ -18,12 +18,12 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public Group getGroup(int groupNumber) {
+    public Group getGroupByGroupNumber(int groupNumber) {
         return groupRepository.findGroupByGroupNumber(groupNumber);
     }
 
     @Override
-    public Group getGroup(String groupInfo) {
+    public Group getGroupByGroupInfo(String groupInfo) {
         String[] groupInfoArr = groupInfo.split(", ");
         Integer semesterNumber = Integer.valueOf(groupInfoArr[0]);
         Integer groupNumber = Integer.valueOf(groupInfoArr[1]);

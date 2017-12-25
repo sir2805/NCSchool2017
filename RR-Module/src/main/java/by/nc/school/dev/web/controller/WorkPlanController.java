@@ -57,7 +57,7 @@ public class WorkPlanController {
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = Pages.WORKPLAN.ADD_WORKPLAN.PATH, params="add-plan")
     public String addWorkPlan(HttpSession session) {
-        Group group = groupService.getGroup((String) session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO));
+        Group group = groupService.getGroupByGroupInfo((String) session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO));
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         tutorAndSubjectService.saveAll(tutorAndSubjectList);
         GroupWorkPlan groupWorkPlan = groupWorkPlanService

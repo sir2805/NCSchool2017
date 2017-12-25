@@ -26,7 +26,13 @@
         <property name="tutorAndSubjectService" ref="tutorAndSubjectService"/>
         <property name="groupWorkPlanService" ref="groupWorkPlanService"/>
         <property name="groupJournalService" ref="groupJournalService"/>
+    </bean>
 
+    <bean id="journalController" class="by.nc.school.dev.web.controller.JournalController">
+        <property name="groupService" ref="groupService"/>
+        <property name="groupJournalService" ref="groupJournalService"/>
+        <property name="personService" ref="personService"/>
+        <property name="subjectService" ref="subjectService"/>
     </bean>
 
     <bean id="webController" class="by.nc.school.dev.web.controller.ViewController">

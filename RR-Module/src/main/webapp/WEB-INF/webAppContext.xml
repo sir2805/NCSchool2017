@@ -6,8 +6,8 @@
 
     <mvc:annotation-driven />
 
-    <import resource="by/nc/school/dev/spring/mvc/context/controller.xml" />
-    <import resource="by/nc/school/dev/spring/mvc/context/model.xml" />
+    <import resource="by/nc/school/dev/context/controller.xml" />
+    <import resource="by/nc/school/dev/context/model.xml" />
 
     <bean class="org.springframework.beans.factory.config.MethodInvokingBean">
         <property name="staticMethod" value="by.nc.school.dev.web.AppStringTag.setAppStringsService" />

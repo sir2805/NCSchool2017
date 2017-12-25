@@ -8,5 +8,4 @@ public interface
 ModelProvider {
 
     void  fillModel(Model model, HttpSession session);
-
 }

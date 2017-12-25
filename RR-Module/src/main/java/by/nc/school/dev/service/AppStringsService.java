@@ -55,6 +55,18 @@ public interface AppStringsService {
                 String KEY = ADD_SUBJECT.KEY + ".finish";
             }
         }
+        interface SUBJECT {
+            String KEY = WEB.KEY + ".subject";
+            interface SELECT_SUBJECT {
+                String KEY = SUBJECT.KEY + ".subject";
+                interface NAME {
+                    String KEY = SELECT_SUBJECT.KEY + ".name";
+                }
+                interface BUTTON {
+                    String KEY = SELECT_SUBJECT.KEY + ".button";
+                }
+            }
+        }
         interface ADD_WORKPLAN {
             String KEY = WEB.KEY + ".addworkplan";
             interface TITLE {
@@ -76,7 +88,7 @@ public interface AppStringsService {
                     String KEY = ITEM.KEY + ".tutor";
                 }
                 interface ADDITEM {
-                    String KEY = ADD_WORKPLAN.KEY + ".add";
+                    String KEY = ITEM.KEY + ".add";
                 }
             }
         }
@@ -197,6 +209,60 @@ public interface AppStringsService {
                 }
                 interface ROLE {
                     String KEY = TABLE.KEY + ".role";
+                }
+            }
+        }
+        interface JOURNAL {
+            String KEY = WEB.KEY + ".journal";
+            interface TITLE {
+                String KEY = JOURNAL.KEY + ".title";
+            }
+            interface TABLE {
+                String KEY = JOURNAL.KEY + ".table";
+                interface STUDENTS {
+                    String KEY = TABLE.KEY + ".students";
+                }
+            }
+            interface SELECT_SUBJECT {
+                String KEY = JOURNAL.KEY + ".selectsubject";
+                interface BUTTON {
+                    String KEY = SELECT_SUBJECT.KEY + ".button";
+                }
+            }
+            interface SELECT_GROUP {
+                String KEY = JOURNAL.KEY + ".selectgroup";
+                interface BUTTON {
+                    String KEY = SELECT_GROUP.KEY + ".button";
+                }
+            }
+            interface PUT_MARK {
+                String KEY = JOURNAL.KEY + ".putmark";
+
+                interface SELECT_LESSON {
+                    String KEY = PUT_MARK.KEY + ".selectlesson";
+                }
+
+                interface SELECT_STUDENT {
+                    String KEY = PUT_MARK.KEY + ".selectstudent";
+                }
+
+                interface SELECT_MARK {
+                    String KEY = PUT_MARK.KEY + ".selectmark";
+                }
+
+                interface BUTTON {
+                    String KEY = PUT_MARK.KEY + ".button";
+                }
+            }
+            interface ADD_LESSON {
+                String KEY = JOURNAL.KEY + ".addlesson";
+
+                interface LESSON {
+                    String KEY = ADD_LESSON.KEY + ".lesson";
+                }
+
+                interface BUTTON {
+                    String KEY = ADD_LESSON.KEY + ".button";
                 }
             }
         }

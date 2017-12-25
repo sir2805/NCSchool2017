@@ -64,6 +64,12 @@ public class ViewController {
         return Pages.VIEWS.LOGIN.VIEW;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.JOURNAL.PATH)
+    public String getJournalPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.JOURNAL.VIEW);
+        return Pages.VIEWS.JOURNAL.VIEW;
+    }
+
     protected void processRequest(Model model, HttpSession session, String view) {
         ModelProvider modelProvider = modelProviders.get(view);
         if (modelProvider != null) {

@@ -7,9 +7,9 @@ public interface GroupService {
 
     void saveGroup(Group group);
 
-    Group getGroup(int groupNumber);
+    Group getGroupByGroupNumber(int groupNumber);
 
-    Group getGroup(String groupInfo);
+    Group getGroupByGroupInfo(String groupInfo);
 
     Group createGroup(int groupNumber);
 

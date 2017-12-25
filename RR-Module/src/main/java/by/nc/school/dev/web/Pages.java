@@ -39,6 +39,11 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "add-work-plan";
         }
+        interface JOURNAL {
+            String PATH = "/journal";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "journal";
+        }
     }
 
     interface GROUP {
@@ -80,6 +85,26 @@ public interface Pages {
         interface ADD_WORKPLAN {
             String PATH = "/add-plan";
             String PATH_ABSOLUTE = WORKPLAN.PATH_ABSOLUTE + PATH;
+        }
+    }
+
+    interface JOURNAL {
+        String PATH_ABSOLUTE = "/journal";
+        interface SELECT_GROUP {
+            String PATH = "/select-group";
+            String PATH_ABSOLUTE = JOURNAL.PATH_ABSOLUTE + PATH;
+        }
+        interface SELECT_SUBJECT {
+            String PATH = "/select-subject";
+            String PATH_ABSOLUTE = JOURNAL.PATH_ABSOLUTE + PATH;
+        }
+        interface PUT_MARK {
+            String PATH = "/put-mark";
+            String PATH_ABSOLUTE = JOURNAL.PATH_ABSOLUTE + PATH;
+        }
+        interface ADD_LESSON {
+            String PATH = "/add-lesson";
+            String PATH_ABSOLUTE = JOURNAL.PATH_ABSOLUTE + PATH;
         }
     }
 

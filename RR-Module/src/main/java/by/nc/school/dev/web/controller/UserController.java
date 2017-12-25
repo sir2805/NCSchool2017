@@ -59,7 +59,7 @@ public class UserController {
             ,@RequestParam(value = "group", required = false) String groupInfo) {
         Group group = null;
         if (groupInfo != null) {
-            group = groupService.getGroup(groupInfo);
+            group = groupService.getGroupByGroupInfo(groupInfo);
         }
         userService.saveUser(username, password, fullname, role, group);
         return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;

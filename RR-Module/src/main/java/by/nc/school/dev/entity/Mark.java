@@ -52,4 +52,9 @@ public class Mark {
         result = 31 * result + (isExam ? 1 : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(mark);
+    }
 }

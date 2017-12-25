@@ -9,4 +9,6 @@ public interface GroupSemesterJournalService {
     GroupSemesterJournal getSemesterJournalForGroup(Group group);
 
     void putMark(GroupSemesterJournal semesterJournal, Student student, Subject subject, String lessonName, Mark mark);
+
+    void addLesson(GroupSemesterJournal semesterJournal, Subject subject, String lessonName);
 }

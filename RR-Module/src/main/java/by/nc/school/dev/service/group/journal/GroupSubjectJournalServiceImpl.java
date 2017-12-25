@@ -1,14 +1,12 @@
 package by.nc.school.dev.service.group.journal;
 
-import by.nc.school.dev.entity.Group;
-import by.nc.school.dev.entity.GroupSubjectJournal;
-import by.nc.school.dev.entity.ListOfMarks;
-import by.nc.school.dev.entity.Student;
+import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.GroupSubjectJournalRepository;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GroupSubjectJournalServiceImpl implements GroupSubjectJournalService {
@@ -23,7 +21,6 @@ public class GroupSubjectJournalServiceImpl implements GroupSubjectJournalServic
     }
 
     @Override
-    @Transactional
     public GroupSubjectJournal initGroupSubjectJournalFromGroup(Group group) {
         GroupSubjectJournal groupSubjectJournal = new GroupSubjectJournal();
         Map<Student, ListOfMarks> studentListOfMarksMap = new HashMap<>();
@@ -34,6 +31,22 @@ public class GroupSubjectJournalServiceImpl implements GroupSubjectJournalServic
         groupSubjectJournal.setMarksList(studentListOfMarksMap);
         groupSubjectJournalRepository.save(groupSubjectJournal);
         return groupSubjectJournal;
+    }
+
+    @Override
+    public void putMark(GroupSubjectJournal groupSubjectJournal, Student student, String lessonName, Mark mark) {
+        listOfMarksService.putMark(groupSubjectJournal.getMarksList().get(student), lessonName, mark);
+//        List<String> lessonNames = subjectJournal.getLessonNames();
+//        if (!lessonNames.contains(lessonName)) {
+//            lessonNames.add(lessonName);
+//        }
+    }
+
+    @Override
+    public void addLesson(GroupSubjectJournal groupSubjectJournal, String lessonName) {
+        List<String> lessonNames = groupSubjectJournal.getLessonNames();
+        lessonNames.add(lessonName);
+        groupSubjectJournalRepository.save(groupSubjectJournal);
     }
 
     @Required
