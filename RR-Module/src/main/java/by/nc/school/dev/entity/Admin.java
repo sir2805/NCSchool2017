@@ -15,7 +15,6 @@ public class Admin extends Person {
     }
 
     public Admin(String fullname) {
-//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.ADMIN;
     }

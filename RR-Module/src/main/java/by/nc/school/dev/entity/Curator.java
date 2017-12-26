@@ -19,7 +19,6 @@ public class Curator extends Tutor {
     }
 
     public Curator(String fullname, Group group) {
-//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.CURATOR;
         this.group = group;
@@ -43,12 +42,7 @@ public class Curator extends Tutor {
 
     @Override
     public String toString() {
-        return "Curator{" +
-                "group=" + group +
-                ", id=" + id +
-                ", fullname='" + fullname + '\'' +
-                ", role=" + role +
-                '}';
+        return fullname;
     }
 
     @Override

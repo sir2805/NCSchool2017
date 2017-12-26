@@ -9,10 +9,12 @@ import java.util.Map;
 @Entity
 @Table(name = "group_subject_journal")
 public class GroupSubjectJournal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "student_list_of_marks",

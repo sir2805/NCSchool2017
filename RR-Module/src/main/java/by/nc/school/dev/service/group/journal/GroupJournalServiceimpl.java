@@ -3,7 +3,6 @@ package by.nc.school.dev.service.group.journal;
 import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.GroupJournalRepository;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +24,29 @@ public class GroupJournalServiceimpl implements GroupJournalService {
                     .initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(group, workPlanMap.get(semester)));
         }
         groupJournal.setGroupJournalMap(groupJournalMap);
+        groupJournalRepository.save(groupJournal);
+    }
+
+    @Override
+    public GroupJournal initGroupJournalFromGroupWorkPlan(GroupWorkPlan groupWorkPlan) {
+        Group group = groupWorkPlan.getGroup();
+        GroupJournal groupJournal = new GroupJournal(group, groupWorkPlan);
+        Map<Semester, GroupSemesterJournal> groupJournalMap = new HashMap<>();
+        Map<Semester, GroupSemesterWorkPlan> workPlanMap =  groupWorkPlan.getPlan();
+        for (Semester semester : workPlanMap.keySet()) {
+            groupJournalMap.put(semester, groupSemesterJournalService
+                    .initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(group, workPlanMap.get(semester)));
+        }
+        groupJournal.setGroupJournalMap(groupJournalMap);
+        groupJournalRepository.save(groupJournal);
+        return groupJournal;
+    }
+
+    @Override
+    public void addEmptyGroupSemesterJournal(Group group, Semester semester, GroupSemesterWorkPlan groupSemesterWorkPlan) {
+        GroupJournal groupJournal = groupJournalRepository.findGroupJournalByGroup(group);
+        groupJournal.getGroupJournalMap().put(semester, groupSemesterJournalService
+                .initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(group, groupSemesterWorkPlan));
         groupJournalRepository.save(groupJournal);
     }
 

@@ -1,6 +1,7 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,7 @@ public class GroupSemesterWorkPlan {
     private List<TutorAndSubject> tutorAndSubjectList;
 
     public GroupSemesterWorkPlan() {
+        tutorAndSubjectList = new ArrayList<>();
     }
 
     public GroupSemesterWorkPlan(List<TutorAndSubject> tutorAndSubjectList) {

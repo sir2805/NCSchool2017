@@ -5,11 +5,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "subject")
 public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-    @Column(name = "subject_name")
+
+    @Column(name = "subject_name", unique = true)
     private String name;
 
     private Subject() {}

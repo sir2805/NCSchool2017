@@ -33,6 +33,7 @@
 
     <bean id="groupSemesterWorkPlanService" class="by.nc.school.dev.service.group.workplan.GroupSemesterWorkPlanServiceImpl">
         <property name="groupSemesterWorkPlanRepository" ref="groupSemesterWorkPlanRepository"/>
+        <property name="tutorAndSubjectService" ref="tutorAndSubjectService"/>
     </bean>
 
     <bean id="tutorAndSubjectService" class="by.nc.school.dev.service.group.workplan.TutorAndSubjectServiceImpl">

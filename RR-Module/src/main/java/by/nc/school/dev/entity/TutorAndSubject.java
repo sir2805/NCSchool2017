@@ -11,11 +11,11 @@ public class TutorAndSubject {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "tutor_id")
     private Tutor tutor;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
 

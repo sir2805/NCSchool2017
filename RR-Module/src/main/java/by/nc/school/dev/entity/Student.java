@@ -37,12 +37,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "group=" + group +
-                ", id=" + id +
-                ", fullname='" + fullname + '\'' +
-                ", role=" + role +
-                '}';
+        return fullname + " " + group.getGroupNumber();
     }
 
     @Override

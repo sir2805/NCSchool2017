@@ -1,11 +1,11 @@
 package by.nc.school.dev.service.group.workplan;
 
-import by.nc.school.dev.entity.Group;
-import by.nc.school.dev.entity.GroupWorkPlan;
-import by.nc.school.dev.entity.Semester;
-import by.nc.school.dev.entity.GroupSemesterWorkPlan;
+import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.GroupWorkPlanRepository;
 import org.springframework.beans.factory.annotation.Required;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
 
@@ -23,14 +23,27 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
     }
 
     @Override
-    public void addSemesterWorkPlanForGroup(Group group, Semester semester, GroupSemesterWorkPlan groupSemesterWorkPlan) {
+    public GroupWorkPlan initGroupWorkPlanFromGroup(Group group) {
+        GroupWorkPlan groupWorkPlan = new GroupWorkPlan(group);
+        groupWorkPlan.getPlan().put(group.getCurrentSemester(), groupSemesterWorkPlanService.initGroupSemesterWorkPlan());
+        groupWorkPlanRepository.save(groupWorkPlan);
+        return groupWorkPlan;
+    }
+
+    @Override
+    @Transactional
+    public GroupWorkPlan addSemesterWorkPlanForGroup(Group group, Semester semester, List<TutorAndSubject> tutorAndSubjectList) {
         GroupWorkPlan groupWorkPlan = groupWorkPlanRepository.findByGroup(group);
         if (groupWorkPlan == null) {
-            groupWorkPlan = new GroupWorkPlan(group);
+            groupWorkPlan = initGroupWorkPlanFromGroup(group);
         }
-        groupWorkPlan.getPlan().put(semester, groupSemesterWorkPlan);
-        groupSemesterWorkPlanService.saveSemesterWorkPlanForGroup(groupSemesterWorkPlan);
+        GroupSemesterWorkPlan groupSemesterWorkPlan = groupWorkPlan.getPlan().get(semester);
+        if (groupSemesterWorkPlan == null) {
+           groupSemesterWorkPlan = groupSemesterWorkPlanService.initGroupSemesterWorkPlan();
+        }
+        groupWorkPlan.getPlan().put(semester, groupSemesterWorkPlanService.addTutorAndSubjectList(groupSemesterWorkPlan, tutorAndSubjectList));
         groupWorkPlanRepository.save(groupWorkPlan);
+        return groupWorkPlan;
     }
 
     @Required

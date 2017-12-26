@@ -7,12 +7,15 @@ import java.util.UUID;
 @Table(name = "person")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     protected Long id;
-    @Column(name = "fullname")
+
+    @Column(name = "fullname", unique = true)
     protected String fullname;
+
     @Column(name = "role")
     protected int role;
 
@@ -59,7 +62,7 @@ public abstract class Person {
 
         Person person = (Person) o;
 
-        if (id.equals(person.id)) return true;
+        if (id != person.id) return false;
         if (role != person.role) return false;
         return fullname != null ? fullname.equals(person.fullname) : person.fullname == null;
     }

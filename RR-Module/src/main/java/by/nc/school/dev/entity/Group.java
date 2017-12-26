@@ -8,16 +8,21 @@ import java.util.UUID;
 @Entity
 @Table(name = "group_table")
 public class Group {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "group_number")
     private int groupNumber;
+
     @OneToMany(mappedBy = "group")
     private List<Student> students;
+
     @OneToOne(mappedBy = "group")
     private Curator curator;
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "semester_id")
     private Semester currentSemester;

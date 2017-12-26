@@ -7,10 +7,12 @@ import java.util.Map;
 @Entity
 @Table(name = "group_semester_journal")
 public class GroupSemesterJournal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "subject_group_subject_journal",

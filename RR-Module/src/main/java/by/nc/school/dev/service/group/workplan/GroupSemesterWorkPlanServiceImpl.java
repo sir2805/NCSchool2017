@@ -6,7 +6,9 @@ import by.nc.school.dev.entity.TutorAndSubject;
 import by.nc.school.dev.repository.GroupSemesterWorkPlanRepository;
 import org.springframework.beans.factory.annotation.Required;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,9 +16,27 @@ public class GroupSemesterWorkPlanServiceImpl implements GroupSemesterWorkPlanSe
 
     protected GroupSemesterWorkPlanRepository groupSemesterWorkPlanRepository;
 
+    protected TutorAndSubjectService tutorAndSubjectService;
+
     @Override
     public void saveSemesterWorkPlanForGroup(GroupSemesterWorkPlan groupSemesterWorkPlan) {
         groupSemesterWorkPlanRepository.save(groupSemesterWorkPlan);
+    }
+
+    @Override
+    public GroupSemesterWorkPlan initGroupSemesterWorkPlan() {
+        GroupSemesterWorkPlan groupSemesterWorkPlan = new GroupSemesterWorkPlan();
+        groupSemesterWorkPlanRepository.save(groupSemesterWorkPlan);
+        return groupSemesterWorkPlan;
+    }
+
+    @Override
+    @Transactional
+    public GroupSemesterWorkPlan addTutorAndSubjectList(GroupSemesterWorkPlan groupSemesterWorkPlan, List<TutorAndSubject> tutorAndSubjectList) {
+        tutorAndSubjectService.saveAll(tutorAndSubjectList);
+        groupSemesterWorkPlan.setTutorAndSubjectList(tutorAndSubjectList);
+        groupSemesterWorkPlanRepository.save(groupSemesterWorkPlan);
+        return groupSemesterWorkPlan;
     }
 
     @Override
@@ -33,4 +53,8 @@ public class GroupSemesterWorkPlanServiceImpl implements GroupSemesterWorkPlanSe
         this.groupSemesterWorkPlanRepository = groupSemesterWorkPlanRepository;
     }
 
+    @Required
+    public void setTutorAndSubjectService(TutorAndSubjectService tutorAndSubjectService) {
+        this.tutorAndSubjectService = tutorAndSubjectService;
+    }
 }

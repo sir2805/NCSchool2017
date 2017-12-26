@@ -5,6 +5,8 @@ import by.nc.school.dev.service.AppStringsService;
 import by.nc.school.dev.service.group.GroupService;
 import by.nc.school.dev.service.PersonService;
 import by.nc.school.dev.service.UserService;
+import by.nc.school.dev.service.group.journal.GroupJournalService;
+import by.nc.school.dev.service.group.workplan.GroupWorkPlanService;
 import by.nc.school.dev.web.Pages;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,10 @@ public class GroupController {
     protected AppStringsService appStringsService;
 
     protected PersonService personService;
+
+    protected GroupWorkPlanService groupWorkPlanService;
+
+    protected GroupJournalService groupJournalService;
 
     @RequestMapping(method = RequestMethod.POST, params="init-group", path = Pages.GROUP.ADD_GROUP.PATH)
     public String initGroup(HttpSession session
@@ -59,6 +65,7 @@ public class GroupController {
                                  ,@RequestParam("password") String password
                                  ,@RequestParam("fullname") String fullname) {
         User newStudent = userService.createUser(username, password, fullname, appStringsService.getString(AppStringsService.WEB.ADD_USER.PERSON.ROLE.STUDENT.KEY), null);
+
         if (session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS) == null) {
             session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<>());
         }
@@ -93,6 +100,10 @@ public class GroupController {
 
         groupService.saveGroup(currentGroup);
 
+        GroupWorkPlan groupWorkPlan = groupWorkPlanService.initGroupWorkPlanFromGroup(currentGroup);
+
+        groupJournalService.initGroupJournalFromGroupWorkPlan(groupWorkPlan);
+
         for (User studentUser : studentUsers) {
             userService.saveUser(studentUser);
         }
@@ -125,5 +136,15 @@ public class GroupController {
     @Required
     public void setPersonService(PersonService personService) {
         this.personService = personService;
+    }
+
+    @Required
+    public void setGroupWorkPlanService(GroupWorkPlanService groupWorkPlanService) {
+        this.groupWorkPlanService = groupWorkPlanService;
+    }
+
+    @Required
+    public void setGroupJournalService(GroupJournalService groupJournalService) {
+        this.groupJournalService = groupJournalService;
     }
 }

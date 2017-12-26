@@ -1,13 +1,14 @@
 package by.nc.school.dev.service.group.workplan;
 
-import by.nc.school.dev.entity.Group;
-import by.nc.school.dev.entity.GroupWorkPlan;
-import by.nc.school.dev.entity.Semester;
-import by.nc.school.dev.entity.GroupSemesterWorkPlan;
+import by.nc.school.dev.entity.*;
+
+import java.util.List;
 
 public interface GroupWorkPlanService {
 
     GroupWorkPlan initGroupWorkPlanFromGroupSemesterWorkPlan(Group group, GroupSemesterWorkPlan groupSemesterWorkPlan);
 
-    void addSemesterWorkPlanForGroup(Group group, Semester semester, GroupSemesterWorkPlan groupSemesterWorkPlan);
+    GroupWorkPlan initGroupWorkPlanFromGroup(Group group);
+
+    GroupWorkPlan addSemesterWorkPlanForGroup(Group group, Semester semester, List<TutorAndSubject> tutorAndSubjectList);
 }
