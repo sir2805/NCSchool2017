@@ -25,7 +25,7 @@
     %>
         <form action="<%=Pages.JOURNAL.SELECT_GROUP.PATH_ABSOLUTE%>" method="post" class="form-group">
             <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-8">
                     <jsp:include page="select-group.jsp"/>
                 </div>
@@ -41,7 +41,7 @@
     %>
         <form action="<%=Pages.JOURNAL.SELECT_SUBJECT.PATH_ABSOLUTE%>" method="post" class="form-group">
             <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></h4>
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-8">
                     <jsp:include page="select-subject.jsp"/>
                 </div>
@@ -64,6 +64,7 @@
     <%
     }
     %>
+    <h3><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.TITLE.KEY%>"/> <%=session.getAttribute(SessionAttributes.CURRENT_SUBJECT)%></h3>
     <div class="container">
         <table class="table">
             <thead>
@@ -79,7 +80,7 @@
                 <tr>
                     <th scope="row">${students[loop.index].fullname}</th>
                     <c:forEach var="mark" varStatus="loop" items="${lessonAndMarks}">
-                        <td>${mark.mark}</td>
+                        <td>${mark}</td>
                     </c:forEach>
                 </tr>
                 </tbody>

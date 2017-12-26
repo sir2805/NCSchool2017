@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <form action="<%=Pages.JOURNAL.PUT_MARK.PATH_ABSOLUTE%>" method="post" class="form-group">
-    <div class="form-row">
+    <div class="row">
         <div class="col-md-4">
             <label for="lesson"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.PUT_MARK.SELECT_LESSON.KEY%>"/></label>
             <select class="form-control" id="lesson" name="lesson" aria-hidden="true">
@@ -23,7 +23,7 @@
             </select>
         </div>
         <div class="col-md-2">
-            <label for="mark" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.PUT_MARK.SELECT_MARK.KEY%>"/></label>
+            <label for="mark"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.PUT_MARK.SELECT_MARK.KEY%>"/></label>
             <input type="number" step="1" min="0" max="10" id="mark" name="mark" class="form-control" required>
 
         </div>

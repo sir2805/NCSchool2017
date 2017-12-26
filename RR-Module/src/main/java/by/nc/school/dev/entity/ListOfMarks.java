@@ -17,7 +17,7 @@ public class ListOfMarks {
     @ElementCollection
     @CollectionTable(name = "marks", joinColumns = @JoinColumn(name = "list_of_marks_id"))
     @MapKeyColumn(name = "lesson_name")
-    @Column(name = "markaaaaaaa")
+    @Column(name = "mark")
     private Map<String, Mark> marks;
 
     public Long getId() {

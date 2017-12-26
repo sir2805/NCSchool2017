@@ -8,6 +8,7 @@ import by.nc.school.dev.service.group.workplan.GroupSemesterWorkPlanService;
 import by.nc.school.dev.web.controller.SessionAttributes;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ public class JournalModelProvider implements ModelProvider {
     private JournalModelProvider() {}
 
     @Override
+    @Transactional
     public void fillModel(Model model, HttpSession session) {
         Group currentGroup = (Group) session.getAttribute(SessionAttributes.CURRENT_GROUP);
         if (currentGroup == null) {
@@ -48,7 +50,7 @@ public class JournalModelProvider implements ModelProvider {
             return;
         }
         model.addAttribute("students", currentGroup.getStudents());
-        Hibernate.initialize(groupJournal.getGroupJournalMap());
+//        Hibernate.initialize(groupJournal.getGroupJournalMap());
         GroupSubjectJournal groupSubjectJournal = groupJournal.getGroupJournalMap().get(currentGroup.getCurrentSemester()).getSemesterJournal().get(currentSubject);
         List<String> lessons = groupSubjectJournal.getLessonNames();
         model.addAttribute("lessons", lessons);

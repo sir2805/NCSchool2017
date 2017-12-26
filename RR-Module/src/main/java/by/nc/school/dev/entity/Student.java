@@ -18,7 +18,6 @@ public class Student extends Person {
     }
 
     public Student(String fullname, Group group) {
-//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.STUDENT;
         this.group = group;
@@ -54,13 +53,11 @@ public class Student extends Person {
 
         Student student = (Student) o;
 
-        return group != null ? group.equals(student.group) : student.group == null;
+        return this.id.equals(student.id);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (group != null ? group.hashCode() : 0);
-        return result;
+        return id.intValue();
     }
 }

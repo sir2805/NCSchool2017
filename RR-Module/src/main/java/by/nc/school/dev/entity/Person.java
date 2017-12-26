@@ -59,7 +59,7 @@ public abstract class Person {
 
         Person person = (Person) o;
 
-        if (id != person.id) return false;
+        if (id.equals(person.id)) return true;
         if (role != person.role) return false;
         return fullname != null ? fullname.equals(person.fullname) : person.fullname == null;
     }

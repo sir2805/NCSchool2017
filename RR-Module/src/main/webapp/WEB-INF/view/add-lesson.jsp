@@ -4,7 +4,7 @@
 <div class="container">
     <form action="<%=Pages.JOURNAL.ADD_LESSON.PATH_ABSOLUTE%>" method="post" class="form-group">
         <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.ADD_LESSON.KEY%>"/></h4>
-        <div class="form-row">
+        <div class="row">
             <div class="col-md-8">
                 <label for="lesson_name" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.ADD_LESSON.LESSON.KEY%>"/></label>
                 <input type="text" id="lesson_name" name="lesson_name" class="form-control" required autofocus/>

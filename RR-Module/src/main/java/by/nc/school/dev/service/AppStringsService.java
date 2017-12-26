@@ -219,6 +219,9 @@ public interface AppStringsService {
             }
             interface TABLE {
                 String KEY = JOURNAL.KEY + ".table";
+                interface TITLE {
+                    String KEY = TABLE.KEY + ".title";
+                }
                 interface STUDENTS {
                     String KEY = TABLE.KEY + ".students";
                 }
