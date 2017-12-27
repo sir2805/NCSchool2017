@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8">
                 <label for="lesson_name" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.ADD_LESSON.LESSON.KEY%>"/></label>
-                <input type="text" id="lesson_name" name="lesson_name" class="form-control" required autofocus/>
+                <input type="text" id="lesson_name" name="lesson_name" class="form-control" required/>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">

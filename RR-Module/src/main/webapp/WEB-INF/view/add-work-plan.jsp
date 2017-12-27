@@ -17,7 +17,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<div class="container">
+<div class="form-add">
     <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.TITLE.KEY%>"/></h2>
     <%
         if (session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO) == null) {

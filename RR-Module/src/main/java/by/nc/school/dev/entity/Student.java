@@ -37,7 +37,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return fullname + " " + group.getGroupNumber();
+        return fullname + " from group " + String.valueOf(group.getGroupNumber());
     }
 
     @Override

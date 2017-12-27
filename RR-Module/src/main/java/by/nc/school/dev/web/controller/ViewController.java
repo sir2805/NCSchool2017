@@ -46,10 +46,10 @@ public class ViewController {
         return Pages.VIEWS.ADD_USER.VIEW;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_SUBJECT.PATH)
-    public String getAddSubjectPage(Model model, HttpSession session) {
-        processRequest(model, session, Pages.VIEWS.HOME.VIEW);
-        return Pages.VIEWS.ADD_SUBJECT.VIEW;
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.SUBJECT.PATH)
+    public String getSubjectPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.SUBJECT.VIEW);
+        return Pages.VIEWS.SUBJECT.VIEW;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_WORKPLAN.PATH)
@@ -68,6 +68,12 @@ public class ViewController {
     public String getJournalPage(Model model, HttpSession session) {
         processRequest(model, session, Pages.VIEWS.JOURNAL.VIEW);
         return Pages.VIEWS.JOURNAL.VIEW;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ANALYSIS.PATH)
+    public String getAnalysisPage(Model model, HttpSession session) {
+        processRequest(model, session, Pages.VIEWS.ANALYSIS.VIEW);
+        return Pages.VIEWS.ANALYSIS.VIEW;
     }
 
     protected void processRequest(Model model, HttpSession session, String view) {

@@ -61,6 +61,8 @@ public class JournalController {
     public String selectGroup(HttpSession session,
                               @RequestParam(value = "group") String groupInfo) {
         session.setAttribute(SessionAttributes.CURRENT_GROUP, groupService.getGroupByGroupInfo(groupInfo));
+        session.removeAttribute(SessionAttributes.CURRENT_SUBJECT);
+        session.removeAttribute(SessionAttributes.CURRENT_GROUP_JOURNAL);
         return "redirect:" + Pages.VIEWS.JOURNAL.PATH_ABSOLUTE;
     }
 

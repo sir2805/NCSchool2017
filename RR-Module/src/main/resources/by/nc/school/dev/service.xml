@@ -66,4 +66,9 @@
 
         <property name="listOfMarksRepository" ref="listOfMarksRepository"/>
     </bean>
+
+    <bean id="analysisService" class="by.nc.school.dev.service.AnalysisServiceImpl">
+
+        <property name="groupSemesterJournalRepository" ref="groupSemesterJournalRepository"/>
+    </bean>
 </beans>

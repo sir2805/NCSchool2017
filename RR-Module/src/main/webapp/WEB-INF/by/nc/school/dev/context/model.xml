@@ -20,6 +20,12 @@
         <entry value-ref="journalModelProvider">
             <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$JOURNAL.VIEW" /></key>
         </entry>
+        <entry value-ref="subjectModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$SUBJECT.VIEW" /></key>
+        </entry>
+        <entry value-ref="analysisModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.web.Pages$VIEWS$ANALYSIS.VIEW" /></key>
+        </entry>
     </util:map>
 
     <bean id="homeModelProvider" class="by.nc.school.dev.web.provider.HomeModelProvider">
@@ -39,12 +45,22 @@
         <property name="groupRepository" ref="groupRepository"/>
         <property name="groupJournalRepository" ref="groupJournalRepository"/>
         <property name="groupSemesterWorkPlanService" ref="groupSemesterWorkPlanService"/>
+        <property name="groupWorkPlanService" ref="groupWorkPlanService"/>
     </bean>
 
     <bean id="addWorkPlanModelProvider" class="by.nc.school.dev.web.provider.AddWorkPlanModelProvider">
         <property name="groupRepository" ref="groupRepository"/>
         <property name="subjectRepository" ref="subjectRepository"/>
         <property name="personRepository" ref="personRepository"/>
+        <property name="groupWorkPlanService" ref="groupWorkPlanService"/>
+    </bean>
+
+    <bean id="subjectModelProvider" class="by.nc.school.dev.web.provider.SubjectModelProvider">
+        <property name="subjectRepository" ref="subjectRepository"/>
+    </bean>
+
+    <bean id="analysisModelProvider" class="by.nc.school.dev.web.provider.AnalysisModelProvider">
+        <property name="analysisService" ref="analysisService"/>
     </bean>
 
 </beans>

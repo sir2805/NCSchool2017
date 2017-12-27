@@ -5,14 +5,15 @@ import by.nc.school.dev.entity.*;
 import by.nc.school.dev.repository.GroupJournalRepository;
 import by.nc.school.dev.repository.GroupRepository;
 import by.nc.school.dev.service.group.workplan.GroupSemesterWorkPlanService;
+import by.nc.school.dev.service.group.workplan.GroupWorkPlanService;
 import by.nc.school.dev.web.controller.SessionAttributes;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class JournalModelProvider implements ModelProvider {
 
@@ -21,6 +22,8 @@ public class JournalModelProvider implements ModelProvider {
     protected GroupJournalRepository groupJournalRepository;
 
     protected GroupSemesterWorkPlanService groupSemesterWorkPlanService;
+
+    protected GroupWorkPlanService groupWorkPlanService;
 
     private JournalModelProvider() {}
 
@@ -38,7 +41,6 @@ public class JournalModelProvider implements ModelProvider {
             }
         }
         GroupJournal groupJournal = (GroupJournal) session.getAttribute(SessionAttributes.CURRENT_GROUP_JOURNAL);
-        //TODO ask what is best: save groupJournal in session or load it from db
         if (groupJournal == null) {
             groupJournal = groupJournalRepository.findGroupJournalByGroup(currentGroup);
             session.setAttribute(SessionAttributes.CURRENT_GROUP_JOURNAL, groupJournal);
@@ -50,7 +52,6 @@ public class JournalModelProvider implements ModelProvider {
             return;
         }
         model.addAttribute("students", currentGroup.getStudents());
-//        Hibernate.initialize(groupJournal.getGroupJournalMap());
         GroupSubjectJournal groupSubjectJournal = groupJournal.getGroupJournalMap().get(currentGroup.getCurrentSemester()).getSemesterJournal().get(currentSubject);
         List<String> lessons = groupSubjectJournal.getLessonNames();
         model.addAttribute("lessons", lessons);
@@ -59,14 +60,23 @@ public class JournalModelProvider implements ModelProvider {
 
         for (Student student : marks.keySet()) {
             List<String> marksForStudent = new ArrayList<>();
+            double totalMark = 0.0;
+            int marksAmount = 0;
             for (String lesson : lessons) {
                 Mark mark = marks.get(student).getMarks().get(lesson);
                 if (mark == null) {
                     marksForStudent.add(" ");
                 }
                 else {
+                    totalMark += mark.getMark();
+                    marksAmount++;
                     marksForStudent.add(mark.toString());
                 }
+            }
+            if (marksAmount == 0) {
+                marksForStudent.add(" ");
+            } else {
+                marksForStudent.add(String.valueOf(totalMark / marksAmount));
             }
             marksTable.add(marksForStudent);
         }
@@ -74,7 +84,8 @@ public class JournalModelProvider implements ModelProvider {
     }
 
     protected void fillModel(Model model, Set<Subject> subjects, List<Student> students, List<String> lessons, List<List<String>> marksTable) {
-        model.addAttribute("groups", groupRepository.findAll());
+        List<Group> groups = groupRepository.findAll().stream().filter(group -> groupWorkPlanService.isWorkPlanForGroupExists(group)).collect(Collectors.toList());
+        model.addAttribute("groups", groups);
         model.addAttribute("subjects", subjects);
         model.addAttribute("students", students);
         model.addAttribute("lessons", lessons);
@@ -94,5 +105,10 @@ public class JournalModelProvider implements ModelProvider {
     @Required
     public void setGroupRepository(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;
+    }
+
+    @Required
+    public void setGroupWorkPlanService(GroupWorkPlanService groupWorkPlanService) {
+        this.groupWorkPlanService = groupWorkPlanService;
     }
 }

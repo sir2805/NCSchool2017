@@ -11,4 +11,6 @@ public interface GroupWorkPlanService {
     GroupWorkPlan initGroupWorkPlanFromGroup(Group group);
 
     GroupWorkPlan addSemesterWorkPlanForGroup(Group group, Semester semester, List<TutorAndSubject> tutorAndSubjectList);
+
+    boolean isWorkPlanForGroupExists(Group group);
 }

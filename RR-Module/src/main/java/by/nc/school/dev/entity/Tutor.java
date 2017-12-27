@@ -18,7 +18,6 @@ public class Tutor extends Person {
     }
 
     public Tutor(String fullname) {
-//        this.id = UUID.randomUUID().getMostSignificantBits();
         this.fullname = fullname;
         this.role = Role.TUTOR;
     }

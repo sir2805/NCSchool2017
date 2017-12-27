@@ -52,20 +52,14 @@ public class WorkPlanController {
         return "redirect:" + Pages.VIEWS.ADD_WORKPLAN.PATH_ABSOLUTE;
     }
 
-    //TODO redirect to next controller as in JournalService
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = Pages.WORKPLAN.ADD_WORKPLAN.PATH, params="add-plan")
     public String addWorkPlan(HttpSession session) {
         Group group = groupService.getGroupByGroupInfo((String) session.getAttribute(SessionAttributes.CHOSEN_GROUP_INFO));
         List<TutorAndSubject> tutorAndSubjectList = (List<TutorAndSubject>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         Semester currentSemester = group.getCurrentSemester();
-
         GroupWorkPlan groupWorkPlan = groupWorkPlanService
                 .addSemesterWorkPlanForGroup(group, currentSemester, tutorAndSubjectList);
-//        tutorAndSubjectService.saveAll(tutorAndSubjectList);
-//
-//        GroupWorkPlan groupWorkPlan = groupWorkPlanService
-//                .initGroupWorkPlanFromGroupSemesterWorkPlan(group, new GroupSemesterWorkPlan(tutorAndSubjectList));
         groupJournalService.addEmptyGroupSemesterJournal(group, currentSemester, groupWorkPlan.getPlan().get(currentSemester));
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);

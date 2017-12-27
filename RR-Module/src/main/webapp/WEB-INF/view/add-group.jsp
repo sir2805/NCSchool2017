@@ -16,12 +16,11 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<div class="container">
-    <h2><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.TITLE.KEY%>"/></h2>
+<div class="page">
     <%
         if (session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP) == null) {
     %>
-    <form action="<%=Pages.GROUP.ADD_GROUP.PATH_ABSOLUTE%>" method="post" class="form-signin">
+    <form action="<%=Pages.GROUP.ADD_GROUP.PATH_ABSOLUTE%>" method="post" class="form-add">
         <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.INIT.TITLE.KEY%>"/></h2>
         <label for="groupnumber" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.INIT.TITLE.KEY%>"/></label>
         <input type="number" id="groupnumber" name="groupnumber" class="form-control" required autofocus>
@@ -40,7 +39,7 @@
     %>
     <div class="row">
         <div class="col-md-4">
-            <form action="<%=Pages.GROUP.ADD_GROUP.PATH_ABSOLUTE%>" method="post" class="form-signin">
+            <form action="<%=Pages.GROUP.ADD_GROUP.PATH_ABSOLUTE%>" method="post" class="form-add">
                 <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.ADD_STUDENT.TITLE.KEY%>"/></h2>
                 <label for="username" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/></label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="<app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/>" required autofocus>

@@ -24,10 +24,10 @@ public interface Pages {
             String PATH_ABSOLUTE = PATH;
             String VIEW = "add-group";
         }
-        interface ADD_SUBJECT {
-            String PATH = "/add-subject";
+        interface SUBJECT {
+            String PATH = "/subject";
             String PATH_ABSOLUTE = PATH;
-            String VIEW = "add-subject";
+            String VIEW = "subject";
         }
         interface GROUP {
             String PATH = "/group";
@@ -43,6 +43,11 @@ public interface Pages {
             String PATH = "/journal";
             String PATH_ABSOLUTE = PATH;
             String VIEW = "journal";
+        }
+        interface ANALYSIS {
+            String PATH = "/analysis";
+            String PATH_ABSOLUTE = PATH;
+            String VIEW = "analysis";
         }
     }
 

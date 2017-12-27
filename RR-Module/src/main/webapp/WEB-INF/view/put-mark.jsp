@@ -5,6 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <form action="<%=Pages.JOURNAL.PUT_MARK.PATH_ABSOLUTE%>" method="post" class="form-group">
+    <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.PUT_MARK.KEY%>"/></h4>
     <div class="row">
         <div class="col-md-4">
             <label for="lesson"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.PUT_MARK.SELECT_LESSON.KEY%>"/></label>

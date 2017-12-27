@@ -29,7 +29,7 @@
 <body>
 <jsp:include page="navbar.jsp"/>
 <div class="container">
-    <form action="<%=Pages.USER.NEW_USER.PATH_ABSOLUTE%>" method="post" class="form-group">
+    <form action="<%=Pages.USER.NEW_USER.PATH_ABSOLUTE%>" method="post" class="form-add">
         <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.ADD_USER.TITLE.KEY%>"/></h2>
         <label for="username" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/></label>
         <input type="text" id="username" name="username" class="form-control" placeholder="<app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/>" required autofocus>

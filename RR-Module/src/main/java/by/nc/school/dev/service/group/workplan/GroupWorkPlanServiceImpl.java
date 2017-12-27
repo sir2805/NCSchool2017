@@ -46,6 +46,16 @@ public class GroupWorkPlanServiceImpl implements GroupWorkPlanService {
         return groupWorkPlan;
     }
 
+    @Override
+    public boolean isWorkPlanForGroupExists(Group group) {
+        GroupWorkPlan groupWorkPlan =  groupWorkPlanRepository.findByGroup(group);
+        if (groupWorkPlan == null) {
+            return false;
+        } else {
+            return !(groupWorkPlan.getPlan().get(group.getCurrentSemester()).getTutorAndSubjectList().size() == 0);
+        }
+    }
+
     @Required
     public void setGroupWorkPlanRepository(GroupWorkPlanRepository groupWorkPlanRepository) {
         this.groupWorkPlanRepository = groupWorkPlanRepository;

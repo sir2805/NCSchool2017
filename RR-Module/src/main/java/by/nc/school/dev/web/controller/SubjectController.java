@@ -17,14 +17,9 @@ public class SubjectController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = Pages.SUBJECT.ADD_SUBJECT.ADD.PATH)
-    public String initGroup(@RequestParam("subject_name") String subjectName) {
+    public String addSubject(@RequestParam("subject_name") String subjectName) {
         subjectService.addSubject(subjectName);
-        return "redirect:" + Pages.VIEWS.ADD_SUBJECT.PATH_ABSOLUTE;
-    }
-
-    @RequestMapping(method = RequestMethod.POST, path = Pages.SUBJECT.ADD_SUBJECT.FINISH.PATH)
-    public String finish() {
-        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        return "redirect:" + Pages.VIEWS.SUBJECT.PATH_ABSOLUTE;
     }
 
     @Required

@@ -57,14 +57,8 @@ public interface AppStringsService {
         }
         interface SUBJECT {
             String KEY = WEB.KEY + ".subject";
-            interface SELECT_SUBJECT {
-                String KEY = SUBJECT.KEY + ".subject";
-                interface NAME {
-                    String KEY = SELECT_SUBJECT.KEY + ".name";
-                }
-                interface BUTTON {
-                    String KEY = SELECT_SUBJECT.KEY + ".button";
-                }
+            interface LIST {
+                String KEY = SUBJECT.KEY + ".list";
             }
         }
         interface ADD_WORKPLAN {
@@ -225,6 +219,9 @@ public interface AppStringsService {
                 interface STUDENTS {
                     String KEY = TABLE.KEY + ".students";
                 }
+                interface AVERAGE_MARK {
+                    String KEY = TABLE.KEY + ".averagemark";
+                }
             }
             interface SELECT_SUBJECT {
                 String KEY = JOURNAL.KEY + ".selectsubject";
@@ -267,6 +264,12 @@ public interface AppStringsService {
                 interface BUTTON {
                     String KEY = ADD_LESSON.KEY + ".button";
                 }
+            }
+        }
+        interface ANALYSIS {
+            String KEY = WEB.KEY + ".analysis";
+            interface STUDENTS_WITH_BAD_AVERAGE_MARK {
+                String KEY = ANALYSIS.KEY + ".badstudents";
             }
         }
     }

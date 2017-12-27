@@ -19,75 +19,95 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp"/>
-    <h2><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></h2>
-    <%
-        if (session.getAttribute(SessionAttributes.CURRENT_GROUP) == null) {
-    %>
-        <form action="<%=Pages.JOURNAL.SELECT_GROUP.PATH_ABSOLUTE%>" method="post" class="form-group">
-            <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>
-            <div class="row">
-                <div class="col-md-8">
-                    <jsp:include page="select-group.jsp"/>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        <app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.BUTTON.KEY%>"/>
-                    </button>
-                </div>
+    <div class="page">
+        <h2><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></h2>
+        <div class="row">
+            <div class="col-md-4 page">
+                <%
+                    if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() != Role.STUDENT) {
+                %>
+                <form action="<%=Pages.JOURNAL.SELECT_GROUP.PATH_ABSOLUTE%>" method="post" class="form-group">
+                    <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select class="form-control" id="group" name="group" onchange="this.form.submit()">
+                                <option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.SELECT_GROUP.KEY%>"/></option>
+                                <c:forEach var="group" varStatus="loop" items="${groups}">
+                                    <option>${group.currentSemester.semesterNumber}, ${group.groupNumber}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <%--<div class="col-md-4">--%>
+                            <%--<button class="btn btn-lg btn-primary btn-block" type="submit">--%>
+                                <%--<app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.BUTTON.KEY%>"/>--%>
+                            <%--</button>--%>
+                        <%--</div>--%>
+                    </div>
+                </form>
+                <%
+                    }
+                %>
+                <form action="<%=Pages.JOURNAL.SELECT_SUBJECT.PATH_ABSOLUTE%>" method="post" class="form-group">
+                    <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></h4>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select class="form-control" id="subject" name="subject" onchange="this.form.submit()">
+                                <option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></option>
+                                <c:forEach var="subject" varStatus="loop" items="${subjects}">
+                                    <option>${subject.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <%--<div class="col-md-4">--%>
+                            <%--<button class="btn btn-lg btn-primary btn-block" type="submit">--%>
+                                <%--<app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.BUTTON.KEY%>"/>--%>
+                            <%--</button>--%>
+                        <%--</div>--%>
+                    </div>
+                </form>
             </div>
-        </form>
-    <%
-        } else if (session.getAttribute(SessionAttributes.CURRENT_SUBJECT) == null) {
-    %>
-        <form action="<%=Pages.JOURNAL.SELECT_SUBJECT.PATH_ABSOLUTE%>" method="post" class="form-group">
-            <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></h4>
-            <div class="row">
-                <div class="col-md-8">
-                    <jsp:include page="select-subject.jsp"/>
+            <div class="col-md-8 page">
+                <%
+                    if (session.getAttribute(SessionAttributes.CURRENT_SUBJECT) != null) {
+                %>
+                <%
+                    if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.CURATOR ||
+                        ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.ADMIN) {
+                %>
+                    <jsp:include page="add-lesson.jsp"/>
+                    <jsp:include page="put-mark.jsp"/>
+                <%
+                }
+                %>
+                <h3><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.TITLE.KEY%>"/> <%=session.getAttribute(SessionAttributes.CURRENT_SUBJECT)%></h3>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.STUDENTS.KEY%>"/></th>
+                            <c:forEach var="lesson" varStatus="loop" items="${lessons}">
+                                <th scope="col">${lesson}</th>
+                            </c:forEach>
+                            <th scope="col"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.AVERAGE_MARK.KEY%>"/></th>
+                        </tr>
+                        </thead>
+                        <c:forEach var="lessonAndMarks" varStatus="loop" items="${lessonsAndMarks}">
+                            <tbody>
+                            <tr>
+                                <th scope="row">${students[loop.index].fullname}</th>
+                                <c:forEach var="mark" varStatus="loop" items="${lessonAndMarks}">
+                                    <td>${mark}</td>
+                                </c:forEach>
+                            </tr>
+                            </tbody>
+                        </c:forEach>
+                    </table>
                 </div>
-                <div class="col-md-4">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        <app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.BUTTON.KEY%>"/>
-                    </button>
-                </div>
+                <%
+                    }
+                %>
             </div>
-        </form>
-    <%
-        } else {
-    %>
-    <%
-        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.CURATOR ||
-            ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.ADMIN) {
-    %>
-        <jsp:include page="add-lesson.jsp"/>
-        <jsp:include page="put-mark.jsp"/>
-    <%
-    }
-    %>
-    <h3><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.TITLE.KEY%>"/> <%=session.getAttribute(SessionAttributes.CURRENT_SUBJECT)%></h3>
-    <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.STUDENTS.KEY%>"/></th>
-                <c:forEach var="lesson" varStatus="loop" items="${lessons}">
-                    <th scope="col">${lesson}</th>
-                </c:forEach>
-            </tr>
-            </thead>
-            <c:forEach var="lessonAndMarks" varStatus="loop" items="${lessonsAndMarks}">
-                <tbody>
-                <tr>
-                    <th scope="row">${students[loop.index].fullname}</th>
-                    <c:forEach var="mark" varStatus="loop" items="${lessonAndMarks}">
-                        <td>${mark}</td>
-                    </c:forEach>
-                </tr>
-                </tbody>
-            </c:forEach>
-        </table>
+
+        </div>
     </div>
-    <%
-    }
-    %>
 </body>

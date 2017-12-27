@@ -39,11 +39,6 @@
             </tbody>
         </c:forEach>
     </table>
-    <form action="<%=Pages.USER.LOGOUT.PATH_ABSOLUTE%>" method="post" class="form-signin">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-            <app:app-string key="<%=AppStringsService.WEB.LOGOUT.SUBMIT.KEY%>"/>
-        </button>
-    </form>
 </div>
 </body>
 </html>
