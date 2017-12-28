@@ -18,6 +18,11 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.findByName(subjectName);
     }
 
+    @Override
+    public Subject getSubjectById(Long id) {
+        return subjectRepository.findById(id).get();
+    }
+
     @Required
     public void setSubjectRepository(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;

@@ -23,6 +23,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public Group getGroupById(Long id) {
+        return groupRepository.findById(id).get();
+    }
+
+    @Override
     public Group getGroupByGroupInfo(String groupInfo) {
         String[] groupInfoArr = groupInfo.split(", ");
         Integer semesterNumber = Integer.valueOf(groupInfoArr[0]);

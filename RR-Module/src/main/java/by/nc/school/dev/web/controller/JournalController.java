@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -51,16 +52,18 @@ public class JournalController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = Pages.JOURNAL.SELECT_SUBJECT.PATH)
-    public String selectSubject(HttpSession session,
-                                @RequestParam(value = "subject") String subjectName) {
-        session.setAttribute(SessionAttributes.CURRENT_SUBJECT, subjectService.getSubjectByName(subjectName));
+    public String selectSubject(HttpSession session, HttpServletRequest request) {
+//                                @RequestParam(value = "subject") String subjectName) {
+        String stringSubjectId = request.getParameter("subjectbutton");
+        session.setAttribute(SessionAttributes.CURRENT_SUBJECT, subjectService.getSubjectById(Long.valueOf(stringSubjectId)));
         return "redirect:" + Pages.VIEWS.JOURNAL.PATH_ABSOLUTE;
     }
 
     @RequestMapping(method = RequestMethod.POST, path = Pages.JOURNAL.SELECT_GROUP.PATH)
-    public String selectGroup(HttpSession session,
-                              @RequestParam(value = "group") String groupInfo) {
-        session.setAttribute(SessionAttributes.CURRENT_GROUP, groupService.getGroupByGroupInfo(groupInfo));
+    public String selectGroup(HttpSession session, HttpServletRequest request) {
+        String stringGroupId = request.getParameter("groupbutton");
+        session.setAttribute(SessionAttributes.CURRENT_GROUP, groupService.getGroupById(Long.valueOf(stringGroupId)));
+//        session.setAttribute(SessionAttributes.CURRENT_GROUP, groupService.getGroupByGroupInfo(groupInfo));
         session.removeAttribute(SessionAttributes.CURRENT_SUBJECT);
         session.removeAttribute(SessionAttributes.CURRENT_GROUP_JOURNAL);
         return "redirect:" + Pages.VIEWS.JOURNAL.PATH_ABSOLUTE;

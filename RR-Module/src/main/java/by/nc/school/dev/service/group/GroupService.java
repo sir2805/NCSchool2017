@@ -9,6 +9,8 @@ public interface GroupService {
 
     Group getGroupByGroupNumber(int groupNumber);
 
+    Group getGroupById(Long id);
+
     Group getGroupByGroupInfo(String groupInfo);
 
     Group createGroup(int groupNumber);

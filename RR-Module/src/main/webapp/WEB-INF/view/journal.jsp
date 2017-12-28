@@ -22,51 +22,68 @@
     <div class="page">
         <h2><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></h2>
         <div class="row">
-            <div class="col-md-4 page">
+            <div class="col-md-2">
                 <%
                     if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() != Role.STUDENT) {
                 %>
+
+                <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>
                 <form action="<%=Pages.JOURNAL.SELECT_GROUP.PATH_ABSOLUTE%>" method="post" class="form-group">
-                    <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <select class="form-control" id="group" name="group" onchange="this.form.submit()">
-                                <option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.SELECT_GROUP.KEY%>"/></option>
-                                <c:forEach var="group" varStatus="loop" items="${groups}">
-                                    <option>${group.currentSemester.semesterNumber}, ${group.groupNumber}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <%--<div class="col-md-4">--%>
-                            <%--<button class="btn btn-lg btn-primary btn-block" type="submit">--%>
-                                <%--<app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.BUTTON.KEY%>"/>--%>
-                            <%--</button>--%>
-                        <%--</div>--%>
+                    <div class="list-group">
+                        <c:forEach var="group" varStatus="loop" items="${groups}">
+                            <button type="submit" class="list-group-item list-group-item-action" name = "groupbutton" value=${group.id}>
+                                    ${group.currentSemester.semesterNumber}, ${group.groupNumber}
+                            </button>
+                        </c:forEach>
                     </div>
                 </form>
+
+                <%--<form action="<%=Pages.JOURNAL.SELECT_GROUP.PATH_ABSOLUTE%>" method="post" class="form-group">--%>
+                    <%--<h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.KEY%>"/></h4>--%>
+                    <%--<div class="row">--%>
+                        <%--<div class="col-md-8">--%>
+                            <%--<select class="form-control" id="group" name="group" onchange="this.form.submit()">--%>
+                                <%--<option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.SELECT_GROUP.KEY%>"/></option>--%>
+                                <%--<c:forEach var="group" varStatus="loop" items="${groups}">--%>
+                                    <%--<option>${group.currentSemester.semesterNumber}, ${group.groupNumber}</option>--%>
+                                <%--</c:forEach>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                        <%--&lt;%&ndash;<div class="col-md-4">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<button class="btn btn-lg btn-primary btn-block" type="submit">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_GROUP.BUTTON.KEY%>"/>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</button>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                    <%--</div>--%>
+                <%--</form>--%>
                 <%
                     }
                 %>
                 <form action="<%=Pages.JOURNAL.SELECT_SUBJECT.PATH_ABSOLUTE%>" method="post" class="form-group">
                     <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></h4>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <select class="form-control" id="subject" name="subject" onchange="this.form.submit()">
-                                <option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></option>
+                            <div class="list-group">
                                 <c:forEach var="subject" varStatus="loop" items="${subjects}">
-                                    <option>${subject.name}</option>
+                                    <button type="submit" class="list-group-item list-group-item-action" name = "subjectbutton" value=${subject.id}>
+                                            ${subject.name}
+                                    </button>
+                                    <%--<option>${subject.name}</option>--%>
                                 </c:forEach>
-                            </select>
+
+                            <%--<select class="form-control" id="subject" name="subject" onchange="this.form.submit()">--%>
+                            <%--<option data-hidden="true"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></option>--%>
+                            <%--<c:forEach var="subject" varStatus="loop" items="${subjects}">--%>
+                            <%--<option>${subject.name}</option>--%>
+                            <%--</c:forEach>--%>
+                            <%--</select>--%>
                         </div>
                         <%--<div class="col-md-4">--%>
                             <%--<button class="btn btn-lg btn-primary btn-block" type="submit">--%>
                                 <%--<app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.BUTTON.KEY%>"/>--%>
                             <%--</button>--%>
                         <%--</div>--%>
-                    </div>
                 </form>
             </div>
-            <div class="col-md-8 page">
+            <div class="col-md-10">
                 <%
                     if (session.getAttribute(SessionAttributes.CURRENT_SUBJECT) != null) {
                 %>
