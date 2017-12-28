@@ -113,7 +113,7 @@ public class GroupController {
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
-        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
     }
 
 

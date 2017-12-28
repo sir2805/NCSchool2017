@@ -1,6 +1,8 @@
 <%@ page import="by.nc.school.dev.web.Pages" %>
 <%@ page import="by.nc.school.dev.service.AppStringsService" %>
 <%@ page import="by.nc.school.dev.web.controller.SessionAttributes" %>
+<%@ page import="by.nc.school.dev.entity.TutorAndSubject" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -54,9 +56,15 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit" name = "add-item" value="addItem">
             <app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.ITEM.ADDITEM.KEY%>"/>
         </button>
+        <%
+            if (((List< TutorAndSubject>)session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN)).size() != 0) {
+        %>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name = "add-plan" value="addPlan">
             <app:app-string key="<%=AppStringsService.WEB.ADD_SUBJECT.FINISH.KEY%>"/>
         </button>
+        <%
+            }
+        %>
     </form>
     <%
         }

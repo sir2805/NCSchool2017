@@ -27,14 +27,16 @@
         <div class="col-md-4">
             <c:import url="add-subject.jsp"/>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 page">
             <c:import url="subject-list.jsp"/>
         </div>
     </div>
     <%
         } else {
     %>
+    <div class="form-add">
     <c:import url="subject-list.jsp"/>
+    </div>
     <%
         }
     %>

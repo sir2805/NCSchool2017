@@ -62,7 +62,7 @@ public class UserController {
             group = groupService.getGroupByGroupInfo(groupInfo);
         }
         userService.saveUser(username, password, fullname, role, group);
-        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        return "redirect:" + Pages.VIEWS.ADD_USER.PATH_ABSOLUTE;
     }
 
 //    @Transactional

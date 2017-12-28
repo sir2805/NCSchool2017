@@ -63,7 +63,7 @@ public class WorkPlanController {
         groupJournalService.addEmptyGroupSemesterJournal(group, currentSemester, groupWorkPlan.getPlan().get(currentSemester));
         session.removeAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN);
         session.removeAttribute(SessionAttributes.CHOSEN_GROUP_INFO);
-        return "redirect:" + Pages.VIEWS.HOME.PATH_ABSOLUTE;
+        return "redirect:" + Pages.VIEWS.ADD_WORKPLAN.PATH_ABSOLUTE;
     }
 
     @Required
