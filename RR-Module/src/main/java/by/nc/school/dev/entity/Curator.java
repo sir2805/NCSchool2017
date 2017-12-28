@@ -53,13 +53,11 @@ public class Curator extends Tutor {
 
         Curator curator = (Curator) o;
 
-        return group != null ? group.equals(curator.group) : curator.group == null;
+        return this.id.equals(curator.id);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (group != null ? group.hashCode() : 0);
-        return result;
+        return id.intValue();
     }
 }

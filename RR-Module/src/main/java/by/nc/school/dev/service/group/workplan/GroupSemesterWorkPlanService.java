@@ -16,4 +16,6 @@ public interface GroupSemesterWorkPlanService {
     GroupSemesterWorkPlan addTutorAndSubjectList(GroupSemesterWorkPlan groupSemesterWorkPlan, List<TutorAndSubject> tutorAndSubjectList);
 
     Set<Subject> getAllSubjects(GroupSemesterWorkPlan groupSemesterWorkPlan);
+
+    Set<Subject> getAllSubjectsForTutor(Tutor tutor, GroupSemesterWorkPlan groupSemesterWorkPlan);
 }

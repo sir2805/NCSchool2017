@@ -31,8 +31,8 @@ public class JournalModelProvider implements ModelProvider {
     @Transactional
     public void fillModel(Model model, HttpSession session) {
         Group currentGroup = (Group) session.getAttribute(SessionAttributes.CURRENT_GROUP);
+        Person currentPerson = (Person) session.getAttribute(SessionAttributes.CURRENT_PERSON);
         if (currentGroup == null) {
-            Person currentPerson = (Person) session.getAttribute(SessionAttributes.CURRENT_PERSON);
             if (currentPerson.getRole() == Role.STUDENT) {
                 currentGroup = ((Student)currentPerson).getGroup();
             } else {
@@ -45,7 +45,13 @@ public class JournalModelProvider implements ModelProvider {
             groupJournal = groupJournalRepository.findGroupJournalByGroup(currentGroup);
             session.setAttribute(SessionAttributes.CURRENT_GROUP_JOURNAL, groupJournal);
         }
-        Set<Subject> subjects = groupSemesterWorkPlanService.getAllSubjects(groupJournal.getGroupWorkPlan().getPlan().get(currentGroup.getCurrentSemester()));
+        Set<Subject> subjects;
+        if (currentPerson.getRole() == Role.CURATOR) {
+            Curator curator = (Curator) currentPerson;
+            subjects = groupSemesterWorkPlanService.getAllSubjectsForTutor(curator, groupJournal.getGroupWorkPlan().getPlan().get(currentGroup.getCurrentSemester()));
+        } else {
+            subjects = groupSemesterWorkPlanService.getAllSubjects(groupJournal.getGroupWorkPlan().getPlan().get(currentGroup.getCurrentSemester()));
+        }
         Subject currentSubject = (Subject) session.getAttribute(SessionAttributes.CURRENT_SUBJECT);
         if (currentSubject == null) {
             fillModel(model, subjects, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
