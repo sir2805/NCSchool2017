@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class GroupSubjectJournalServiceImpl implements GroupSubjectJournalService {
 
@@ -44,8 +45,9 @@ public class GroupSubjectJournalServiceImpl implements GroupSubjectJournalServic
 
     @Override
     public void addLesson(GroupSubjectJournal groupSubjectJournal, String lessonName) {
-        List<String> lessonNames = groupSubjectJournal.getLessonNames();
+        Set<String> lessonNames = groupSubjectJournal.getLessonNames();
         lessonNames.add(lessonName);
+        groupSubjectJournal.setLessonNames(lessonNames);
         groupSubjectJournalRepository.save(groupSubjectJournal);
     }
 

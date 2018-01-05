@@ -32,11 +32,11 @@ public class GroupJournalServiceimpl implements GroupJournalService {
         Group group = groupWorkPlan.getGroup();
         GroupJournal groupJournal = new GroupJournal(group, groupWorkPlan);
         Map<Semester, GroupSemesterJournal> groupJournalMap = new HashMap<>();
-        Map<Semester, GroupSemesterWorkPlan> workPlanMap =  groupWorkPlan.getPlan();
-        for (Semester semester : workPlanMap.keySet()) {
-            groupJournalMap.put(semester, groupSemesterJournalService
-                    .initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(group, workPlanMap.get(semester)));
-        }
+//        Map<Semester, GroupSemesterWorkPlan> workPlanMap =  groupWorkPlan.getPlan();
+//        for (Semester semester : workPlanMap.keySet()) {
+//            groupJournalMap.put(semester, groupSemesterJournalService
+//                    .initGroupSemesterJournalFromGroupAndGroupSemesterWorkPlan(group, workPlanMap.get(semester)));
+//        }
         groupJournal.setGroupJournalMap(groupJournalMap);
         groupJournalRepository.save(groupJournal);
         return groupJournal;

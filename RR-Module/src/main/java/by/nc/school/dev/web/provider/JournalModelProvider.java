@@ -36,7 +36,7 @@ public class JournalModelProvider implements ModelProvider {
             if (currentPerson.getRole() == Role.STUDENT) {
                 currentGroup = ((Student)currentPerson).getGroup();
             } else {
-                fillModel(model, new HashSet<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                fillModel(model, new HashSet<>(), new ArrayList<>(), new HashSet<>(), new ArrayList<>());
                 return;
             }
         }
@@ -54,18 +54,18 @@ public class JournalModelProvider implements ModelProvider {
         }
         Subject currentSubject = (Subject) session.getAttribute(SessionAttributes.CURRENT_SUBJECT);
         if (currentSubject == null) {
-            fillModel(model, subjects, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            fillModel(model, subjects, new ArrayList<>(), new HashSet<>(), new ArrayList<>());
             return;
         }
-        model.addAttribute("students", currentGroup.getStudents());
         GroupSubjectJournal groupSubjectJournal = groupJournal.getGroupJournalMap().get(currentGroup.getCurrentSemester()).getSemesterJournal().get(currentSubject);
-        List<String> lessons = groupSubjectJournal.getLessonNames();
-        model.addAttribute("lessons", lessons);
+        Set<String> lessons = groupSubjectJournal.getLessonNames();
         Map<Student, ListOfMarks> marks = groupSubjectJournal.getMarksList();
         List<List<String>> marksTable = new ArrayList<>();
 
+        List<Student> students = new ArrayList<>();
         for (Student student : marks.keySet()) {
             List<String> marksForStudent = new ArrayList<>();
+            students.add(student);
             double totalMark = 0.0;
             int marksAmount = 0;
             for (String lesson : lessons) {
@@ -86,10 +86,10 @@ public class JournalModelProvider implements ModelProvider {
             }
             marksTable.add(marksForStudent);
         }
-        fillModel(model, subjects, currentGroup.getStudents(), lessons, marksTable);
+        fillModel(model, subjects, students, lessons, marksTable);
     }
 
-    protected void fillModel(Model model, Set<Subject> subjects, List<Student> students, List<String> lessons, List<List<String>> marksTable) {
+    protected void fillModel(Model model, Set<Subject> subjects, List<Student> students, Set<String> lessons, List<List<String>> marksTable) {
         List<Group> groups = groupRepository.findAll().stream().filter(group -> groupWorkPlanService.isWorkPlanForGroupExists(group)).collect(Collectors.toList());
         model.addAttribute("groups", groups);
         model.addAttribute("subjects", subjects);

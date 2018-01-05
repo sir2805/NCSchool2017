@@ -2,12 +2,14 @@
 <%@ page import="by.nc.school.dev.service.AppStringsService" %>
 <%@ page import="by.nc.school.dev.web.Pages" %>
 <%@ page import="by.nc.school.dev.web.controller.SessionAttributes" %>
+<%@ page import="by.nc.school.dev.entity.User" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><app:app-string key="<%=AppStringsService.WEB.HOME.TITLE.KEY%>"/></title>
+    <title><app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.TITLE.KEY%>"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -50,9 +52,15 @@
                 <button class="btn btn-lg btn-primary btn-block" name = "add-student" value="addStudent" type="submit">
                     <app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.ADD_STUDENT.SUBMIT.KEY%>"/>
                 </button>
+                <%
+                    if (((List<User>)session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS)).size() != 0) {
+                %>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name = "create-group" value="createGroup" formnovalidate>
                     <app:app-string key="<%=AppStringsService.WEB.ADD_GROUP.CREATE.KEY%>"/>
                 </button>
+                <%
+                    }
+                %>
             </form>
         </div>
         <div class="col-md-8">

@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="by.nc.school.dev.service.AppStringsService" %>
 <%@ page import="by.nc.school.dev.web.Pages" %>
+<%@ page import="by.nc.school.dev.Role" %>
+<%@ page import="by.nc.school.dev.web.controller.SessionAttributes" %>
+<%@ page import="by.nc.school.dev.entity.Person" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -15,7 +18,12 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
+
 <div class="container">
+    <h2>Welcome <%=((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getFullname()%>!</h2>
+    <%
+        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.ADMIN) {
+    %>
     <h2><app:app-string key="<%=AppStringsService.WEB.HOME.TITLE.KEY%>"/></h2>
     <table class="table">
         <thead>
@@ -39,6 +47,10 @@
             </tbody>
         </c:forEach>
     </table>
+    <%
+        }
+    %>
 </div>
+
 </body>
 </html>

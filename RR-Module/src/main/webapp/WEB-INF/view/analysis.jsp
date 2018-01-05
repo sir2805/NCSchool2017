@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><app:app-string key="<%=AppStringsService.WEB.ADD_USER.TITLE.KEY%>"/></title>
+    <title><app:app-string key="<%=AppStringsService.WEB.ANALYSIS.TITLE.KEY%>"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -19,22 +19,30 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp"/>
-    <%
-        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.DEAN ||
-                ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.ADMIN) {
-    %>
-    <div class="page">
+    <%--<%--%>
+        <%--if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.DEAN ||--%>
+                <%--((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.ADMIN) {--%>
+    <%--%>--%>
+    <div class="form-add">
         <h2><app:app-string key="<%=AppStringsService.WEB.ANALYSIS.STUDENTS_WITH_BAD_AVERAGE_MARK.KEY%>"/></h2>
         <ul style="list-style-type:circle" aria-hidden="true">
             <h4>
-                <c:forEach var="studentinfo" varStatus="loop" items="${studentsinfo}">
-                    <li>${studentinfo}</li>
+                <c:forEach var="badstudentinfo" varStatus="loop" items="${badstudentsinfo}">
+                    <li>${badstudentinfo}</li>
+                </c:forEach>
+            </h4>
+        </ul>
+        <h2><app:app-string key="<%=AppStringsService.WEB.ANALYSIS.STUDENTS_WITH_EXCELLENT_MARKS.KEY%>"/></h2>
+        <ul style="list-style-type:circle" aria-hidden="true">
+            <h4>
+                <c:forEach var="goodstudent" varStatus="loop" items="${goodstudents}">
+                    <li>${goodstudent}</li>
                 </c:forEach>
             </h4>
         </ul>
     </div>
-    <%
-        }
-    %>
+    <%--<%--%>
+        <%--}--%>
+    <%--%>--%>
 </body>
 </html>

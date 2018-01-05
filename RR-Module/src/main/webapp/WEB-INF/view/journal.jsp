@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><app:app-string key="<%=AppStringsService.WEB.ADD_USER.TITLE.KEY%>"/></title>
+    <title><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>

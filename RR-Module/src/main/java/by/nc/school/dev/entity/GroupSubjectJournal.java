@@ -1,10 +1,7 @@
 package by.nc.school.dev.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "group_subject_journal")
@@ -27,13 +24,26 @@ public class GroupSubjectJournal {
     @JoinTable(name = "lesson_names",
             joinColumns = @JoinColumn(name = "lesson_names_id")
     )
-    private List<String> lessonNames = new ArrayList<>();
+    private Set<String> lessonNames;
 
-    public List<String> getLessonNames() {
-        return lessonNames;
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "subject_journal_lesson",
+//            joinColumns = @JoinColumn(name = "group_subject_journal_id"),
+//            inverseJoinColumns = @JoinColumn(name = "lesson_id"))
+//    private List<Lesson> lessons;
+
+
+    public Set<String> getLessonNames() {
+        Set<String> lessons = new HashSet<>();
+        for (String s : lessonNames) {
+            lessons.add(s);
+        }
+        return lessons;
     }
 
-    public void setLessonNames(List<String> lessonNames) {
+    public void setLessonNames(Set<String> lessonNames) {
         this.lessonNames = lessonNames;
     }
 
@@ -43,7 +53,7 @@ public class GroupSubjectJournal {
 
     public GroupSubjectJournal() {
         marksList = new HashMap<>();
-        lessonNames = new ArrayList<>();
+        lessonNames = new HashSet<>();
     }
 
     public Map<Student, ListOfMarks> getMarksList() {

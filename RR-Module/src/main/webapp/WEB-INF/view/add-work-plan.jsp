@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><app:app-string key="<%=AppStringsService.WEB.ADD_USER.TITLE.KEY%>"/></title>
+    <title><app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.TITLE.KEY%>"/></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
@@ -57,7 +57,7 @@
             <app:app-string key="<%=AppStringsService.WEB.ADD_WORKPLAN.ITEM.ADDITEM.KEY%>"/>
         </button>
         <%
-            if (((List< TutorAndSubject>)session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN)).size() != 0) {
+            if (((List<TutorAndSubject>)session.getAttribute(SessionAttributes.CURRENTLY_ADDING_WORK_PLAN)).size() != 0) {
         %>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name = "add-plan" value="addPlan">
             <app:app-string key="<%=AppStringsService.WEB.ADD_SUBJECT.FINISH.KEY%>"/>

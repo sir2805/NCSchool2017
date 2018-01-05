@@ -57,6 +57,9 @@ public interface AppStringsService {
         }
         interface SUBJECT {
             String KEY = WEB.KEY + ".subject";
+            interface TITLE {
+                String KEY = SUBJECT.KEY + ".title";
+            }
             interface LIST {
                 String KEY = SUBJECT.KEY + ".list";
             }
@@ -268,8 +271,23 @@ public interface AppStringsService {
         }
         interface ANALYSIS {
             String KEY = WEB.KEY + ".analysis";
+            interface TITLE {
+                String KEY = ANALYSIS.KEY + ".title";
+            }
             interface STUDENTS_WITH_BAD_AVERAGE_MARK {
                 String KEY = ANALYSIS.KEY + ".badstudents";
+            }
+            interface STUDENTS_WITH_EXCELLENT_MARKS {
+                String KEY = ANALYSIS.KEY + ".goodstudents";
+            }
+        }
+        interface ERROR {
+            String KEY = WEB.KEY + ".error";
+            interface TITLE {
+                String KEY = ANALYSIS.KEY + ".title";
+            }
+            interface MESSAGE {
+                String KEY = ANALYSIS.KEY + ".message";
             }
         }
     }

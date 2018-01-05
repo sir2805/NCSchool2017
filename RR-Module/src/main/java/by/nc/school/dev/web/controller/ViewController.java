@@ -1,5 +1,7 @@
 package by.nc.school.dev.web.controller;
 
+import by.nc.school.dev.Role;
+import by.nc.school.dev.entity.Person;
 import by.nc.school.dev.web.Pages;
 import by.nc.school.dev.web.provider.ModelProvider;
 import org.springframework.beans.factory.annotation.Required;
@@ -36,12 +38,20 @@ public class ViewController {
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_GROUP.PATH)
     public String getAddGroupPage(Model model, HttpSession session) {
+        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.STUDENT ||
+                ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.CURATOR) {
+            return Pages.VIEWS.HOME.VIEW;
+        }
         processRequest(model, session, Pages.VIEWS.ADD_GROUP.VIEW);
         return Pages.VIEWS.ADD_GROUP.VIEW;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_USER.PATH)
     public String getAddUserPage(Model model, HttpSession session) {
+        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.STUDENT ||
+                ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.CURATOR) {
+            return Pages.VIEWS.HOME.VIEW;
+        }
         processRequest(model, session, Pages.VIEWS.ADD_USER.VIEW);
         return Pages.VIEWS.ADD_USER.VIEW;
     }
@@ -54,6 +64,10 @@ public class ViewController {
 
     @RequestMapping(method = RequestMethod.GET, path = Pages.VIEWS.ADD_WORKPLAN.PATH)
     public String getAddWorkPlanPage(Model model, HttpSession session) {
+        if (((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.STUDENT ||
+                ((Person)session.getAttribute(SessionAttributes.CURRENT_PERSON)).getRole() == Role.CURATOR) {
+            return Pages.VIEWS.HOME.VIEW;
+        }
         processRequest(model, session, Pages.VIEWS.ADD_WORKPLAN.VIEW);
         return Pages.VIEWS.ADD_WORKPLAN.VIEW;
     }

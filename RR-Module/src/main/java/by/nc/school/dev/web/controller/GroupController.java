@@ -40,24 +40,15 @@ public class GroupController {
                             ,@RequestParam("groupnumber") Integer groupNumber
                             ,@RequestParam("curator") String fullname) {
         //TODO resolve conflicts with same group number
+        if (groupService.getGroupByGroupNumber(groupNumber) != null) {
+            return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
+        }
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP, groupNumber);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS, new ArrayList<User>());
         Person selectedTutor = personService.getPersonByfullname(fullname);
         session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
         return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
     }
-//
-//    @RequestMapping(method = RequestMethod.POST, path = Pages.GROUP.ADD_CURATOR.PATH)
-//    public String addCurator(HttpSession session
-//            ,@RequestParam("curator") String fullname) {
-//        User selectedTutor = userService.getUserByFullname(fullname);
-//        selectedTutor.getPerson().setRole(Role.CURATOR);
-//        userService.saveUser(selectedTutor);
-//        session.setAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR, selectedTutor);
-//        session.setAttribute(SessionAttributes.IS_CURATOR_ADDED, true);
-//        return "redirect:" + Pages.VIEWS.ADD_GROUP.PATH_ABSOLUTE;
-//    }
-
 
     @RequestMapping(method = RequestMethod.POST, params="add-student", path = Pages.GROUP.ADD_GROUP.PATH)
     public String addStudent(HttpSession session
@@ -76,9 +67,6 @@ public class GroupController {
     @Transactional
     @RequestMapping(method = RequestMethod.POST, params="create-group",path = Pages.GROUP.ADD_GROUP.PATH)
     public String addGroup(HttpSession session) {
-//        User curatorUser = userService.getUserByFullname(fullname);
-//        curatorUser.getPerson().setRole(Role.CURATOR);
-//        userService.saveUser(curatorUser);
         Group currentGroup =  groupService.createGroup((Integer) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_GROUP));
         List<User> studentUsers = (List<User>) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_STUDENTS);
         Curator curator = (Curator) session.getAttribute(SessionAttributes.CURRENTLY_ADDING_CURATOR);
@@ -92,16 +80,8 @@ public class GroupController {
             currentGroup.getStudents().add(currentStudent);
         }
 
-//        Curator curator = personService.changeTutorToCurator(selectedTutor, currentGroup);
-
-
-//        personService.savePerson(curator);
-//        personService.saveNewlyAddedCurator(curator);
-
         groupService.saveGroup(currentGroup);
-
         GroupWorkPlan groupWorkPlan = groupWorkPlanService.initGroupWorkPlanFromGroup(currentGroup);
-
         groupJournalService.initGroupJournalFromGroupWorkPlan(groupWorkPlan);
 
         for (User studentUser : studentUsers) {

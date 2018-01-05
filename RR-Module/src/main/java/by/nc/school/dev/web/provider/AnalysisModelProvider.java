@@ -18,13 +18,14 @@ public class AnalysisModelProvider implements ModelProvider {
     @Override
     public void fillModel(Model model, HttpSession session) {
         Map<Student, List<Subject>> badStudents = analysisService.findAllStudentsWithBadAverageMark();
-        List<String> studentsInfo = new ArrayList<>();
+        List<String> badStudentsInfo = new ArrayList<>();
         for (Student badstudent : badStudents.keySet()) {
             for (Subject subject : badStudents.get(badstudent)) {
-                studentsInfo.add(badstudent.toString() + " at subject " + subject);
+                badStudentsInfo.add(badstudent.toString() + " at subject " + subject);
             }
         }
-        model.addAttribute("studentsinfo", studentsInfo);
+        model.addAttribute("badstudentsinfo", badStudentsInfo);
+        model.addAttribute("goodstudents", analysisService.findAllStudentsWithExcellentMarks());
     }
 
     @Required

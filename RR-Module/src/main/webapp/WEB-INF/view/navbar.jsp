@@ -4,7 +4,7 @@
 <%@ page import="by.nc.school.dev.entity.Person" %>
 <%@ page import="by.nc.school.dev.web.controller.SessionAttributes" %>
 <%@ page import="by.nc.school.dev.Role" %>
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+<nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top bg-primary">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
